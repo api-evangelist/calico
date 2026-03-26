@@ -1,11 +1,20 @@
 aid: calico
 name: Calico
 description: >-
-  Calico is an open source networking and network security solution for containers, virtual machines, and native host-based workloads.
+  Calico is an open source networking and network security solution for
+  containers, virtual machines, and native host-based workloads. Created and
+  maintained by Tigera, it is the most widely adopted solution for container
+  networking and security, powering over 8 million nodes daily across 166
+  countries.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Containers
+  - Networking
+  - Network Security
+  - Kubernetes
+  - CNI
+  - Open Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/calico/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +24,37 @@ apis:
   - aid: calico:calico
     name: Calico
     description: >-
-      Calico is an open source networking and network security solution for containers, virtual machines, and native host-based workloads.
-    humanURL: https://github.com/api-evangelist/calico
+      Calico is an open source networking and network security solution for
+      containers, virtual machines, and native host-based workloads. It provides
+      network policy enforcement, routing, and network security for Kubernetes
+      clusters.
+    humanURL: https://www.tigera.io/project-calico/
     tags:
       - Containers
-    properties: []
+      - Networking
+      - Network Security
+      - Kubernetes
+      - CNI
+    properties:
+      - type: Documentation
+        url: https://docs.tigera.io/
+      - type: Getting Started
+        url: https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
 common:
   - type: Website
-    url: https://github.com/api-evangelist/calico
+    url: https://www.tigera.io/project-calico/
+  - type: Documentation
+    url: https://docs.tigera.io/
+  - type: Getting Started
+    url: https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
+  - type: GitHub Organization
+    url: https://github.com/projectcalico
+  - type: GitHub Repository
+    url: https://github.com/projectcalico/calico
+  - type: Blog
+    url: https://www.tigera.io/blog/
+  - type: Pricing
+    url: https://www.tigera.io/tigera-products/calico/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
