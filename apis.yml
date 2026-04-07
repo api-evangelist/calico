@@ -9,11 +9,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Containers
-  - Networking
-  - Network Security
-  - Kubernetes
   - CNI
+  - Containers
+  - Kubernetes
+  - Network Security
+  - Networking
   - Open Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/calico/refs/heads/main/apis.yml
@@ -30,11 +30,11 @@ apis:
       clusters.
     humanURL: https://www.tigera.io/project-calico/
     tags:
-      - Containers
-      - Networking
-      - Network Security
-      - Kubernetes
       - CNI
+      - Containers
+      - Kubernetes
+      - Network Security
+      - Networking
     properties:
       - type: Documentation
         url: https://docs.tigera.io/
