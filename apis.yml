@@ -103,6 +103,15 @@ common:
     url: https://www.tigera.io/interactive-training/
   - type: Certification
     url: https://www.tigera.io/lp/calico-certification/
+  - type: Integrations
+    url: https://www.tigera.io/partners/
+integrations:
+  - name: AWS EKS
+  - name: Azure AKS
+  - name: Google GKE
+  - name: Red Hat OpenShift
+  - name: Fortinet
+  - name: Mirantis
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
