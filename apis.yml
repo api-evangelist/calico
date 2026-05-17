@@ -87,11 +87,11 @@ common:
     url: https://www.tigera.io/project-calico/
   - type: Documentation
     url: https://docs.tigera.io/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/projectcalico
-  - type: GitHub Repository
+  - type: GitHubRepository
     url: https://github.com/projectcalico/calico
   - type: Blog
     url: https://www.tigera.io/blog/
