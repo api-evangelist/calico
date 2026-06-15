@@ -1,0 +1,579 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Project Calico API (projectcalico.org/v3)",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NetworkPolicy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List NetworkPolicy in namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fieldSelector",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List NetworkPolicy in namespace"
+        },
+        {
+          "info": {
+            "name": "Create NetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create NetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Read NetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read NetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Replace NetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace NetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Delete NetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete NetworkPolicy"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "GlobalNetworkPolicy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies",
+            "params": [
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fieldSelector",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List GlobalNetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Create GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create GlobalNetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Read GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read GlobalNetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Replace GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace GlobalNetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Delete GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete GlobalNetworkPolicy"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BGPPeer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers"
+          },
+          "docs": "List BGPPeer"
+        },
+        {
+          "info": {
+            "name": "Create BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create BGPPeer"
+        },
+        {
+          "info": {
+            "name": "Read BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read BGPPeer"
+        },
+        {
+          "info": {
+            "name": "Replace BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace BGPPeer"
+        },
+        {
+          "info": {
+            "name": "Delete BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete BGPPeer"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BGPConfiguration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List BGPConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgpconfigurations"
+          },
+          "docs": "List BGPConfiguration"
+        },
+        {
+          "info": {
+            "name": "Read BGPConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgpconfigurations/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read BGPConfiguration"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IPPool",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools"
+          },
+          "docs": "List IPPool"
+        },
+        {
+          "info": {
+            "name": "Create IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create IPPool"
+        },
+        {
+          "info": {
+            "name": "Read IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read IPPool"
+        },
+        {
+          "info": {
+            "name": "Replace IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace IPPool"
+        },
+        {
+          "info": {
+            "name": "Delete IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete IPPool"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "HostEndpoint",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List HostEndpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/hostendpoints"
+          },
+          "docs": "List HostEndpoint"
+        },
+        {
+          "info": {
+            "name": "Create HostEndpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/hostendpoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create HostEndpoint"
+        },
+        {
+          "info": {
+            "name": "Read HostEndpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/hostendpoints/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read HostEndpoint"
+        },
+        {
+          "info": {
+            "name": "Delete HostEndpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/hostendpoints/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete HostEndpoint"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/profiles"
+          },
+          "docs": "List Profile"
+        },
+        {
+          "info": {
+            "name": "Read Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/profiles/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read Profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
