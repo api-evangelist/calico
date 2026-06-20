@@ -7,7 +7,7 @@ description: >-
   networking and security, powering over 8 million nodes daily across 166
   countries.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - CNI
   - Containers
