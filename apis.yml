@@ -83,6 +83,12 @@ apis:
       - type: GitHub
         url: https://github.com/projectcalico/calico
 common:
+  - type: VulnerabilityDisclosure
+    url: security/calico-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/calico-domain-security.yml
+  - type: Authentication
+    url: authentication/calico-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/calico-life-sciences-llc
   - type: Website
