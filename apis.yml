@@ -83,6 +83,8 @@ apis:
       - type: GitHub
         url: https://github.com/projectcalico/calico
 common:
+  - type: AgenticAccess
+    url: agentic-access/calico-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/calico-vulnerability-disclosure.yml
   - type: DomainSecurity
