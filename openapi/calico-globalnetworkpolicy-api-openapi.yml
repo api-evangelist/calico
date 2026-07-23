@@ -1,0 +1,343 @@
+openapi: 3.1.0
+info:
+  title: Project Calico API (projectcalico.org/v3) BGPConfiguration GlobalNetworkPolicy API
+  version: 3.0.0
+  description: 'Calico exposes its custom resources through the Kubernetes API server
+
+    under the `projectcalico.org/v3` API group. Authentication and transport
+
+    follow standard Kubernetes conventions (bearer token or client cert) and
+
+    requests are made against the cluster''s kube-apiserver. This document
+
+    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
+
+    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
+
+    resources do not appear under a `/namespaces/{namespace}/` segment.
+
+    '
+  contact:
+    name: Project Calico / Tigera
+    url: https://docs.tigera.io/calico/latest/reference/
+servers:
+- url: https://{kube_apiserver_host}/apis/projectcalico.org/v3
+  description: Calico API group on the Kubernetes API server
+  variables:
+    kube_apiserver_host:
+      default: kubernetes.default.svc
+      description: Kubernetes API server host
+security:
+- BearerAuth: []
+tags:
+- name: GlobalNetworkPolicy
+paths:
+  /globalnetworkpolicies:
+    get:
+      tags:
+      - GlobalNetworkPolicy
+      summary: List GlobalNetworkPolicy
+      operationId: listGlobalNetworkPolicy
+      parameters:
+      - $ref: '#/components/parameters/LabelSelector'
+      - $ref: '#/components/parameters/FieldSelector'
+      responses:
+        '200':
+          description: GlobalNetworkPolicy list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalNetworkPolicyList'
+    post:
+      tags:
+      - GlobalNetworkPolicy
+      summary: Create GlobalNetworkPolicy
+      operationId: createGlobalNetworkPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalNetworkPolicy'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalNetworkPolicy'
+  /globalnetworkpolicies/{name}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - GlobalNetworkPolicy
+      summary: Read GlobalNetworkPolicy
+      operationId: readGlobalNetworkPolicy
+      responses:
+        '200':
+          description: GlobalNetworkPolicy.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalNetworkPolicy'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+      - GlobalNetworkPolicy
+      summary: Replace GlobalNetworkPolicy
+      operationId: replaceGlobalNetworkPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalNetworkPolicy'
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalNetworkPolicy'
+    delete:
+      tags:
+      - GlobalNetworkPolicy
+      summary: Delete GlobalNetworkPolicy
+      operationId: deleteGlobalNetworkPolicy
+      responses:
+        '200':
+          description: Deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+components:
+  schemas:
+    Rule:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - Allow
+          - Deny
+          - Log
+          - Pass
+        protocol:
+          type: string
+        notProtocol:
+          type: string
+        icmp:
+          type: object
+          properties:
+            type:
+              type: integer
+            code:
+              type: integer
+        ipVersion:
+          type: integer
+          enum:
+          - 4
+          - 6
+        source:
+          $ref: '#/components/schemas/EntityRule'
+        destination:
+          $ref: '#/components/schemas/EntityRule'
+        http:
+          type: object
+          properties:
+            methods:
+              type: array
+              items:
+                type: string
+            paths:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+        metadata:
+          type: object
+          properties:
+            annotations:
+              type: object
+              additionalProperties:
+                type: string
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    GlobalNetworkPolicy:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: GlobalNetworkPolicy
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/GlobalNetworkPolicySpec'
+    GlobalNetworkPolicyList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: GlobalNetworkPolicyList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalNetworkPolicy'
+    GlobalNetworkPolicySpec:
+      allOf:
+      - $ref: '#/components/schemas/NetworkPolicySpec'
+      - type: object
+        properties:
+          namespaceSelector:
+            type: string
+          doNotTrack:
+            type: boolean
+          preDNAT:
+            type: boolean
+          applyOnForward:
+            type: boolean
+    NetworkPolicySpec:
+      type: object
+      properties:
+        order:
+          type: number
+        tier:
+          type: string
+        selector:
+          type: string
+        serviceAccountSelector:
+          type: string
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+            - Ingress
+            - Egress
+        ingress:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        egress:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+    EntityRule:
+      type: object
+      properties:
+        nets:
+          type: array
+          items:
+            type: string
+        notNets:
+          type: array
+          items:
+            type: string
+        selector:
+          type: string
+        notSelector:
+          type: string
+        namespaceSelector:
+          type: string
+        ports:
+          type: array
+          items:
+            oneOf:
+            - type: integer
+            - type: string
+        notPorts:
+          type: array
+          items:
+            oneOf:
+            - type: integer
+            - type: string
+        serviceAccounts:
+          type: object
+          properties:
+            names:
+              type: array
+              items:
+                type: string
+            selector:
+              type: string
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+  parameters:
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    LabelSelector:
+      name: labelSelector
+      in: query
+      schema:
+        type: string
+    FieldSelector:
+      name: fieldSelector
+      in: query
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Kubernetes service account bearer token.

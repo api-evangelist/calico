@@ -1,0 +1,227 @@
+openapi: 3.1.0
+info:
+  title: Project Calico API (projectcalico.org/v3) BGPConfiguration BGPPeer API
+  version: 3.0.0
+  description: 'Calico exposes its custom resources through the Kubernetes API server
+
+    under the `projectcalico.org/v3` API group. Authentication and transport
+
+    follow standard Kubernetes conventions (bearer token or client cert) and
+
+    requests are made against the cluster''s kube-apiserver. This document
+
+    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
+
+    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
+
+    resources do not appear under a `/namespaces/{namespace}/` segment.
+
+    '
+  contact:
+    name: Project Calico / Tigera
+    url: https://docs.tigera.io/calico/latest/reference/
+servers:
+- url: https://{kube_apiserver_host}/apis/projectcalico.org/v3
+  description: Calico API group on the Kubernetes API server
+  variables:
+    kube_apiserver_host:
+      default: kubernetes.default.svc
+      description: Kubernetes API server host
+security:
+- BearerAuth: []
+tags:
+- name: BGPPeer
+paths:
+  /bgppeers:
+    get:
+      tags:
+      - BGPPeer
+      summary: List BGPPeer
+      operationId: listBGPPeer
+      responses:
+        '200':
+          description: BGPPeer list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BGPPeerList'
+    post:
+      tags:
+      - BGPPeer
+      summary: Create BGPPeer
+      operationId: createBGPPeer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BGPPeer'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BGPPeer'
+  /bgppeers/{name}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - BGPPeer
+      summary: Read BGPPeer
+      operationId: readBGPPeer
+      responses:
+        '200':
+          description: BGPPeer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BGPPeer'
+    put:
+      tags:
+      - BGPPeer
+      summary: Replace BGPPeer
+      operationId: replaceBGPPeer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BGPPeer'
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BGPPeer'
+    delete:
+      tags:
+      - BGPPeer
+      summary: Delete BGPPeer
+      operationId: deleteBGPPeer
+      responses:
+        '200':
+          description: Deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+components:
+  parameters:
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    BGPPeer:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: BGPPeer
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/BGPPeerSpec'
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+    BGPPeerList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: BGPPeerList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BGPPeer'
+    BGPPeerSpec:
+      type: object
+      properties:
+        node:
+          type: string
+        nodeSelector:
+          type: string
+        peerIP:
+          type: string
+        peerSelector:
+          type: string
+        asNumber:
+          type: integer
+        keepOriginalNextHop:
+          type: boolean
+        password:
+          type: object
+          properties:
+            secretKeyRef:
+              type: object
+              properties:
+                name:
+                  type: string
+                key:
+                  type: string
+        sourceAddress:
+          type: string
+          enum:
+          - UseNodeIP
+          - None
+        maxRestartTime:
+          type: string
+        ttlSecurity:
+          type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Kubernetes service account bearer token.

@@ -1,0 +1,198 @@
+openapi: 3.1.0
+info:
+  title: Project Calico API (projectcalico.org/v3) BGPConfiguration HostEndpoint API
+  version: 3.0.0
+  description: 'Calico exposes its custom resources through the Kubernetes API server
+
+    under the `projectcalico.org/v3` API group. Authentication and transport
+
+    follow standard Kubernetes conventions (bearer token or client cert) and
+
+    requests are made against the cluster''s kube-apiserver. This document
+
+    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
+
+    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
+
+    resources do not appear under a `/namespaces/{namespace}/` segment.
+
+    '
+  contact:
+    name: Project Calico / Tigera
+    url: https://docs.tigera.io/calico/latest/reference/
+servers:
+- url: https://{kube_apiserver_host}/apis/projectcalico.org/v3
+  description: Calico API group on the Kubernetes API server
+  variables:
+    kube_apiserver_host:
+      default: kubernetes.default.svc
+      description: Kubernetes API server host
+security:
+- BearerAuth: []
+tags:
+- name: HostEndpoint
+paths:
+  /hostendpoints:
+    get:
+      tags:
+      - HostEndpoint
+      summary: List HostEndpoint
+      operationId: listHostEndpoint
+      responses:
+        '200':
+          description: HostEndpoint list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiVersion:
+                    type: string
+                  kind:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HostEndpoint'
+    post:
+      tags:
+      - HostEndpoint
+      summary: Create HostEndpoint
+      operationId: createHostEndpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostEndpoint'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostEndpoint'
+  /hostendpoints/{name}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - HostEndpoint
+      summary: Read HostEndpoint
+      operationId: readHostEndpoint
+      responses:
+        '200':
+          description: HostEndpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostEndpoint'
+    delete:
+      tags:
+      - HostEndpoint
+      summary: Delete HostEndpoint
+      operationId: deleteHostEndpoint
+      responses:
+        '200':
+          description: Deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+components:
+  schemas:
+    HostEndpointSpec:
+      type: object
+      properties:
+        node:
+          type: string
+        interfaceName:
+          type: string
+        expectedIPs:
+          type: array
+          items:
+            type: string
+        profiles:
+          type: array
+          items:
+            type: string
+        ports:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              port:
+                type: integer
+              protocol:
+                type: string
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    HostEndpoint:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: HostEndpoint
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/HostEndpointSpec'
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+  parameters:
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Kubernetes service account bearer token.

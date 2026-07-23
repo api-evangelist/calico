@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: Project Calico API (projectcalico.org/v3) BGPConfiguration API
+  version: 3.0.0
+  description: 'Calico exposes its custom resources through the Kubernetes API server
+
+    under the `projectcalico.org/v3` API group. Authentication and transport
+
+    follow standard Kubernetes conventions (bearer token or client cert) and
+
+    requests are made against the cluster''s kube-apiserver. This document
+
+    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
+
+    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
+
+    resources do not appear under a `/namespaces/{namespace}/` segment.
+
+    '
+  contact:
+    name: Project Calico / Tigera
+    url: https://docs.tigera.io/calico/latest/reference/
+servers:
+- url: https://{kube_apiserver_host}/apis/projectcalico.org/v3
+  description: Calico API group on the Kubernetes API server
+  variables:
+    kube_apiserver_host:
+      default: kubernetes.default.svc
+      description: Kubernetes API server host
+security:
+- BearerAuth: []
+tags:
+- name: BGPConfiguration
+paths:
+  /bgpconfigurations:
+    get:
+      tags:
+      - BGPConfiguration
+      summary: List BGPConfiguration
+      operationId: listBGPConfiguration
+      responses:
+        '200':
+          description: BGPConfiguration list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiVersion:
+                    type: string
+                  kind:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectMeta'
+  /bgpconfigurations/{name}:
+    parameters:
+    - $ref: '#/components/parameters/Name'
+    get:
+      tags:
+      - BGPConfiguration
+      summary: Read BGPConfiguration
+      operationId: readBGPConfiguration
+      responses:
+        '200':
+          description: BGPConfiguration.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  parameters:
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Kubernetes service account bearer token.
