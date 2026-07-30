@@ -7,7 +7,20 @@ description: >-
   networking and security, powering over 8 million nodes daily across 166
   countries.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/calico.png
 tags:
   - CNI
   - Containers
@@ -24,64 +37,123 @@ created: '2026-03-26'
 modified: '2026-04-23'
 specificationVersion: '0.19'
 apis:
-  - aid: calico:calico-client-api
-    name: Calico Client API
-    description: >-
-      The Calico Client Library provides programmatic access to manage Calico
-      resources such as network policies, IP pools, BGP configuration, host
-      and workload endpoints, and IPAM settings. It is the core programmatic
-      interface consumed by calicoctl and other Calico components for managing
-      container networking and security resources.
-    humanURL: https://docs.tigera.io/calico/latest/reference/
-    tags:
-      - Client Library
-      - CNI
-      - Network Policy
-      - Networking
-    properties:
-      - type: Documentation
-        url: https://docs.tigera.io/calico/latest/reference/
-      - type: GitHub
-        url: https://github.com/projectcalico/calico
-  - aid: calico:calicoctl-cli
-    name: calicoctl CLI
-    description: >-
-      calicoctl is the command-line tool that enables operators and automation
-      systems to create, read, update, and delete Calico resources such as
-      policies, IP pools, BGP peers, host endpoints, and workload endpoints.
-      It also supports datastore migration, IPAM management, node diagnostics,
-      and cluster status operations.
-    humanURL: https://docs.tigera.io/calico/latest/reference/calicoctl/
-    tags:
-      - CLI
-      - IPAM
-      - Network Policy
-      - Operations
-    properties:
-      - type: Documentation
-        url: https://docs.tigera.io/calico/latest/reference/calicoctl/
-      - type: GitHub
-        url: https://github.com/projectcalico/calicoctl
-  - aid: calico:calico-kubernetes-crds
-    name: Calico Kubernetes CRDs
-    description: >-
-      Calico exposes its networking and security primitives through Kubernetes
-      Custom Resource Definitions (CRDs) including NetworkPolicy,
-      GlobalNetworkPolicy, IPPool, BGPConfiguration, BGPPeer, HostEndpoint,
-      WorkloadEndpoint, FelixConfiguration, and others. These CRDs allow
-      declarative management of container networking and security via the
-      Kubernetes API.
-    humanURL: https://docs.tigera.io/calico/latest/reference/resources/
-    tags:
-      - CRDs
-      - Kubernetes
-      - Network Policy
-      - Security
-    properties:
-      - type: Documentation
-        url: https://docs.tigera.io/calico/latest/reference/resources/
-      - type: GitHub
-        url: https://github.com/projectcalico/calico
+- aid: calico:calico-client-api
+  name: Calico Client API
+  description: >-
+    The Calico Client Library provides programmatic access to manage Calico resources such as network
+    policies, IP pools, BGP configuration, host and workload endpoints, and IPAM settings. It is the core
+    programmatic interface consumed by calicoctl and other Calico components for managing container networking
+    and security resources.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  tags:
+  - Client Library
+  - CNI
+  - Network Policy
+  - Networking
+  properties:
+  - type: Documentation
+    url: https://docs.tigera.io/calico/latest/reference/
+  - type: GitHub
+    url: https://github.com/projectcalico/calico
+- aid: calico:calicoctl-cli
+  name: calicoctl CLI
+  description: >-
+    calicoctl is the command-line tool that enables operators and automation systems to create, read,
+    update, and delete Calico resources such as policies, IP pools, BGP peers, host endpoints, and workload
+    endpoints. It also supports datastore migration, IPAM management, node diagnostics, and cluster status
+    operations.
+  humanURL: https://docs.tigera.io/calico/latest/reference/calicoctl/
+  tags:
+  - CLI
+  - IPAM
+  - Network Policy
+  - Operations
+  properties:
+  - type: Documentation
+    url: https://docs.tigera.io/calico/latest/reference/calicoctl/
+  - type: GitHub
+    url: https://github.com/projectcalico/calicoctl
+- aid: calico:calico-kubernetes-crds
+  name: Calico Kubernetes CRDs
+  description: >-
+    Calico exposes its networking and security primitives through Kubernetes Custom Resource Definitions
+    (CRDs) including NetworkPolicy, GlobalNetworkPolicy, IPPool, BGPConfiguration, BGPPeer, HostEndpoint,
+    WorkloadEndpoint, FelixConfiguration, and others. These CRDs allow declarative management of container
+    networking and security via the Kubernetes API.
+  humanURL: https://docs.tigera.io/calico/latest/reference/resources/
+  tags:
+  - CRDs
+  - Kubernetes
+  - Network Policy
+  - Security
+  properties:
+  - type: Documentation
+    url: https://docs.tigera.io/calico/latest/reference/resources/
+  - type: GitHub
+    url: https://github.com/projectcalico/calico
+- aid: calico:calico-bgpconfiguration-api
+  name: Calico BGPConfiguration API
+  description: The BGPConfiguration API from Calico — 2 operation(s) for bgpconfiguration.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  tags:
+  - BGPConfiguration
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-bgpconfiguration-api-openapi.yml
+- aid: calico:calico-bgppeer-api
+  name: Calico BGPPeer API
+  description: The BGPPeer API from Calico — 2 operation(s) for bgppeer.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  tags:
+  - BGPPeer
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-bgppeer-api-openapi.yml
+- aid: calico:calico-globalnetworkpolicy-api
+  name: Calico GlobalNetworkPolicy API
+  description: The GlobalNetworkPolicy API from Calico — 2 operation(s) for globalnetworkpolicy.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  tags:
+  - GlobalNetworkPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-globalnetworkpolicy-api-openapi.yml
+- aid: calico:calico-hostendpoint-api
+  name: Calico HostEndpoint API
+  description: The HostEndpoint API from Calico — 2 operation(s) for hostendpoint.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  tags:
+  - HostEndpoint
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-hostendpoint-api-openapi.yml
+- aid: calico:calico-ippool-api
+  name: Calico IPPool API
+  description: The IPPool API from Calico — 2 operation(s) for ippool.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  tags:
+  - IPPool
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-ippool-api-openapi.yml
+- aid: calico:calico-networkpolicy-api
+  name: Calico NetworkPolicy API
+  description: The NetworkPolicy API from Calico — 2 operation(s) for networkpolicy.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  tags:
+  - NetworkPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-networkpolicy-api-openapi.yml
+- aid: calico:calico-profile-api
+  name: Calico Profile API
+  description: The Profile API from Calico — 2 operation(s) for profile.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  tags:
+  - Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-profile-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/calico-agentic-access.yml
