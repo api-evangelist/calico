@@ -1,0 +1,26 @@
+{
+  "provider": "calico",
+  "sources": [
+    "calico-bgpconfiguration-api-openapi.yml",
+    "calico-bgppeer-api-openapi.yml",
+    "calico-globalnetworkpolicy-api-openapi.yml",
+    "calico-hostendpoint-api-openapi.yml",
+    "calico-ippool-api-openapi.yml",
+    "calico-networkpolicy-api-openapi.yml",
+    "calico-profile-api-openapi.yml"
+  ],
+  "outputs": [
+    "calico-bgpconfiguration-api-openapi.yml",
+    "calico-bgppeer-api-openapi.yml",
+    "calico-globalnetworkpolicy-api-openapi.yml",
+    "calico-hostendpoint-api-openapi.yml",
+    "calico-ippool-api-openapi.yml",
+    "calico-networkpolicy-api-openapi.yml",
+    "calico-profile-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

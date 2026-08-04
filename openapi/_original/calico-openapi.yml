@@ -1,0 +1,704 @@
+openapi: 3.1.0
+info:
+  title: Project Calico API (projectcalico.org/v3)
+  version: "3.0.0"
+  description: |
+    Calico exposes its custom resources through the Kubernetes API server
+    under the `projectcalico.org/v3` API group. Authentication and transport
+    follow standard Kubernetes conventions (bearer token or client cert) and
+    requests are made against the cluster's kube-apiserver. This document
+    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
+    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
+    resources do not appear under a `/namespaces/{namespace}/` segment.
+  contact:
+    name: Project Calico / Tigera
+    url: https://docs.tigera.io/calico/latest/reference/
+servers:
+  - url: https://{kube_apiserver_host}/apis/projectcalico.org/v3
+    description: Calico API group on the Kubernetes API server
+    variables:
+      kube_apiserver_host:
+        default: kubernetes.default.svc
+        description: Kubernetes API server host
+security:
+  - BearerAuth: []
+tags:
+  - name: NetworkPolicy
+  - name: GlobalNetworkPolicy
+  - name: BGPPeer
+  - name: BGPConfiguration
+  - name: IPPool
+  - name: HostEndpoint
+  - name: Profile
+paths:
+  /namespaces/{namespace}/networkpolicies:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+    get:
+      tags: [NetworkPolicy]
+      summary: List NetworkPolicy in namespace
+      operationId: listNamespacedNetworkPolicy
+      parameters:
+        - $ref: '#/components/parameters/LabelSelector'
+        - $ref: '#/components/parameters/FieldSelector'
+      responses:
+        '200':
+          description: NetworkPolicy list.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NetworkPolicyList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [NetworkPolicy]
+      summary: Create NetworkPolicy
+      operationId: createNamespacedNetworkPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NetworkPolicy' }
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NetworkPolicy' }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /namespaces/{namespace}/networkpolicies/{name}:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+      - $ref: '#/components/parameters/Name'
+    get:
+      tags: [NetworkPolicy]
+      summary: Read NetworkPolicy
+      operationId: readNamespacedNetworkPolicy
+      responses:
+        '200':
+          description: NetworkPolicy.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NetworkPolicy' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      tags: [NetworkPolicy]
+      summary: Replace NetworkPolicy
+      operationId: replaceNamespacedNetworkPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NetworkPolicy' }
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NetworkPolicy' }
+    delete:
+      tags: [NetworkPolicy]
+      summary: Delete NetworkPolicy
+      operationId: deleteNamespacedNetworkPolicy
+      responses:
+        '200':
+          description: Deleted.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Status' }
+  /globalnetworkpolicies:
+    get:
+      tags: [GlobalNetworkPolicy]
+      summary: List GlobalNetworkPolicy
+      operationId: listGlobalNetworkPolicy
+      parameters:
+        - $ref: '#/components/parameters/LabelSelector'
+        - $ref: '#/components/parameters/FieldSelector'
+      responses:
+        '200':
+          description: GlobalNetworkPolicy list.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/GlobalNetworkPolicyList' }
+    post:
+      tags: [GlobalNetworkPolicy]
+      summary: Create GlobalNetworkPolicy
+      operationId: createGlobalNetworkPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/GlobalNetworkPolicy' }
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/GlobalNetworkPolicy' }
+  /globalnetworkpolicies/{name}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+    get:
+      tags: [GlobalNetworkPolicy]
+      summary: Read GlobalNetworkPolicy
+      operationId: readGlobalNetworkPolicy
+      responses:
+        '200':
+          description: GlobalNetworkPolicy.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/GlobalNetworkPolicy' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      tags: [GlobalNetworkPolicy]
+      summary: Replace GlobalNetworkPolicy
+      operationId: replaceGlobalNetworkPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/GlobalNetworkPolicy' }
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/GlobalNetworkPolicy' }
+    delete:
+      tags: [GlobalNetworkPolicy]
+      summary: Delete GlobalNetworkPolicy
+      operationId: deleteGlobalNetworkPolicy
+      responses:
+        '200':
+          description: Deleted.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Status' }
+  /bgppeers:
+    get:
+      tags: [BGPPeer]
+      summary: List BGPPeer
+      operationId: listBGPPeer
+      responses:
+        '200':
+          description: BGPPeer list.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BGPPeerList' }
+    post:
+      tags: [BGPPeer]
+      summary: Create BGPPeer
+      operationId: createBGPPeer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/BGPPeer' }
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BGPPeer' }
+  /bgppeers/{name}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+    get:
+      tags: [BGPPeer]
+      summary: Read BGPPeer
+      operationId: readBGPPeer
+      responses:
+        '200':
+          description: BGPPeer.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BGPPeer' }
+    put:
+      tags: [BGPPeer]
+      summary: Replace BGPPeer
+      operationId: replaceBGPPeer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/BGPPeer' }
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BGPPeer' }
+    delete:
+      tags: [BGPPeer]
+      summary: Delete BGPPeer
+      operationId: deleteBGPPeer
+      responses:
+        '200':
+          description: Deleted.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Status' }
+  /bgpconfigurations:
+    get:
+      tags: [BGPConfiguration]
+      summary: List BGPConfiguration
+      operationId: listBGPConfiguration
+      responses:
+        '200':
+          description: BGPConfiguration list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiVersion: { type: string }
+                  kind: { type: string }
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/ObjectMeta' }
+  /bgpconfigurations/{name}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+    get:
+      tags: [BGPConfiguration]
+      summary: Read BGPConfiguration
+      operationId: readBGPConfiguration
+      responses:
+        '200':
+          description: BGPConfiguration.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /ippools:
+    get:
+      tags: [IPPool]
+      summary: List IPPool
+      operationId: listIPPool
+      responses:
+        '200':
+          description: IPPool list.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/IPPoolList' }
+    post:
+      tags: [IPPool]
+      summary: Create IPPool
+      operationId: createIPPool
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/IPPool' }
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/IPPool' }
+  /ippools/{name}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+    get:
+      tags: [IPPool]
+      summary: Read IPPool
+      operationId: readIPPool
+      responses:
+        '200':
+          description: IPPool.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/IPPool' }
+    put:
+      tags: [IPPool]
+      summary: Replace IPPool
+      operationId: replaceIPPool
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/IPPool' }
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/IPPool' }
+    delete:
+      tags: [IPPool]
+      summary: Delete IPPool
+      operationId: deleteIPPool
+      responses:
+        '200':
+          description: Deleted.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Status' }
+  /hostendpoints:
+    get:
+      tags: [HostEndpoint]
+      summary: List HostEndpoint
+      operationId: listHostEndpoint
+      responses:
+        '200':
+          description: HostEndpoint list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiVersion: { type: string }
+                  kind: { type: string }
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/HostEndpoint' }
+    post:
+      tags: [HostEndpoint]
+      summary: Create HostEndpoint
+      operationId: createHostEndpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/HostEndpoint' }
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HostEndpoint' }
+  /hostendpoints/{name}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+    get:
+      tags: [HostEndpoint]
+      summary: Read HostEndpoint
+      operationId: readHostEndpoint
+      responses:
+        '200':
+          description: HostEndpoint.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HostEndpoint' }
+    delete:
+      tags: [HostEndpoint]
+      summary: Delete HostEndpoint
+      operationId: deleteHostEndpoint
+      responses:
+        '200':
+          description: Deleted.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Status' }
+  /profiles:
+    get:
+      tags: [Profile]
+      summary: List Profile
+      operationId: listProfile
+      responses:
+        '200':
+          description: Profile list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiVersion: { type: string }
+                  kind: { type: string }
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/ObjectMeta' }
+  /profiles/{name}:
+    parameters:
+      - $ref: '#/components/parameters/Name'
+    get:
+      tags: [Profile]
+      summary: Read Profile
+      operationId: readProfile
+      responses:
+        '200':
+          description: Profile.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Kubernetes service account bearer token.
+  parameters:
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema: { type: string }
+    Name:
+      name: name
+      in: path
+      required: true
+      schema: { type: string }
+    LabelSelector:
+      name: labelSelector
+      in: query
+      schema: { type: string }
+    FieldSelector:
+      name: fieldSelector
+      in: query
+      schema: { type: string }
+  responses:
+    Unauthorized:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Status' }
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Status' }
+    Conflict:
+      description: Conflict (already exists).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Status' }
+  schemas:
+    Status:
+      type: object
+      properties:
+        kind: { type: string, default: Status }
+        apiVersion: { type: string }
+        status: { type: string }
+        message: { type: string }
+        reason: { type: string }
+        code: { type: integer }
+    ObjectMeta:
+      type: object
+      properties:
+        name: { type: string }
+        namespace: { type: string }
+        resourceVersion: { type: string }
+        uid: { type: string }
+        creationTimestamp: { type: string, format: date-time }
+        labels:
+          type: object
+          additionalProperties: { type: string }
+        annotations:
+          type: object
+          additionalProperties: { type: string }
+    EntityRule:
+      type: object
+      properties:
+        nets:
+          type: array
+          items: { type: string }
+        notNets:
+          type: array
+          items: { type: string }
+        selector: { type: string }
+        notSelector: { type: string }
+        namespaceSelector: { type: string }
+        ports:
+          type: array
+          items:
+            oneOf:
+              - { type: integer }
+              - { type: string }
+        notPorts:
+          type: array
+          items:
+            oneOf:
+              - { type: integer }
+              - { type: string }
+        serviceAccounts:
+          type: object
+          properties:
+            names:
+              type: array
+              items: { type: string }
+            selector: { type: string }
+    Rule:
+      type: object
+      required: [action]
+      properties:
+        action:
+          type: string
+          enum: [Allow, Deny, Log, Pass]
+        protocol: { type: string }
+        notProtocol: { type: string }
+        icmp:
+          type: object
+          properties:
+            type: { type: integer }
+            code: { type: integer }
+        ipVersion: { type: integer, enum: [4, 6] }
+        source: { $ref: '#/components/schemas/EntityRule' }
+        destination: { $ref: '#/components/schemas/EntityRule' }
+        http:
+          type: object
+          properties:
+            methods:
+              type: array
+              items: { type: string }
+            paths:
+              type: array
+              items: { type: object, additionalProperties: true }
+        metadata:
+          type: object
+          properties:
+            annotations:
+              type: object
+              additionalProperties: { type: string }
+    NetworkPolicySpec:
+      type: object
+      properties:
+        order: { type: number }
+        tier: { type: string }
+        selector: { type: string }
+        serviceAccountSelector: { type: string }
+        types:
+          type: array
+          items: { type: string, enum: [Ingress, Egress] }
+        ingress:
+          type: array
+          items: { $ref: '#/components/schemas/Rule' }
+        egress:
+          type: array
+          items: { $ref: '#/components/schemas/Rule' }
+    NetworkPolicy:
+      type: object
+      required: [apiVersion, kind, metadata, spec]
+      properties:
+        apiVersion: { type: string, const: projectcalico.org/v3 }
+        kind: { type: string, const: NetworkPolicy }
+        metadata: { $ref: '#/components/schemas/ObjectMeta' }
+        spec: { $ref: '#/components/schemas/NetworkPolicySpec' }
+    NetworkPolicyList:
+      type: object
+      properties:
+        apiVersion: { type: string }
+        kind: { type: string, const: NetworkPolicyList }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/NetworkPolicy' }
+    GlobalNetworkPolicySpec:
+      allOf:
+        - $ref: '#/components/schemas/NetworkPolicySpec'
+        - type: object
+          properties:
+            namespaceSelector: { type: string }
+            doNotTrack: { type: boolean }
+            preDNAT: { type: boolean }
+            applyOnForward: { type: boolean }
+    GlobalNetworkPolicy:
+      type: object
+      required: [apiVersion, kind, metadata, spec]
+      properties:
+        apiVersion: { type: string, const: projectcalico.org/v3 }
+        kind: { type: string, const: GlobalNetworkPolicy }
+        metadata: { $ref: '#/components/schemas/ObjectMeta' }
+        spec: { $ref: '#/components/schemas/GlobalNetworkPolicySpec' }
+    GlobalNetworkPolicyList:
+      type: object
+      properties:
+        apiVersion: { type: string }
+        kind: { type: string, const: GlobalNetworkPolicyList }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/GlobalNetworkPolicy' }
+    BGPPeerSpec:
+      type: object
+      properties:
+        node: { type: string }
+        nodeSelector: { type: string }
+        peerIP: { type: string }
+        peerSelector: { type: string }
+        asNumber: { type: integer }
+        keepOriginalNextHop: { type: boolean }
+        password:
+          type: object
+          properties:
+            secretKeyRef:
+              type: object
+              properties:
+                name: { type: string }
+                key: { type: string }
+        sourceAddress: { type: string, enum: [UseNodeIP, None] }
+        maxRestartTime: { type: string }
+        ttlSecurity: { type: integer }
+    BGPPeer:
+      type: object
+      required: [apiVersion, kind, metadata, spec]
+      properties:
+        apiVersion: { type: string, const: projectcalico.org/v3 }
+        kind: { type: string, const: BGPPeer }
+        metadata: { $ref: '#/components/schemas/ObjectMeta' }
+        spec: { $ref: '#/components/schemas/BGPPeerSpec' }
+    BGPPeerList:
+      type: object
+      properties:
+        apiVersion: { type: string }
+        kind: { type: string, const: BGPPeerList }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/BGPPeer' }
+    IPPoolSpec:
+      type: object
+      required: [cidr]
+      properties:
+        cidr: { type: string }
+        blockSize: { type: integer }
+        ipipMode: { type: string, enum: [Always, CrossSubnet, Never] }
+        vxlanMode: { type: string, enum: [Always, CrossSubnet, Never] }
+        natOutgoing: { type: boolean }
+        disabled: { type: boolean }
+        disableBGPExport: { type: boolean }
+        nodeSelector: { type: string }
+        allowedUses:
+          type: array
+          items: { type: string, enum: [Workload, Tunnel] }
+    IPPool:
+      type: object
+      required: [apiVersion, kind, metadata, spec]
+      properties:
+        apiVersion: { type: string, const: projectcalico.org/v3 }
+        kind: { type: string, const: IPPool }
+        metadata: { $ref: '#/components/schemas/ObjectMeta' }
+        spec: { $ref: '#/components/schemas/IPPoolSpec' }
+    IPPoolList:
+      type: object
+      properties:
+        apiVersion: { type: string }
+        kind: { type: string, const: IPPoolList }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/IPPool' }
+    HostEndpointSpec:
+      type: object
+      properties:
+        node: { type: string }
+        interfaceName: { type: string }
+        expectedIPs:
+          type: array
+          items: { type: string }
+        profiles:
+          type: array
+          items: { type: string }
+        ports:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              port: { type: integer }
+              protocol: { type: string }
+    HostEndpoint:
+      type: object
+      required: [apiVersion, kind, metadata, spec]
+      properties:
+        apiVersion: { type: string, const: projectcalico.org/v3 }
+        kind: { type: string, const: HostEndpoint }
+        metadata: { $ref: '#/components/schemas/ObjectMeta' }
+        spec: { $ref: '#/components/schemas/HostEndpointSpec' }
