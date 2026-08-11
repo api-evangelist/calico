@@ -155,6 +155,17 @@ apis:
   - type: OpenAPI
     url: openapi/calico-profile-api-openapi.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/projectcalico/calico/issues
+  - type: Releases
+    url: https://github.com/projectcalico/calico/releases
+  - type: SecurityPolicy
+    url: https://github.com/projectcalico/calico/blob/master/SECURITY.md
+  - type: ContributionGuide
+    url: https://github.com/projectcalico/calico/blob/master/CONTRIBUTING.md
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/projectcalico/calico/blob/master/LICENSE
   - type: AgenticAccess
     url: agentic-access/calico-agentic-access.yml
   - type: VulnerabilityDisclosure
