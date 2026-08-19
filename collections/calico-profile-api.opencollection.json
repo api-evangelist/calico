@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration Profile API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/profiles"
+          },
+          "docs": "List Profile"
+        },
+        {
+          "info": {
+            "name": "Read Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/profiles/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read Profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration IPPool API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IPPool",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools"
+          },
+          "docs": "List IPPool"
+        },
+        {
+          "info": {
+            "name": "Create IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create IPPool"
+        },
+        {
+          "info": {
+            "name": "Read IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read IPPool"
+        },
+        {
+          "info": {
+            "name": "Replace IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace IPPool"
+        },
+        {
+          "info": {
+            "name": "Delete IPPool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/ippools/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete IPPool"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

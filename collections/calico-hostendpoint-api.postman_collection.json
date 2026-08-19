@@ -1,0 +1,459 @@
+{
+  "item": [
+    {
+      "id": "dc8e7cb9-ed2b-4fc2-90b2-acb3c54dd96d",
+      "name": "HostEndpoint",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "065a7a84-4542-409b-8cae-8dd84280b762",
+          "name": "List HostEndpoint",
+          "request": {
+            "name": "List HostEndpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "hostendpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0725877a-6332-4ece-93fc-41c677c55bc4",
+              "name": "HostEndpoint list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hostendpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"items\": [\n    {\n      \"apiVersion\": \"string\",\n      \"kind\": \"string\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"uid\": \"string\",\n        \"creationTimestamp\": \"2009-03-16T15:06:42.569Z\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"node\": \"string\",\n        \"interfaceName\": \"string\",\n        \"expectedIPs\": [\n          \"string\",\n          \"string\"\n        ],\n        \"profiles\": [\n          \"string\",\n          \"string\"\n        ],\n        \"ports\": [\n          {\n            \"name\": \"string\",\n            \"port\": 6442,\n            \"protocol\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"port\": 1976,\n            \"protocol\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"string\",\n      \"kind\": \"string\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"uid\": \"string\",\n        \"creationTimestamp\": \"1956-08-24T10:58:08.083Z\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"node\": \"string\",\n        \"interfaceName\": \"string\",\n        \"expectedIPs\": [\n          \"string\",\n          \"string\"\n        ],\n        \"profiles\": [\n          \"string\",\n          \"string\"\n        ],\n        \"ports\": [\n          {\n            \"name\": \"string\",\n            \"port\": 678,\n            \"protocol\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"port\": 5517,\n            \"protocol\": \"string\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee1966eb-9f39-4569-abcf-2821e49dc8a3",
+          "name": "Create HostEndpoint",
+          "request": {
+            "name": "Create HostEndpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "hostendpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"<string>\",\n    \"interfaceName\": \"<string>\",\n    \"expectedIPs\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"profiles\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ports\": [\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e10d58fc-820b-4379-9e40-88afa9fe1760",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hostendpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1970-12-07T17:42:32.788Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"string\",\n    \"interfaceName\": \"string\",\n    \"expectedIPs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"profiles\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ports\": [\n      {\n        \"name\": \"string\",\n        \"port\": 1357,\n        \"protocol\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"port\": 7787,\n        \"protocol\": \"string\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1972-06-26T21:38:02.150Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"string\",\n    \"interfaceName\": \"string\",\n    \"expectedIPs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"profiles\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ports\": [\n      {\n        \"name\": \"string\",\n        \"port\": 3518,\n        \"protocol\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"port\": 7647,\n        \"protocol\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa32643f-367e-4f94-b011-adafe61a4ca0",
+          "name": "Read HostEndpoint",
+          "request": {
+            "name": "Read HostEndpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "hostendpoints",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b889d7a-6682-407a-bcb2-84d0f54ab8a2",
+              "name": "HostEndpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hostendpoints",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1972-06-26T21:38:02.150Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"string\",\n    \"interfaceName\": \"string\",\n    \"expectedIPs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"profiles\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ports\": [\n      {\n        \"name\": \"string\",\n        \"port\": 3518,\n        \"protocol\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"port\": 7647,\n        \"protocol\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ed27be5-f32b-46fe-bc69-a1703ed2eb92",
+          "name": "Delete HostEndpoint",
+          "request": {
+            "name": "Delete HostEndpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "hostendpoints",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "441e7062-a7de-4a8f-b417-f5e60660857a",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hostendpoints",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"Status\",\n  \"apiVersion\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\",\n  \"code\": 1381\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "kube_apiserver_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kube_apiserver_host}}/apis/projectcalico.org/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f6a44e7a-f9e0-4f7a-ab4b-751d7f2ae928",
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration HostEndpoint API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Calico exposes its custom resources through the Kubernetes API server\nunder the `projectcalico.org/v3` API group. Authentication and transport\nfollow standard Kubernetes conventions (bearer token or client cert) and\nrequests are made against the cluster's kube-apiserver. This document\ncovers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,\nBGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped\nresources do not appear under a `/namespaces/{namespace}/` segment.\n\n\nContact Support:\n Name: Project Calico / Tigera",
+      "type": "text/plain"
+    }
+  }
+}

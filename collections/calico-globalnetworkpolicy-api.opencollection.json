@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration GlobalNetworkPolicy API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GlobalNetworkPolicy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies",
+            "params": [
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fieldSelector",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List GlobalNetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Create GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create GlobalNetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Read GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read GlobalNetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Replace GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace GlobalNetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Delete GlobalNetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/globalnetworkpolicies/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete GlobalNetworkPolicy"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration NetworkPolicy API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NetworkPolicy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List NetworkPolicy in namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fieldSelector",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List NetworkPolicy in namespace"
+        },
+        {
+          "info": {
+            "name": "Create NetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create NetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Read NetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read NetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Replace NetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace NetworkPolicy"
+        },
+        {
+          "info": {
+            "name": "Delete NetworkPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/namespaces/:namespace/networkpolicies/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete NetworkPolicy"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

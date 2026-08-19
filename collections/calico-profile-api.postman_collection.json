@@ -1,0 +1,244 @@
+{
+  "item": [
+    {
+      "id": "0c0358c6-a329-4214-bd9a-91164b81ff41",
+      "name": "Profile",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8887526d-c3aa-4d8a-81c3-65a7da87697a",
+          "name": "List Profile",
+          "request": {
+            "name": "List Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9be94775-c961-4c8a-848c-1a072be73043",
+              "name": "Profile list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"namespace\": \"string\",\n      \"resourceVersion\": \"string\",\n      \"uid\": \"string\",\n      \"creationTimestamp\": \"1980-06-01T12:45:14.332Z\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"namespace\": \"string\",\n      \"resourceVersion\": \"string\",\n      \"uid\": \"string\",\n      \"creationTimestamp\": \"1999-07-28T04:23:07.485Z\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de446295-cab6-43c8-8e6a-e6a610867af3",
+          "name": "Read Profile",
+          "request": {
+            "name": "Read Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "profiles",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65b56e50-df1f-4233-b2e5-cfc6b3bb70b0",
+              "name": "Profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "kube_apiserver_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kube_apiserver_host}}/apis/projectcalico.org/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "806eeaf0-d8c1-4371-96ee-2a48da6738a4",
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration Profile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Calico exposes its custom resources through the Kubernetes API server\nunder the `projectcalico.org/v3` API group. Authentication and transport\nfollow standard Kubernetes conventions (bearer token or client cert) and\nrequests are made against the cluster's kube-apiserver. This document\ncovers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,\nBGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped\nresources do not appear under a `/namespaces/{namespace}/` segment.\n\n\nContact Support:\n Name: Project Calico / Tigera",
+      "type": "text/plain"
+    }
+  }
+}

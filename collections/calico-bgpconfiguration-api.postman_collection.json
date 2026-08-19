@@ -1,0 +1,244 @@
+{
+  "item": [
+    {
+      "id": "4d61d275-6d41-4eb3-bf0c-af6a61a72193",
+      "name": "BGPConfiguration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e4367f6-88a1-419e-8db4-689010aeb954",
+          "name": "List BGPConfiguration",
+          "request": {
+            "name": "List BGPConfiguration",
+            "description": {},
+            "url": {
+              "path": [
+                "bgpconfigurations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "324da958-1ae4-416d-a03f-ae38eb2d058c",
+              "name": "BGPConfiguration list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgpconfigurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"namespace\": \"string\",\n      \"resourceVersion\": \"string\",\n      \"uid\": \"string\",\n      \"creationTimestamp\": \"1962-09-04T12:46:41.956Z\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"namespace\": \"string\",\n      \"resourceVersion\": \"string\",\n      \"uid\": \"string\",\n      \"creationTimestamp\": \"2012-03-05T06:30:54.758Z\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "711448a3-3f9a-4e13-aaa7-a6758c23837d",
+          "name": "Read BGPConfiguration",
+          "request": {
+            "name": "Read BGPConfiguration",
+            "description": {},
+            "url": {
+              "path": [
+                "bgpconfigurations",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64d76c37-a44e-44df-b712-d6f28727b710",
+              "name": "BGPConfiguration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgpconfigurations",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "kube_apiserver_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kube_apiserver_host}}/apis/projectcalico.org/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3ff778fb-d199-4101-825c-c822cc484ee7",
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Calico exposes its custom resources through the Kubernetes API server\nunder the `projectcalico.org/v3` API group. Authentication and transport\nfollow standard Kubernetes conventions (bearer token or client cert) and\nrequests are made against the cluster's kube-apiserver. This document\ncovers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,\nBGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped\nresources do not appear under a `/namespaces/{namespace}/` segment.\n\n\nContact Support:\n Name: Project Calico / Tigera",
+      "type": "text/plain"
+    }
+  }
+}

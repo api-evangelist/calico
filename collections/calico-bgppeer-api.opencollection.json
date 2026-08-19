@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration BGPPeer API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BGPPeer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers"
+          },
+          "docs": "List BGPPeer"
+        },
+        {
+          "info": {
+            "name": "Create BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create BGPPeer"
+        },
+        {
+          "info": {
+            "name": "Read BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read BGPPeer"
+        },
+        {
+          "info": {
+            "name": "Replace BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace BGPPeer"
+        },
+        {
+          "info": {
+            "name": "Delete BGPPeer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kube_apiserver_host}/apis/projectcalico.org/v3/bgppeers/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete BGPPeer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

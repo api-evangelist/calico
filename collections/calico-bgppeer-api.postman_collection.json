@@ -1,0 +1,585 @@
+{
+  "item": [
+    {
+      "id": "19b7295a-57d3-44bd-b8d8-9052d2926d7e",
+      "name": "BGPPeer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6ee2bf1-3895-487a-bf89-650df5c06071",
+          "name": "List BGPPeer",
+          "request": {
+            "name": "List BGPPeer",
+            "description": {},
+            "url": {
+              "path": [
+                "bgppeers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f9e06a6-5e3a-4815-b367-ef2b33ea7202",
+              "name": "BGPPeer list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgppeers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"items\": [\n    {\n      \"apiVersion\": \"string\",\n      \"kind\": \"string\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"uid\": \"string\",\n        \"creationTimestamp\": \"1981-10-13T19:41:00.610Z\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"node\": \"string\",\n        \"nodeSelector\": \"string\",\n        \"peerIP\": \"string\",\n        \"peerSelector\": \"string\",\n        \"asNumber\": 5443,\n        \"keepOriginalNextHop\": true,\n        \"password\": {\n          \"secretKeyRef\": {\n            \"name\": \"string\",\n            \"key\": \"string\"\n          }\n        },\n        \"sourceAddress\": \"None\",\n        \"maxRestartTime\": \"string\",\n        \"ttlSecurity\": 56\n      }\n    },\n    {\n      \"apiVersion\": \"string\",\n      \"kind\": \"string\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"uid\": \"string\",\n        \"creationTimestamp\": \"2003-01-12T02:45:52.854Z\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"node\": \"string\",\n        \"nodeSelector\": \"string\",\n        \"peerIP\": \"string\",\n        \"peerSelector\": \"string\",\n        \"asNumber\": 2677,\n        \"keepOriginalNextHop\": true,\n        \"password\": {\n          \"secretKeyRef\": {\n            \"name\": \"string\",\n            \"key\": \"string\"\n          }\n        },\n        \"sourceAddress\": \"UseNodeIP\",\n        \"maxRestartTime\": \"string\",\n        \"ttlSecurity\": 2405\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bede43d-f2fb-4086-8c18-5207fb07ac49",
+          "name": "Create BGPPeer",
+          "request": {
+            "name": "Create BGPPeer",
+            "description": {},
+            "url": {
+              "path": [
+                "bgppeers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"<string>\",\n    \"nodeSelector\": \"<string>\",\n    \"peerIP\": \"<string>\",\n    \"peerSelector\": \"<string>\",\n    \"asNumber\": \"<integer>\",\n    \"keepOriginalNextHop\": \"<boolean>\",\n    \"password\": {\n      \"secretKeyRef\": {\n        \"name\": \"<string>\",\n        \"key\": \"<string>\"\n      }\n    },\n    \"sourceAddress\": \"<string>\",\n    \"maxRestartTime\": \"<string>\",\n    \"ttlSecurity\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "838d5f87-969d-49d5-a952-9bff6d98d6d3",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgppeers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1952-11-18T06:11:44.824Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"string\",\n    \"nodeSelector\": \"string\",\n    \"peerIP\": \"string\",\n    \"peerSelector\": \"string\",\n    \"asNumber\": 7861,\n    \"keepOriginalNextHop\": false,\n    \"password\": {\n      \"secretKeyRef\": {\n        \"name\": \"string\",\n        \"key\": \"string\"\n      }\n    },\n    \"sourceAddress\": \"UseNodeIP\",\n    \"maxRestartTime\": \"string\",\n    \"ttlSecurity\": 1030\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1978-02-10T14:31:44.304Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"string\",\n    \"nodeSelector\": \"string\",\n    \"peerIP\": \"string\",\n    \"peerSelector\": \"string\",\n    \"asNumber\": 3410,\n    \"keepOriginalNextHop\": true,\n    \"password\": {\n      \"secretKeyRef\": {\n        \"name\": \"string\",\n        \"key\": \"string\"\n      }\n    },\n    \"sourceAddress\": \"UseNodeIP\",\n    \"maxRestartTime\": \"string\",\n    \"ttlSecurity\": 8963\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aafa1ed-0553-4e1a-83ef-8ba2e682367d",
+          "name": "Read BGPPeer",
+          "request": {
+            "name": "Read BGPPeer",
+            "description": {},
+            "url": {
+              "path": [
+                "bgppeers",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c59a126-2f32-439d-b419-b617f1757048",
+              "name": "BGPPeer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgppeers",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1978-02-10T14:31:44.304Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"string\",\n    \"nodeSelector\": \"string\",\n    \"peerIP\": \"string\",\n    \"peerSelector\": \"string\",\n    \"asNumber\": 3410,\n    \"keepOriginalNextHop\": true,\n    \"password\": {\n      \"secretKeyRef\": {\n        \"name\": \"string\",\n        \"key\": \"string\"\n      }\n    },\n    \"sourceAddress\": \"UseNodeIP\",\n    \"maxRestartTime\": \"string\",\n    \"ttlSecurity\": 8963\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bdac7f6-f4e4-4f02-ad60-c531d4b9d0bd",
+          "name": "Replace BGPPeer",
+          "request": {
+            "name": "Replace BGPPeer",
+            "description": {},
+            "url": {
+              "path": [
+                "bgppeers",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"<string>\",\n    \"nodeSelector\": \"<string>\",\n    \"peerIP\": \"<string>\",\n    \"peerSelector\": \"<string>\",\n    \"asNumber\": \"<integer>\",\n    \"keepOriginalNextHop\": \"<boolean>\",\n    \"password\": {\n      \"secretKeyRef\": {\n        \"name\": \"<string>\",\n        \"key\": \"<string>\"\n      }\n    },\n    \"sourceAddress\": \"<string>\",\n    \"maxRestartTime\": \"<string>\",\n    \"ttlSecurity\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af84242a-0dd7-42fc-a080-79c8a33201e2",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgppeers",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1952-11-18T06:11:44.824Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"string\",\n    \"nodeSelector\": \"string\",\n    \"peerIP\": \"string\",\n    \"peerSelector\": \"string\",\n    \"asNumber\": 7861,\n    \"keepOriginalNextHop\": false,\n    \"password\": {\n      \"secretKeyRef\": {\n        \"name\": \"string\",\n        \"key\": \"string\"\n      }\n    },\n    \"sourceAddress\": \"UseNodeIP\",\n    \"maxRestartTime\": \"string\",\n    \"ttlSecurity\": 1030\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1978-02-10T14:31:44.304Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"node\": \"string\",\n    \"nodeSelector\": \"string\",\n    \"peerIP\": \"string\",\n    \"peerSelector\": \"string\",\n    \"asNumber\": 3410,\n    \"keepOriginalNextHop\": true,\n    \"password\": {\n      \"secretKeyRef\": {\n        \"name\": \"string\",\n        \"key\": \"string\"\n      }\n    },\n    \"sourceAddress\": \"UseNodeIP\",\n    \"maxRestartTime\": \"string\",\n    \"ttlSecurity\": 8963\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5a8119b-8853-4aca-be1f-e10750a5f730",
+          "name": "Delete BGPPeer",
+          "request": {
+            "name": "Delete BGPPeer",
+            "description": {},
+            "url": {
+              "path": [
+                "bgppeers",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26a65f1c-59e5-4012-bfd4-3edcfc0f5c56",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgppeers",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"Status\",\n  \"apiVersion\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\",\n  \"code\": 9849\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "kube_apiserver_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kube_apiserver_host}}/apis/projectcalico.org/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "861c9211-9490-4069-918c-9dd8208f3e0b",
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration BGPPeer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Calico exposes its custom resources through the Kubernetes API server\nunder the `projectcalico.org/v3` API group. Authentication and transport\nfollow standard Kubernetes conventions (bearer token or client cert) and\nrequests are made against the cluster's kube-apiserver. This document\ncovers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,\nBGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped\nresources do not appear under a `/namespaces/{namespace}/` segment.\n\n\nContact Support:\n Name: Project Calico / Tigera",
+      "type": "text/plain"
+    }
+  }
+}

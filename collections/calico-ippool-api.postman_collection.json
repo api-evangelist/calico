@@ -1,0 +1,585 @@
+{
+  "item": [
+    {
+      "id": "eca92afd-a17c-4625-a7cd-6940ae18abf1",
+      "name": "IPPool",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c04eb66-a9c2-4b67-ac36-e65fa809eaec",
+          "name": "List IPPool",
+          "request": {
+            "name": "List IPPool",
+            "description": {},
+            "url": {
+              "path": [
+                "ippools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e0aff4a-cfcb-405e-8fc3-ecbb4fd8c3b2",
+              "name": "IPPool list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ippools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"items\": [\n    {\n      \"apiVersion\": \"string\",\n      \"kind\": \"string\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"uid\": \"string\",\n        \"creationTimestamp\": \"2023-05-31T02:16:17.492Z\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"cidr\": \"string\",\n        \"blockSize\": 3793,\n        \"ipipMode\": \"Never\",\n        \"vxlanMode\": \"CrossSubnet\",\n        \"natOutgoing\": true,\n        \"disabled\": false,\n        \"disableBGPExport\": false,\n        \"nodeSelector\": \"string\",\n        \"allowedUses\": [\n          \"Tunnel\",\n          \"Workload\"\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"string\",\n      \"kind\": \"string\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"uid\": \"string\",\n        \"creationTimestamp\": \"1997-03-02T13:18:18.467Z\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"cidr\": \"string\",\n        \"blockSize\": 2831,\n        \"ipipMode\": \"Always\",\n        \"vxlanMode\": \"Always\",\n        \"natOutgoing\": true,\n        \"disabled\": true,\n        \"disableBGPExport\": false,\n        \"nodeSelector\": \"string\",\n        \"allowedUses\": [\n          \"Workload\",\n          \"Workload\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b1b9f7b-36ee-4052-886f-8177884e882f",
+          "name": "Create IPPool",
+          "request": {
+            "name": "Create IPPool",
+            "description": {},
+            "url": {
+              "path": [
+                "ippools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"cidr\": \"<string>\",\n    \"blockSize\": \"<integer>\",\n    \"ipipMode\": \"<string>\",\n    \"vxlanMode\": \"<string>\",\n    \"natOutgoing\": \"<boolean>\",\n    \"disabled\": \"<boolean>\",\n    \"disableBGPExport\": \"<boolean>\",\n    \"nodeSelector\": \"<string>\",\n    \"allowedUses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca9c2e47-2886-4b2c-9aca-071e7daed660",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ippools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"2026-07-16T17:10:39.718Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"cidr\": \"string\",\n    \"blockSize\": 9486,\n    \"ipipMode\": \"Always\",\n    \"vxlanMode\": \"Never\",\n    \"natOutgoing\": false,\n    \"disabled\": true,\n    \"disableBGPExport\": false,\n    \"nodeSelector\": \"string\",\n    \"allowedUses\": [\n      \"Tunnel\",\n      \"Tunnel\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1955-12-28T16:32:35.144Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"cidr\": \"string\",\n    \"blockSize\": 8486,\n    \"ipipMode\": \"Always\",\n    \"vxlanMode\": \"Always\",\n    \"natOutgoing\": true,\n    \"disabled\": true,\n    \"disableBGPExport\": true,\n    \"nodeSelector\": \"string\",\n    \"allowedUses\": [\n      \"Tunnel\",\n      \"Tunnel\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eaf4fc3c-f6bf-458a-955d-00fc3a9e140c",
+          "name": "Read IPPool",
+          "request": {
+            "name": "Read IPPool",
+            "description": {},
+            "url": {
+              "path": [
+                "ippools",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a415473-e346-4f82-9301-7ad624c859d2",
+              "name": "IPPool.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ippools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1955-12-28T16:32:35.144Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"cidr\": \"string\",\n    \"blockSize\": 8486,\n    \"ipipMode\": \"Always\",\n    \"vxlanMode\": \"Always\",\n    \"natOutgoing\": true,\n    \"disabled\": true,\n    \"disableBGPExport\": true,\n    \"nodeSelector\": \"string\",\n    \"allowedUses\": [\n      \"Tunnel\",\n      \"Tunnel\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cda37b2-6e91-493f-8ecd-190ec66e4419",
+          "name": "Replace IPPool",
+          "request": {
+            "name": "Replace IPPool",
+            "description": {},
+            "url": {
+              "path": [
+                "ippools",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"cidr\": \"<string>\",\n    \"blockSize\": \"<integer>\",\n    \"ipipMode\": \"<string>\",\n    \"vxlanMode\": \"<string>\",\n    \"natOutgoing\": \"<boolean>\",\n    \"disabled\": \"<boolean>\",\n    \"disableBGPExport\": \"<boolean>\",\n    \"nodeSelector\": \"<string>\",\n    \"allowedUses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe676c6d-065e-4d52-b53a-fe9cd17009e1",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ippools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"2026-07-16T17:10:39.718Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"cidr\": \"string\",\n    \"blockSize\": 9486,\n    \"ipipMode\": \"Always\",\n    \"vxlanMode\": \"Never\",\n    \"natOutgoing\": false,\n    \"disabled\": true,\n    \"disableBGPExport\": false,\n    \"nodeSelector\": \"string\",\n    \"allowedUses\": [\n      \"Tunnel\",\n      \"Tunnel\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1955-12-28T16:32:35.144Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"cidr\": \"string\",\n    \"blockSize\": 8486,\n    \"ipipMode\": \"Always\",\n    \"vxlanMode\": \"Always\",\n    \"natOutgoing\": true,\n    \"disabled\": true,\n    \"disableBGPExport\": true,\n    \"nodeSelector\": \"string\",\n    \"allowedUses\": [\n      \"Tunnel\",\n      \"Tunnel\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ae226fa-74e1-4eac-a829-99d9e2999373",
+          "name": "Delete IPPool",
+          "request": {
+            "name": "Delete IPPool",
+            "description": {},
+            "url": {
+              "path": [
+                "ippools",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "491e1aed-1d01-466b-8f7e-57145a508233",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ippools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"Status\",\n  \"apiVersion\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\",\n  \"code\": 9834\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "kube_apiserver_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kube_apiserver_host}}/apis/projectcalico.org/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3086a87e-8402-4a78-8233-cd63c4b108f2",
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration IPPool API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Calico exposes its custom resources through the Kubernetes API server\nunder the `projectcalico.org/v3` API group. Authentication and transport\nfollow standard Kubernetes conventions (bearer token or client cert) and\nrequests are made against the cluster's kube-apiserver. This document\ncovers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,\nBGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped\nresources do not appear under a `/namespaces/{namespace}/` segment.\n\n\nContact Support:\n Name: Project Calico / Tigera",
+      "type": "text/plain"
+    }
+  }
+}

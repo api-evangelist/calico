@@ -1,0 +1,897 @@
+{
+  "item": [
+    {
+      "id": "1a0e7b27-81d4-48ed-859f-632571e1c191",
+      "name": "NetworkPolicy",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0a091f4-4595-4b6d-89d4-1afb912fdf47",
+          "name": "List NetworkPolicy in namespace",
+          "request": {
+            "name": "List NetworkPolicy in namespace",
+            "description": {},
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "networkpolicies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "labelSelector",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fieldSelector",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3850721-23d6-422b-86b0-7b524a056acf",
+              "name": "NetworkPolicy list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "networkpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fieldSelector",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"items\": [\n    {\n      \"apiVersion\": \"string\",\n      \"kind\": \"string\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"uid\": \"string\",\n        \"creationTimestamp\": \"2023-01-09T00:46:45.842Z\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"order\": 2053.362273151367,\n        \"tier\": \"string\",\n        \"selector\": \"string\",\n        \"serviceAccountSelector\": \"string\",\n        \"types\": [\n          \"Ingress\",\n          \"Egress\"\n        ],\n        \"ingress\": [\n          {\n            \"action\": \"Deny\",\n            \"protocol\": \"string\",\n            \"notProtocol\": \"string\",\n            \"icmp\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"ipVersion\": 6,\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"destination\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"http\": {\n              \"methods\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"metadata\": {\n              \"annotations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"action\": \"Deny\",\n            \"protocol\": \"string\",\n            \"notProtocol\": \"string\",\n            \"icmp\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"ipVersion\": 6,\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"destination\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"http\": {\n              \"methods\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"metadata\": {\n              \"annotations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"egress\": [\n          {\n            \"action\": \"Deny\",\n            \"protocol\": \"string\",\n            \"notProtocol\": \"string\",\n            \"icmp\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"ipVersion\": 6,\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"destination\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"http\": {\n              \"methods\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"metadata\": {\n              \"annotations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"action\": \"Pass\",\n            \"protocol\": \"string\",\n            \"notProtocol\": \"string\",\n            \"icmp\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"ipVersion\": 4,\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"destination\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"http\": {\n              \"methods\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"metadata\": {\n              \"annotations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"apiVersion\": \"string\",\n      \"kind\": \"string\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"uid\": \"string\",\n        \"creationTimestamp\": \"1948-07-10T05:32:37.580Z\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"order\": 1479.5253781600636,\n        \"tier\": \"string\",\n        \"selector\": \"string\",\n        \"serviceAccountSelector\": \"string\",\n        \"types\": [\n          \"Ingress\",\n          \"Ingress\"\n        ],\n        \"ingress\": [\n          {\n            \"action\": \"Deny\",\n            \"protocol\": \"string\",\n            \"notProtocol\": \"string\",\n            \"icmp\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"ipVersion\": 6,\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"destination\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"http\": {\n              \"methods\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"metadata\": {\n              \"annotations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"action\": \"Deny\",\n            \"protocol\": \"string\",\n            \"notProtocol\": \"string\",\n            \"icmp\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"ipVersion\": 4,\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"destination\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"http\": {\n              \"methods\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"metadata\": {\n              \"annotations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"egress\": [\n          {\n            \"action\": \"Log\",\n            \"protocol\": \"string\",\n            \"notProtocol\": \"string\",\n            \"icmp\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"ipVersion\": 6,\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"destination\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"http\": {\n              \"methods\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"metadata\": {\n              \"annotations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"action\": \"Log\",\n            \"protocol\": \"string\",\n            \"notProtocol\": \"string\",\n            \"icmp\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"ipVersion\": 6,\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"destination\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"http\": {\n              \"methods\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"metadata\": {\n              \"annotations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5850fed-0024-4ddf-b8f9-b8c32366a658",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "networkpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fieldSelector",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"Status\",\n  \"apiVersion\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\",\n  \"code\": 6113\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc00f5dd-be0f-4987-83d7-1b0c14b0637d",
+          "name": "Create NetworkPolicy",
+          "request": {
+            "name": "Create NetworkPolicy",
+            "description": {},
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "networkpolicies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"order\": \"<number>\",\n    \"tier\": \"<string>\",\n    \"selector\": \"<string>\",\n    \"serviceAccountSelector\": \"<string>\",\n    \"types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ingress\": [\n      {\n        \"action\": \"<string>\",\n        \"protocol\": \"<string>\",\n        \"notProtocol\": \"<string>\",\n        \"icmp\": {\n          \"type\": \"<integer>\",\n          \"code\": \"<integer>\"\n        },\n        \"ipVersion\": \"<integer>\",\n        \"source\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 8764\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 2425\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          }\n        }\n      },\n      {\n        \"action\": \"<string>\",\n        \"protocol\": \"<string>\",\n        \"notProtocol\": \"<string>\",\n        \"icmp\": {\n          \"type\": \"<integer>\",\n          \"code\": \"<integer>\"\n        },\n        \"ipVersion\": \"<integer>\",\n        \"source\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 6503.400260271654\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"<string>\"\n          }\n        }\n      }\n    ],\n    \"egress\": [\n      {\n        \"action\": \"<string>\",\n        \"protocol\": \"<string>\",\n        \"notProtocol\": \"<string>\",\n        \"icmp\": {\n          \"type\": \"<integer>\",\n          \"code\": \"<integer>\"\n        },\n        \"ipVersion\": \"<integer>\",\n        \"source\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 1264\n            },\n            {\n              \"key_0\": 8109,\n              \"key_1\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"<string>\"\n          }\n        }\n      },\n      {\n        \"action\": \"<string>\",\n        \"protocol\": \"<string>\",\n        \"notProtocol\": \"<string>\",\n        \"icmp\": {\n          \"type\": \"<integer>\",\n          \"code\": \"<integer>\"\n        },\n        \"ipVersion\": \"<integer>\",\n        \"source\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 7778.97930231091,\n              \"key_1\": 1116.4894430597683,\n              \"key_2\": 1522\n            },\n            {\n              \"key_0\": 8312.76902790784\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\",\n            \"key_3\": \"<string>\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd72f4d3-e473-4bbb-86d9-540dba8f299c",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "networkpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1964-12-19T21:31:54.424Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"order\": 6913.417011745469,\n    \"tier\": \"string\",\n    \"selector\": \"string\",\n    \"serviceAccountSelector\": \"string\",\n    \"types\": [\n      \"Ingress\",\n      \"Egress\"\n    ],\n    \"ingress\": [\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 6457,\n          \"code\": 5260\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 1229.4235947289,\n              \"key_1\": 791.21347327475\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 8834\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Allow\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 8690,\n          \"code\": 1123\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true,\n              \"key_1\": 7827\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\",\n              \"key_2\": 2956\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      }\n    ],\n    \"egress\": [\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 8091,\n          \"code\": 4833\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true\n            },\n            {\n              \"key_0\": 3346.531431986057,\n              \"key_1\": true,\n              \"key_2\": true\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Pass\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 394,\n          \"code\": 9085\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": \"string\"\n            },\n            {\n              \"key_0\": 6483.515577817357,\n              \"key_1\": 7451.49633945744,\n              \"key_2\": 2434.357737043793\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1948-09-28T08:08:15.203Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"order\": 1178.400959207636,\n    \"tier\": \"string\",\n    \"selector\": \"string\",\n    \"serviceAccountSelector\": \"string\",\n    \"types\": [\n      \"Egress\",\n      \"Egress\"\n    ],\n    \"ingress\": [\n      {\n        \"action\": \"Log\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 5949,\n          \"code\": 6194\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 7813.26628596636\n            },\n            {\n              \"key_0\": 3416,\n              \"key_1\": 6452,\n              \"key_2\": 7619,\n              \"key_3\": false\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Log\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 6155,\n          \"code\": 1284\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 1209,\n              \"key_1\": false\n            },\n            {\n              \"key_0\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      }\n    ],\n    \"egress\": [\n      {\n        \"action\": \"Pass\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 9398,\n          \"code\": 195\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 9455.415285032117,\n              \"key_1\": 1234\n            },\n            {\n              \"key_0\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 4485,\n          \"code\": 4819\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true,\n              \"key_1\": 9509.788190619047,\n              \"key_2\": false\n            },\n            {\n              \"key_0\": true,\n              \"key_1\": \"string\",\n              \"key_2\": \"string\",\n              \"key_3\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14451be6-0e59-49b4-94be-32c5b272d0e2",
+              "name": "Conflict (already exists).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "networkpolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1964-12-19T21:31:54.424Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"order\": 6913.417011745469,\n    \"tier\": \"string\",\n    \"selector\": \"string\",\n    \"serviceAccountSelector\": \"string\",\n    \"types\": [\n      \"Ingress\",\n      \"Egress\"\n    ],\n    \"ingress\": [\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 6457,\n          \"code\": 5260\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 1229.4235947289,\n              \"key_1\": 791.21347327475\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 8834\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Allow\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 8690,\n          \"code\": 1123\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true,\n              \"key_1\": 7827\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\",\n              \"key_2\": 2956\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      }\n    ],\n    \"egress\": [\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 8091,\n          \"code\": 4833\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true\n            },\n            {\n              \"key_0\": 3346.531431986057,\n              \"key_1\": true,\n              \"key_2\": true\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Pass\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 394,\n          \"code\": 9085\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": \"string\"\n            },\n            {\n              \"key_0\": 6483.515577817357,\n              \"key_1\": 7451.49633945744,\n              \"key_2\": 2434.357737043793\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"Status\",\n  \"apiVersion\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\",\n  \"code\": 6113\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87ea8f5c-505a-467d-a745-5e74781916ff",
+          "name": "Read NetworkPolicy",
+          "request": {
+            "name": "Read NetworkPolicy",
+            "description": {},
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "networkpolicies",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cffb4440-3296-4e7e-b873-ab510208d872",
+              "name": "NetworkPolicy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "networkpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1948-09-28T08:08:15.203Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"order\": 1178.400959207636,\n    \"tier\": \"string\",\n    \"selector\": \"string\",\n    \"serviceAccountSelector\": \"string\",\n    \"types\": [\n      \"Egress\",\n      \"Egress\"\n    ],\n    \"ingress\": [\n      {\n        \"action\": \"Log\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 5949,\n          \"code\": 6194\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 7813.26628596636\n            },\n            {\n              \"key_0\": 3416,\n              \"key_1\": 6452,\n              \"key_2\": 7619,\n              \"key_3\": false\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Log\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 6155,\n          \"code\": 1284\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 1209,\n              \"key_1\": false\n            },\n            {\n              \"key_0\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      }\n    ],\n    \"egress\": [\n      {\n        \"action\": \"Pass\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 9398,\n          \"code\": 195\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 9455.415285032117,\n              \"key_1\": 1234\n            },\n            {\n              \"key_0\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 4485,\n          \"code\": 4819\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true,\n              \"key_1\": 9509.788190619047,\n              \"key_2\": false\n            },\n            {\n              \"key_0\": true,\n              \"key_1\": \"string\",\n              \"key_2\": \"string\",\n              \"key_3\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19e84013-7cfa-40f4-88eb-4a290888bf6a",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "networkpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"Status\",\n  \"apiVersion\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\",\n  \"code\": 6113\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6974acf-a420-4da3-9948-ce329c5a1444",
+          "name": "Replace NetworkPolicy",
+          "request": {
+            "name": "Replace NetworkPolicy",
+            "description": {},
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "networkpolicies",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"order\": \"<number>\",\n    \"tier\": \"<string>\",\n    \"selector\": \"<string>\",\n    \"serviceAccountSelector\": \"<string>\",\n    \"types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ingress\": [\n      {\n        \"action\": \"<string>\",\n        \"protocol\": \"<string>\",\n        \"notProtocol\": \"<string>\",\n        \"icmp\": {\n          \"type\": \"<integer>\",\n          \"code\": \"<integer>\"\n        },\n        \"ipVersion\": \"<integer>\",\n        \"source\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 8764\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 2425\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          }\n        }\n      },\n      {\n        \"action\": \"<string>\",\n        \"protocol\": \"<string>\",\n        \"notProtocol\": \"<string>\",\n        \"icmp\": {\n          \"type\": \"<integer>\",\n          \"code\": \"<integer>\"\n        },\n        \"ipVersion\": \"<integer>\",\n        \"source\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 6503.400260271654\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"<string>\"\n          }\n        }\n      }\n    ],\n    \"egress\": [\n      {\n        \"action\": \"<string>\",\n        \"protocol\": \"<string>\",\n        \"notProtocol\": \"<string>\",\n        \"icmp\": {\n          \"type\": \"<integer>\",\n          \"code\": \"<integer>\"\n        },\n        \"ipVersion\": \"<integer>\",\n        \"source\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 1264\n            },\n            {\n              \"key_0\": 8109,\n              \"key_1\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"<string>\"\n          }\n        }\n      },\n      {\n        \"action\": \"<string>\",\n        \"protocol\": \"<string>\",\n        \"notProtocol\": \"<string>\",\n        \"icmp\": {\n          \"type\": \"<integer>\",\n          \"code\": \"<integer>\"\n        },\n        \"ipVersion\": \"<integer>\",\n        \"source\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"notNets\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"selector\": \"<string>\",\n          \"notSelector\": \"<string>\",\n          \"namespaceSelector\": \"<string>\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"<string>\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 7778.97930231091,\n              \"key_1\": 1116.4894430597683,\n              \"key_2\": 1522\n            },\n            {\n              \"key_0\": 8312.76902790784\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\",\n            \"key_3\": \"<string>\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3054562-6a79-470b-87f8-8dcf4166ebe0",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "networkpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1964-12-19T21:31:54.424Z\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"order\": 6913.417011745469,\n    \"tier\": \"string\",\n    \"selector\": \"string\",\n    \"serviceAccountSelector\": \"string\",\n    \"types\": [\n      \"Ingress\",\n      \"Egress\"\n    ],\n    \"ingress\": [\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 6457,\n          \"code\": 5260\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 1229.4235947289,\n              \"key_1\": 791.21347327475\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 8834\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Allow\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 8690,\n          \"code\": 1123\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true,\n              \"key_1\": 7827\n            },\n            {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\",\n              \"key_2\": 2956\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      }\n    ],\n    \"egress\": [\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 8091,\n          \"code\": 4833\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true\n            },\n            {\n              \"key_0\": 3346.531431986057,\n              \"key_1\": true,\n              \"key_2\": true\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Pass\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 394,\n          \"code\": 9085\n        },\n        \"ipVersion\": 4,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": \"string\"\n            },\n            {\n              \"key_0\": 6483.515577817357,\n              \"key_1\": 7451.49633945744,\n              \"key_2\": 2434.357737043793\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"string\",\n  \"kind\": \"string\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"resourceVersion\": \"string\",\n    \"uid\": \"string\",\n    \"creationTimestamp\": \"1948-09-28T08:08:15.203Z\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"order\": 1178.400959207636,\n    \"tier\": \"string\",\n    \"selector\": \"string\",\n    \"serviceAccountSelector\": \"string\",\n    \"types\": [\n      \"Egress\",\n      \"Egress\"\n    ],\n    \"ingress\": [\n      {\n        \"action\": \"Log\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 5949,\n          \"code\": 6194\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": \"string\",\n              \"key_1\": 7813.26628596636\n            },\n            {\n              \"key_0\": 3416,\n              \"key_1\": 6452,\n              \"key_2\": 7619,\n              \"key_3\": false\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Log\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 6155,\n          \"code\": 1284\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 1209,\n              \"key_1\": false\n            },\n            {\n              \"key_0\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      }\n    ],\n    \"egress\": [\n      {\n        \"action\": \"Pass\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 9398,\n          \"code\": 195\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": 9455.415285032117,\n              \"key_1\": 1234\n            },\n            {\n              \"key_0\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          }\n        }\n      },\n      {\n        \"action\": \"Deny\",\n        \"protocol\": \"string\",\n        \"notProtocol\": \"string\",\n        \"icmp\": {\n          \"type\": 4485,\n          \"code\": 4819\n        },\n        \"ipVersion\": 6,\n        \"source\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"destination\": {\n          \"nets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"notNets\": [\n            \"string\",\n            \"string\"\n          ],\n          \"selector\": \"string\",\n          \"notSelector\": \"string\",\n          \"namespaceSelector\": \"string\",\n          \"ports\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"notPorts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"serviceAccounts\": {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"selector\": \"string\"\n          }\n        },\n        \"http\": {\n          \"methods\": [\n            \"string\",\n            \"string\"\n          ],\n          \"paths\": [\n            {\n              \"key_0\": true,\n              \"key_1\": 9509.788190619047,\n              \"key_2\": false\n            },\n            {\n              \"key_0\": true,\n              \"key_1\": \"string\",\n              \"key_2\": \"string\",\n              \"key_3\": \"string\"\n            }\n          ]\n        },\n        \"metadata\": {\n          \"annotations\": {\n            \"key_0\": \"string\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ac59c93-c59a-4e08-8c3b-39a095bcbb21",
+          "name": "Delete NetworkPolicy",
+          "request": {
+            "name": "Delete NetworkPolicy",
+            "description": {},
+            "url": {
+              "path": [
+                "namespaces",
+                ":namespace",
+                "networkpolicies",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Kubernetes API server host",
+                  "type": "any",
+                  "value": "{{kube_apiserver_host}}",
+                  "key": "kube_apiserver_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08c5bd34-68b7-4d7b-93a2-b192b0cd803f",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces",
+                    ":namespace",
+                    "networkpolicies",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Kubernetes API server host",
+                      "type": "any",
+                      "value": "{{kube_apiserver_host}}",
+                      "key": "kube_apiserver_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"Status\",\n  \"apiVersion\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\",\n  \"code\": 6113\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Kubernetes API server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "kubernetes.default.svc",
+      "key": "kube_apiserver_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kube_apiserver_host}}/apis/projectcalico.org/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "850911ae-be1b-4b80-9e46-48d91c549684",
+    "name": "Project Calico API (projectcalico.org/v3) BGPConfiguration NetworkPolicy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Calico exposes its custom resources through the Kubernetes API server\nunder the `projectcalico.org/v3` API group. Authentication and transport\nfollow standard Kubernetes conventions (bearer token or client cert) and\nrequests are made against the cluster's kube-apiserver. This document\ncovers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,\nBGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped\nresources do not appear under a `/namespaces/{namespace}/` segment.\n\n\nContact Support:\n Name: Project Calico / Tigera",
+      "type": "text/plain"
+    }
+  }
+}
