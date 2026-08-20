@@ -29,6 +29,16 @@ tags:
   - Network Policy
   - Network Security
   - Networking
+  - Open-Source
+  - Service Mesh
+tags_raw:
+  - CNI
+  - Containers
+  - eBPF
+  - Kubernetes
+  - Network Policy
+  - Network Security
+  - Networking
   - Open Source
   - Service Mesh
 url: >-
@@ -64,6 +74,10 @@ apis:
     operations.
   humanURL: https://docs.tigera.io/calico/latest/reference/calicoctl/
   tags:
+  - CLI
+  - IPAM
+  - Network Policy
+  tags_raw:
   - CLI
   - IPAM
   - Network Policy
@@ -132,6 +146,8 @@ apis:
   description: The IPPool API from Calico — 2 operation(s) for ippool.
   humanURL: https://docs.tigera.io/calico/latest/reference/
   tags:
+  - IP Pool
+  tags_raw:
   - IPPool
   properties:
   - type: OpenAPI
@@ -141,6 +157,8 @@ apis:
   description: The NetworkPolicy API from Calico — 2 operation(s) for networkpolicy.
   humanURL: https://docs.tigera.io/calico/latest/reference/
   tags:
+  - Network Policy
+  tags_raw:
   - NetworkPolicy
   properties:
   - type: OpenAPI
