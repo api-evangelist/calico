@@ -160,7 +160,7 @@ apis:
   description: The IPPool API from Calico — 2 operation(s) for ippool.
   humanURL: https://docs.tigera.io/calico/latest/reference/
   tags:
-  - IPPool
+  - IP Pool
   tags_raw:
   - IPPool
   properties:
@@ -171,7 +171,7 @@ apis:
   description: The NetworkPolicy API from Calico — 2 operation(s) for networkpolicy.
   humanURL: https://docs.tigera.io/calico/latest/reference/
   tags:
-  - NetworkPolicy
+  - Network Policy
   tags_raw:
   - NetworkPolicy
   properties:
