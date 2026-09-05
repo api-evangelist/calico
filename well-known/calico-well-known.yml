@@ -1,0 +1,146 @@
+generated: '2026-09-05'
+method: searched
+source: live probes of every host in this record — www.tigera.io, tigera.io, docs.tigera.io,
+  projectcalico.org, www.projectcalico.org, docs.projectcalico.org
+description: >-
+  /.well-known/ discovery probe for Calico. Two real documents were found, and both are served by
+  www.tigera.io — the corporate site of Tigera, Inc., the company that creates and maintains Project
+  Calico and hosts calico's Website, Blog and Pricing pages. They advertise an OAuth-protected remote
+  MCP server (see mcp/calico-mcp.yml). NOTE: the trailing slash is load-bearing on this host. The
+  bare paths (/.well-known/oauth-authorization-server) answer 301 with an empty body; the redirect
+  target with the trailing slash answers 200 with the real JSON. A probe that does not follow the
+  redirect records this provider as serving nothing.
+  The Calico API itself (projectcalico.org/v3) is served by each operator's own Kubernetes API
+  server, so it has no fixed public host on which a /.well-known/ surface could be published.
+hit_count: 2
+path_echo_control: passed
+soft_404_control:
+  path: /.well-known/calico-negcontrol-7f3ab91c.json
+  www.tigera.io: 404 (60646 bytes, text/html — WordPress 404 page, not a catch-all 200)
+  docs.tigera.io: 404 (33552 bytes, text/html — Docusaurus 404 page, not a catch-all 200)
+hosts:
+- host: https://www.tigera.io
+  note: Tigera corporate site (WordPress). Calico's Website/Blog/Pricing host.
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: calico-oauth-authorization-server.json
+    note: >-
+      RFC 8414. Reached at the trailing-slash form
+      https://www.tigera.io/.well-known/oauth-authorization-server/ ; the bare path 301s to it.
+      issuer https://www.tigera.io, scopes_supported [mcp], PKCE S256, dynamic client via
+      client_id_metadata_document.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: calico-oauth-protected-resource.json
+    note: >-
+      RFC 9728. Reached at the trailing-slash form; declares resource
+      https://www.tigera.io/wp-json/mcp/mcp-oauth-server with authorization_servers
+      [https://www.tigera.io].
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+- host: https://tigera.io
+  note: Apex; 301s to www.tigera.io for every path probed.
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+  - path: /.well-known/openid-configuration
+    status: 301
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+  - path: /.well-known/oauth-protected-resource
+    status: 301
+  - path: /.well-known/api-catalog
+    status: 301
+  - path: /.well-known/agent-card.json
+    status: 301
+  - path: /.well-known/agent.json
+    status: 301
+  - path: /.well-known/apis.json
+    status: 301
+  - path: /apis.json
+    status: 301
+- host: https://docs.tigera.io
+  note: Calico documentation (Docusaurus). Serves a real /llms.txt — see llms/calico-llms.txt.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+- host: https://projectcalico.org
+  note: Project Calico domain; 301s to www.tigera.io for every path probed.
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+  - path: /.well-known/agent-card.json
+    status: 301
+  - path: /.well-known/agent.json
+    status: 301
+  - path: /apis.json
+    status: 301
+- host: https://docs.projectcalico.org
+  note: Legacy docs host; 301s every path to docs.tigera.io/calico/latest/<path>, which 404s.
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+  - path: /.well-known/agent-card.json
+    status: 301
+  - path: /.well-known/agent.json
+    status: 301
+  - path: /apis.json
+    status: 301
+absences:
+  security_txt: >-
+    No RFC 9116 security.txt on any host, although Tigera does run a published vulnerability
+    disclosure programme (see security/calico-vulnerability-disclosure.yml) and Project Calico
+    publishes psirt@projectcalico.org in SECURITY.md. Adding /.well-known/security.txt would make
+    that machine-discoverable.
+  agent_card: >-
+    No A2A agent card at /.well-known/agent-card.json or the legacy /.well-known/agent.json on any
+    host. No a2a/ artifact is written and no AgentCard pointer is emitted.
+  api_catalog: No RFC 9727 /.well-known/api-catalog on any host.
+  apis_json: No APIs.json index at /apis.json, /apis.yml or /.well-known/apis.json on any host.

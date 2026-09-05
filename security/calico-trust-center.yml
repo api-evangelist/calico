@@ -1,0 +1,56 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.tigera.io/tigera-products/calico-cloud-trust-center/
+url: https://www.tigera.io/tigera-products/calico-cloud-trust-center/
+http_status: 200
+name: Calico Cloud Trust Center
+operator: Tigera, Inc.
+scope: >-
+  Applies to CALICO CLOUD, the hosted commercial edition. Calico Open Source is Apache-2.0 software
+  the operator runs in its own cluster — it holds no certification and needs none.
+certifications:
+- name: SOC 2
+  status: claimed
+  quote: '"Calico Cloud is SOC 2, CCPA, GDPR compliant"'
+  type_level: not stated — the page does not distinguish Type I from Type II
+  report_access: on request
+- name: Cloud Security Alliance (CSA)
+  status: claimed
+  quote: '"Calico Cloud is certified with Cloud Security Alliance"'
+  report_access: CSA STAR registry
+- name: GDPR
+  status: claimed
+  quote: '"Calico Cloud is SOC 2, CCPA, GDPR compliant"'
+- name: CCPA
+  status: claimed
+  quote: '"Calico Cloud is SOC 2, CCPA, GDPR compliant"'
+- name: PCI DSS
+  status: claimed-with-caveat
+  quote: '"Our payment processing system is PCI compliant"'
+  caveat: >-
+    Reads as the BILLING system, not the Calico Cloud platform. Not promoted to a platform
+    certification here.
+security_practices:
+- encryption_in_transit: '"end-to-end encryption for data in transit"'
+- encryption_at_rest: '"customer information is encrypted at rest"'
+- authentication: '"supports RBAC and Token based authentication"'
+- penetration_testing: '"perform yearly PEN test to ensure compliance and the report is available to customers upon request"'
+report_access:
+  self_serve_portal: false
+  mechanism: on request
+  note: >-
+    No automated report-request portal, NDA flow or document vault. SOC 2 and pen-test reports are
+    "available upon request", which means a human loop.
+gaps:
+- No ISO 27001 claim found.
+- No FedRAMP claim found.
+- No published sub-processor list.
+- No published data-residency statement.
+- >-
+  The page does not separate what Tigera itself is certified for from what Calico helps CUSTOMERS
+  achieve. Frameworks Calico markets as customer-enablement (PCI DSS, HIPAA, NIST, custom) are
+  deliberately excluded from the certifications list above.
+related:
+  conformance: conformance/calico-conformance.yml
+  vulnerability_disclosure: security/calico-vulnerability-disclosure.yml
+  security_bulletins: https://www.tigera.io/security-bulletins/

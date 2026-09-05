@@ -21,6 +21,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "calico-bgpconfiguration-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "calico-bgppeer-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "calico-globalnetworkpolicy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "calico-hostendpoint-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "calico-ippool-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "calico-networkpolicy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "calico-profile-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

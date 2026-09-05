@@ -1,0 +1,58 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay — Project Calico API (projectcalico.org/v3) BGPConfiguration
+    Network Policy API
+  version: 1.0.0
+extends: ../openapi/calico-networkpolicy-api-openapi.yml
+x-generated: '2026-09-05'
+x-method: generated
+x-source: derived from this repo's enrichment artifacts; the underlying OpenAPI is never mutated
+actions:
+- target: $.info
+  description: Point at the runtime-semantics artifacts that the contract itself does not carry.
+  update:
+    x-conventions: conventions/calico-conventions.yml
+    x-error-catalog: errors/calico-problem-types.yml
+    x-lifecycle: lifecycle/calico-lifecycle.yml
+    x-data-model: data-model/calico-data-model.yml
+    x-authentication: authentication/calico-authentication.yml
+    x-cli: cli/calico-cli.yml
+    x-json-schema: json-schema/ (provider-published CustomResourceDefinition openAPIV3Schemas)
+- target: $.info
+  description: Record the idempotency and reversibility verdicts an agent needs before it writes.
+  update:
+    x-idempotency:
+      coverage: partial
+      header: null
+      mechanism: HTTP verb idempotency (PUT/DELETE) plus metadata.resourceVersion optimistic concurrency.
+        No Idempotency-Key header exists. POST create returns 409 AlreadyExists on replay.
+      guidance: Prefer apply (create-if-absent, replace-if-present) over create.
+    x-reversibility:
+      grade: none
+      note: No reversal operation and no reversal window is published for any write in this API. Deletes
+        are immediate and irreversible. Staged policies and --dry-run=server are rehearsal, not undo.
+    x-dry-run:
+      supported: true
+      mechanisms:
+      - staged policies
+      - calicoctl validate
+      - kubectl --dry-run=server
+      declared_in_spec: false
+- target: $.info
+  description: Record the undeclared parts of the real runtime contract so a spec-only client is not surprised.
+  update:
+    x-spec-gaps:
+      undeclared_error_codes:
+      - 403
+      - 422
+      - 500
+      - 503
+      undeclared_pagination: Kubernetes chunked list — limit + continue, metadata.continue in the response
+      undeclared_watch: ?watch=true with resourceVersion returns an ADDED/MODIFIED/DELETED event stream
+      undeclared_server_side_apply: PATCH with content-type application/apply-patch+yaml and a fieldManager
+- target: $.paths.*.*[?(@.responses)]
+  description: Note that every operation can also answer 403 Forbidden from Kubernetes RBAC, which the
+    contract does not declare.
+  update:
+    x-additional-errors:
+    - 403 Forbidden — Kubernetes RBAC denies the verb on this resource in the projectcalico.org API group

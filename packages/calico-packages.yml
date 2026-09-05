@@ -1,0 +1,116 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  proxy.golang.org, https://docs.tigera.io/calico/charts/index.yaml (Helm repo index),
+  https://github.com/projectcalico/calico/releases/tag/v3.32.2, hub.docker.com API, and the npm /
+  PyPI / crates.io registries (all three checked and all three MISS — see notes)
+description: >-
+  Calico is distributed as Go modules, Helm charts, container images and prebuilt calicoctl binaries
+  — not as language SDK packages. npm, PyPI and crates.io were checked and hold NO first-party
+  Calico package; the same-named entries on those registries belong to unrelated projects and are
+  recorded below as explicit non-matches so a future pass does not re-litigate them.
+packages:
+- language: go
+  registry: go
+  name: github.com/projectcalico/api
+  url: https://pkg.go.dev/github.com/projectcalico/api
+  install: go get github.com/projectcalico/api
+  official: true
+  version: v0.0.0-20260629014411-77a2372ddd1c
+  published: '2026-06-29'
+  note: >-
+    The projectcalico.org/v3 API types and the generated typed client. Pseudo-version only — the
+    module is consumed at a commit, never tagged. Read from proxy.golang.org/@latest.
+- language: go
+  registry: go
+  name: github.com/projectcalico/calico
+  url: https://pkg.go.dev/github.com/projectcalico/calico
+  install: go get github.com/projectcalico/calico
+  official: true
+  version: v1.45.0-0.dev-operator
+  published: '2026-08-17'
+  note: >-
+    The Calico monorepo module (libcalico-go, felix, goldmane, cni-plugin, calicoctl). The @latest
+    tag proxy.golang.org resolves is an operator dev tag, not the product release line; product
+    releases are the v3.x GitHub releases below.
+- language: go
+  registry: go
+  name: github.com/projectcalico/libcalico-go
+  url: https://pkg.go.dev/github.com/projectcalico/libcalico-go
+  install: go get github.com/projectcalico/libcalico-go
+  official: true
+  version: v1.7.3
+  published: '2017-11-27'
+  deprecated: true
+  note: >-
+    ABANDONMENT SIGNAL, and a benign one: the standalone repo is ARCHIVED on GitHub and its last
+    tagged release is 2017. libcalico-go was folded into the projectcalico/calico monorepo. Recorded
+    so the stale date is explained rather than read as decay.
+- language: helm
+  registry: helm
+  name: tigera-operator
+  url: https://docs.tigera.io/calico/charts
+  install: helm repo add projectcalico https://docs.tigera.io/calico/charts && helm install calico projectcalico/tigera-operator --version v3.32.2 --namespace tigera-operator --create-namespace
+  official: true
+  version: v3.32.2
+  published: '2026-08-30'
+  note: The primary supported install path. 50 chart versions in the index.
+- language: helm
+  registry: helm
+  name: projectcalico.org.v3
+  url: https://docs.tigera.io/calico/charts
+  install: helm install projectcalico/projectcalico.org.v3 --version v3.32.2
+  official: true
+  version: v3.32.2
+  published: '2026-08-30'
+  note: Installs the native projectcalico.org/v3 CRDs added in v3.32 (tech preview).
+- language: helm
+  registry: helm
+  name: crd.projectcalico.org.v1
+  url: https://docs.tigera.io/calico/charts
+  install: helm install projectcalico/crd.projectcalico.org.v1 --version v3.32.2
+  official: true
+  version: v3.32.2
+  published: '2026-08-30'
+  note: Installs the crd.projectcalico.org and operator.tigera.io CRDs.
+- language: binary
+  registry: github-releases
+  name: calicoctl
+  url: https://github.com/projectcalico/calico/releases/tag/v3.32.2
+  install: curl -L -o calicoctl https://github.com/projectcalico/calico/releases/download/v3.32.2/calicoctl-linux-amd64 && chmod +x calicoctl
+  official: true
+  version: v3.32.2
+  published: '2026-08-30'
+  note: >-
+    Prebuilt binaries for darwin-amd64, darwin-arm64, linux-amd64, linux-arm64, linux-ppc64le,
+    linux-s390x and windows-amd64. Also usable as a kubectl plugin. See cli/calico-cli.yml.
+- language: container
+  registry: docker-hub
+  name: calico/node
+  url: https://hub.docker.com/r/calico/node
+  install: docker pull calico/node:v3.32.2
+  official: true
+  version: v3.32.2
+  published: '2026-09-04'
+  note: >-
+    The per-host agent image. 1,725,760,189 pulls recorded on Docker Hub at probe time; the whole
+    calico/* image family (node, cni, kube-controllers, typha, apiserver, goldmane, whisker) ships
+    on the same release train. published: is Docker Hub's last_updated for the repository, which
+    tracks nightly branch builds as well as tagged releases.
+non_matches:
+- registry: npm
+  queried: [calicoctl, '@projectcalico/calico', calico-client]
+  result: 404 on all three — no first-party Calico package on npm.
+- registry: pypi
+  queried: [pycalico, libcalico, calico]
+  result: >-
+    pycalico and libcalico are absent; `calico` 1.2.0 (2019-12-31) is "I/O checker for command line
+    programs" by github.com/itublg — an unrelated project, NOT Project Calico.
+- registry: crates.io
+  queried: [calico]
+  result: >-
+    `calico` on crates.io is an iCalendar/RFC 5545 parser — unrelated. NOT Project Calico.
+- registry: krew
+  queried: [calico]
+  result: 404 — no kubectl-calico plugin in the krew-index.
+official_sdk_count: 6

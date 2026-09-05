@@ -1,0 +1,72 @@
+generated: '2026-09-05'
+method: probed
+source: https://www.tigera.io/.well-known/oauth-protected-resource/
+name: Tigera MCP Server
+description: >-
+  A live, OAuth-protected remote MCP server operated by Tigera, Inc. — the company that creates and
+  maintains Project Calico — on www.tigera.io, the host that also serves Calico's Website, Blog and
+  Pricing pages. It was found by following the RFC 9728 protected-resource document, which names the
+  endpoint explicitly. This was NOT derived from the Calico OpenAPI: it is a real endpoint that
+  answered a real JSON-RPC request.
+ownership:
+  operator: Tigera, Inc.
+  relationship: >-
+    Tigera is the creator and maintainer of Project Calico; www.tigera.io is the Website and Blog
+    host already declared in this record's apis.yml.
+  covers: >-
+    HONEST SCOPE CAVEAT — the endpoint lives under /wp-json/mcp/, the WordPress MCP route. It exposes
+    the Tigera website's own content surface to agents. It does NOT front the Calico
+    projectcalico.org/v3 Kubernetes API, calicoctl, or the Goldmane gRPC flow API. An agent that
+    connects here gets Tigera site content, not Calico cluster control.
+deployment:
+  mode: remote
+  endpoint: https://www.tigera.io/wp-json/mcp/mcp-oauth-server
+  auth: oauth
+  verified: probed
+transport: streamable-http
+discovery:
+  protected_resource: https://www.tigera.io/.well-known/oauth-protected-resource/
+  authorization_server: https://www.tigera.io/.well-known/oauth-authorization-server/
+  authorization_endpoint: https://www.tigera.io/oauth/authorize
+  token_endpoint: https://www.tigera.io/oauth/token
+  revocation_endpoint: https://www.tigera.io/oauth/revoke
+  scopes_supported:
+  - mcp
+  code_challenge_methods_supported:
+  - S256
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  token_endpoint_auth_methods_supported:
+  - none
+  client_id_metadata_document_supported: true
+  note: >-
+    RFC 8414 + RFC 9728 discovery documents are served at the TRAILING-SLASH form only; the bare
+    /.well-known/oauth-authorization-server path 301s with an empty body.
+probes:
+- url: https://www.tigera.io/wp-json/mcp/mcp-oauth-server
+  method: POST
+  body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  http_status: 401
+  response: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+  fetched: '2026-09-05'
+- url: https://www.tigera.io/wp-json/mcp/mcp-oauth-server
+  method: POST
+  body: '{"jsonrpc":"2.0","id":1,"method":"initialize",...}'
+  http_status: 401
+  response: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+  fetched: '2026-09-05'
+tools:
+  status: auth-gated
+  count: null
+  note: >-
+    tools/list returns HTTP 401 mcp_unauthorized anonymously. The live tool set and its inputSchemas
+    require an authenticated OAuth introspection with the `mcp` scope. No tool list is recorded here
+    because none was observed, and none is published in docs.tigera.io/llms.txt or
+    www.tigera.io/llms.txt. Nothing has been invented to fill the gap.
+related_surfaces:
+  note: >-
+    Calico's own machine-readable contracts are elsewhere and are NOT reachable through this MCP
+    server — openapi/ (projectcalico.org/v3 Kubernetes resource API), grpc/ (Goldmane flow API,
+    Felix policy-sync, CNI backend), json-schema/ (published CRD openAPIV3Schemas), and the
+    calicoctl CLI in cli/.

@@ -1,0 +1,56 @@
+generated: '2026-09-05'
+method: generated
+source: >-
+  openapi/*.yml (every operationId below was read from the specs in this repo, none invented),
+  conventions/calico-conventions.yml, errors/calico-problem-types.yml,
+  data-model/calico-data-model.yml, cli/calico-cli.yml
+description: >-
+  Packaged Agent Skills for the Calico projectcalico.org/v3 API. Each one covers a marquee operator
+  flow and is grounded in real operationIds from openapi/. No provider-published skills or AGENTS.md
+  were found on docs.tigera.io or in the projectcalico GitHub org, so these are generated, not
+  harvested.
+searched_for_provider_skills:
+  result: none found
+  checked:
+  - https://docs.tigera.io/llms.txt
+  - https://docs.tigera.io/calico/llms.txt
+  - github.com/projectcalico/calico (no AGENTS.md, no skills/ directory at the repo root)
+skills:
+- name: calico-namespace-default-deny
+  file: calico-namespace-default-deny.md
+  summary: >-
+    Lock a namespace to default-deny and open exactly the traffic the workloads need, safely —
+    staged-policy rehearsal, read-modify-write with resourceVersion, and the DNS egress rule
+    everybody forgets.
+  api: Calico NetworkPolicy API
+  operations: [listNamespacedNetworkPolicy, createNamespacedNetworkPolicy, readNamespacedNetworkPolicy, replaceNamespacedNetworkPolicy, deleteNamespacedNetworkPolicy]
+  risk: high — a default-deny policy takes effect immediately and cannot be undone by the API
+- name: calico-ip-pool-and-bgp
+  file: calico-ip-pool-and-bgp.md
+  summary: >-
+    Add or retire pod address space and configure BGP peering — encapsulation modes, blockSize,
+    disabled-over-deleted for retirement, and the Secret reference that crosses out of the
+    projectcalico.org API group.
+  api: Calico IPPool and BGPPeer APIs
+  operations: [listIPPool, createIPPool, readIPPool, replaceIPPool, deleteIPPool, listBGPPeer, createBGPPeer, readBGPPeer, replaceBGPPeer, deleteBGPPeer, listBGPConfiguration, readBGPConfiguration]
+  risk: high — overlapping CIDRs and torn-down BGP sessions fail silently or cluster-wide
+- name: calico-host-endpoint-protection
+  file: calico-host-endpoint-protection.md
+  summary: >-
+    Firewall the nodes themselves with HostEndpoints and GlobalNetworkPolicy — allow-policies first,
+    one node at a time, and the missing replaceHostEndpoint operation you have to work around.
+  api: Calico HostEndpoint and GlobalNetworkPolicy APIs
+  operations: [listHostEndpoint, createHostEndpoint, readHostEndpoint, deleteHostEndpoint, listGlobalNetworkPolicy, createGlobalNetworkPolicy, readGlobalNetworkPolicy, replaceGlobalNetworkPolicy, deleteGlobalNetworkPolicy, listProfile, readProfile]
+  risk: critical — can lock an operator out of the node, including SSH and the kubelet
+shared_rules:
+  auth: Kubernetes bearer token or client certificate; authorization is Kubernetes RBAC.
+  idempotency: >-
+    partial. PUT/DELETE are idempotent; POST create returns 409 AlreadyExists on replay. No
+    Idempotency-Key header exists. Prefer apply over create.
+  reversibility: >-
+    none. No reversal operation and no reversal window is published for any write. Staged policies
+    and --dry-run=server are rehearsal, not undo.
+  errors: >-
+    Kubernetes metav1.Status envelope, not RFC 9457. Branch on `reason`. 403 and 422 are real and
+    undeclared in the specs.
+  concurrency: read-modify-write with metadata.resourceVersion; never blank it to force a write.

@@ -1,0 +1,36 @@
+generated: '2026-09-05'
+method: probed
+source: https://www.tigera.io/.well-known/oauth-authorization-server/
+description: >-
+  OAuth scope surface reachable from this record. The Calico API itself (projectcalico.org/v3) does
+  NOT use OAuth — it authenticates with Kubernetes bearer tokens or client certificates and
+  authorizes with Kubernetes RBAC, so it has no scope vocabulary at all (see
+  authentication/calico-authentication.yml). The only OAuth authorization server on a host in this
+  record is Tigera's, which fronts the remote MCP server in mcp/calico-mcp.yml.
+authorization_server: https://www.tigera.io
+metadata_document: https://www.tigera.io/.well-known/oauth-authorization-server/
+protected_resource: https://www.tigera.io/wp-json/mcp/mcp-oauth-server
+flows:
+- type: authorization_code
+  pkce_required_methods: [S256]
+  token_endpoint_auth_methods: [none]
+  dynamic_registration: client_id_metadata_document
+scopes:
+- name: mcp
+  description: >-
+    The single scope advertised in scopes_supported. Grants access to the Tigera MCP server. The
+    provider publishes no scopes reference page, so no finer-grained description is available and
+    none has been invented.
+  source: scopes_supported in the RFC 8414 metadata document
+scope_count: 1
+docs: null
+notes:
+- >-
+  Calico API authorization is Kubernetes RBAC, expressed as ClusterRole/Role rules over the
+  projectcalico.org API group (verbs get/list/watch/create/update/patch/delete on resources such as
+  networkpolicies, globalnetworkpolicies, ippools, bgppeers, hostendpoints, tiers). That is a real
+  permission model, but it is not an OAuth scope model and is deliberately not transcribed here as
+  one.
+- >-
+  This file is derived from a discovery document that was actually fetched. derive-oauth-scopes.py
+  found zero oauth2 securitySchemes in openapi/ and correctly wrote nothing.

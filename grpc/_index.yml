@@ -1,0 +1,60 @@
+generated: '2026-09-05'
+method: searched
+source: https://github.com/projectcalico/calico (master branch, fetched verbatim from raw.githubusercontent.com)
+description: >-
+  Calico's gRPC contracts, saved verbatim from the provider's own monorepo. These are real
+  machine-readable contracts and they cover surfaces the OpenAPI does not touch at all — flow-log
+  aggregation and streaming, per-host policy sync, and the CNI dataplane. Nothing here was authored
+  or reshaped.
+protos:
+- file: calico-goldmane-api.proto
+  service: goldmane
+  path_in_repo: goldmane/proto/api.proto
+  bytes: 21938
+  syntax: proto3
+  services:
+  - name: Flows
+    rpcs:
+    - name: List
+      signature: List(FlowListRequest) returns (FlowListResult)
+      description: Query one or more aggregated Flows.
+    - name: Stream
+      signature: Stream(FlowStreamRequest) returns (stream FlowResult)
+      description: Long-running server stream of new Flows as they are generated.
+    - name: FilterHints
+      signature: FilterHints(FilterHintsRequest) returns (FilterHintsResult)
+      description: Progressive discovery of available filter criteria — namespaces, source and destination names.
+  note: >-
+    The most consequential contract in this directory. Goldmane is Calico's flow-log aggregation
+    API, and Flows.Stream is the closest thing Calico has to an event surface — which is why
+    asyncapi/ is correctly absent rather than a gap.
+- file: calico-felix-felixbackend.proto
+  service: felix
+  path_in_repo: felix/proto/felixbackend.proto
+  bytes: 21421
+  syntax: proto3
+  note: >-
+    The Felix policy-sync contract — the stream by which the per-host agent receives policy and
+    endpoint updates. An internal dataplane contract, published in the open.
+- file: calico-cni-plugin-cnibackend.proto
+  service: cni-plugin
+  path_in_repo: cni-plugin/pkg/dataplane/grpc/proto/cnibackend.proto
+  bytes: 1406
+  syntax: proto3
+  note: The gRPC dataplane backend used by the CNI plugin.
+- file: calico-app-policy-healthz.proto
+  service: app-policy
+  path_in_repo: app-policy/proto/healthz.proto
+  bytes: 361
+  syntax: proto3
+  note: Health check service for the application-layer policy component (Dikastes).
+- file: calico-pod2daemon-udsver.proto
+  service: pod2daemon
+  path_in_repo: pod2daemon/proto/udsver.proto
+  bytes: 788
+  syntax: proto3
+  note: Unix-domain-socket credential verification between pods and the local node daemon.
+counts:
+  files: 5
+  services: 5
+  rpcs_named: 12

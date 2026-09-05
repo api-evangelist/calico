@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Project Calico API (projectcalico.org/v3) BGPConfiguration HostEndpoint API
+  title: Project Calico API (projectcalico.org/v3) BGPConfiguration Host Endpoint API
   version: 3.0.0
   description: 'Calico exposes its custom resources through the Kubernetes API server
 
@@ -101,6 +101,28 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
     HostEndpointSpec:
       type: object
       properties:
@@ -127,28 +149,6 @@ components:
                 type: integer
               protocol:
                 type: string
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
     HostEndpoint:
       type: object
       required:

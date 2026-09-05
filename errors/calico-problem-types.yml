@@ -1,0 +1,119 @@
+generated: '2026-09-05'
+method: derived
+source: >-
+  openapi/*.yml (components.responses + components.schemas.Status), enriched from the Kubernetes
+  API error contract Calico inherits — https://docs.tigera.io/calico/latest/reference/
+description: >-
+  Calico's error contract is the Kubernetes metav1.Status envelope, not RFC 9457 Problem Details.
+  That is a real, consistent, machine-readable contract — it just is not the IETF one, and an agent
+  written against application/problem+json will not parse it.
+format: kubernetes-status
+media_type: application/json
+rfc9457: false
+envelope:
+  schema: components.schemas.Status
+  content_type: application/json
+  fields:
+  - name: kind
+    type: string
+    constant: Status
+    note: The discriminator. A response body whose kind is "Status" is an error, whatever else is true.
+  - name: apiVersion
+    type: string
+    example: v1
+  - name: status
+    type: string
+    values: [Success, Failure]
+  - name: message
+    type: string
+    note: Human-readable description. Not stable; do not branch on it.
+  - name: reason
+    type: string
+    note: >-
+      The machine-readable discriminator an agent SHOULD branch on — Kubernetes metav1.StatusReason
+      (Unauthorized, NotFound, AlreadyExists, Conflict, Invalid, Forbidden, ...).
+  - name: code
+    type: integer
+    note: Mirrors the HTTP status code.
+problem_types:
+- id: unauthorized
+  status: 401
+  reason: Unauthorized
+  title: Unauthorized
+  description: >-
+    The request carried no credential, or one the API server rejected. Declared on EVERY operation
+    in openapi/ — 28 of 28.
+  remediation: >-
+    Present a valid Kubernetes bearer token or client certificate. See
+    authentication/calico-authentication.yml.
+  retriable: false
+  operations: all
+  source: openapi components.responses.Unauthorized
+- id: not-found
+  status: 404
+  reason: NotFound
+  title: Resource not found
+  description: The named resource does not exist in the namespace or cluster scope addressed.
+  remediation: >-
+    Verify the resource name and, for namespaced kinds (NetworkPolicy), the namespace path segment.
+    A 404 on a Calico kind can also mean the CRD or the aggregation API server is not installed —
+    check that before assuming the object is missing.
+  retriable: false
+  operations: read/replace/delete on /{name} paths
+  source: openapi components.responses.NotFound
+- id: conflict
+  status: 409
+  reason: AlreadyExists | Conflict
+  title: Conflict
+  description: >-
+    Two distinct conditions share this code. On CREATE it means AlreadyExists — a resource of that
+    name is already present. On UPDATE it means the optimistic-concurrency check failed: the
+    metadata.resourceVersion sent no longer matches the stored object because something else wrote
+    to it first.
+  remediation: >-
+    On AlreadyExists, switch to replace/apply or pick another name. On a resourceVersion Conflict,
+    re-read the object, re-apply the intended change to the fresh copy, and retry. NEVER retry an
+    update by blanking resourceVersion — that turns a safe conflict into a blind overwrite of
+    someone else's change.
+  retriable: true
+  retry_strategy: read-modify-write, not blind retry
+  operations: create, replace
+  source: openapi components.responses.Conflict
+- id: forbidden
+  status: 403
+  reason: Forbidden
+  title: Forbidden by RBAC
+  description: >-
+    The credential authenticated but Kubernetes RBAC does not grant the verb on this resource in the
+    projectcalico.org API group.
+  remediation: >-
+    Grant the verb on the resource in a Role/ClusterRole bound to the caller's subject.
+  retriable: false
+  operations: all
+  source: >-
+    Kubernetes API contract, inherited. NOT declared in openapi/ — recorded here as a documented gap
+    in the spec, because an agent will meet a 403 in practice and the spec does not warn it.
+  spec_gap: true
+- id: invalid
+  status: 422
+  reason: Invalid
+  title: Validation failure
+  description: >-
+    The submitted object failed CRD structural schema validation or Calico's admission validation
+    (for example a malformed CIDR in an IPPool, or a selector that does not parse).
+  remediation: >-
+    Read status.details.causes[] for the offending field paths. `calicoctl validate` checks the same
+    rules locally before you send anything — see cli/calico-cli.yml.
+  retriable: false
+  operations: create, replace, patch
+  source: >-
+    Kubernetes API contract + the published CRD openAPIV3Schemas in json-schema/. NOT declared in
+    openapi/.
+  spec_gap: true
+spec_gaps:
+  note: >-
+    The openapi/ files declare 401/404/409 only. 403 Forbidden and 422 Invalid are real, common, and
+    undeclared; 500 and 503 are undeclared as well. Filing these upstream would raise the contract's
+    error coverage. They are recorded here from the inherited Kubernetes contract, and marked
+    spec_gap so nobody mistakes them for something the spec says.
+  undeclared_codes: [403, 422, 500, 503]

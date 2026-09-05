@@ -1,0 +1,121 @@
+generated: '2026-09-05'
+method: derived
+source: mcp/calico-mcp.yml, openapi/*.yml, grpc/*.proto
+description: >-
+  Crosswalk between Calico's machine-readable surfaces. The honest headline is that they do NOT
+  overlap: the only MCP server reachable from this record is Tigera's website content server, and
+  the Calico control surface is REST (projectcalico.org/v3) plus gRPC (Goldmane, Felix, CNI). There
+  is no tool that binds to a Calico operationId, and none has been invented to make the table look
+  fuller.
+surfaces:
+  openapi:
+    path: openapi/
+    files: 7
+    operations: 28
+    base: https://{kube_apiserver_host}/apis/projectcalico.org/v3
+    gated: false
+    note: >-
+      Self-hosted. Every operator's own Kubernetes API server serves this; there is no shared public
+      host to call.
+  grpc:
+    path: grpc/
+    files: 5
+    services: 5
+    gated: false
+    note: >-
+      In-cluster gRPC. goldmane/api.proto exposes Flows.List / Flows.Stream / Flows.FilterHints;
+      felixbackend.proto is the Felix policy-sync stream; the rest are dataplane/CNI internals.
+  mcp:
+    endpoint: https://www.tigera.io/wp-json/mcp/mcp-oauth-server
+    gated: true
+    gate: OAuth 2.1, scope `mcp`; anonymous tools/list returns 401 mcp_unauthorized
+    note: Tigera website content server (WordPress MCP route), not a Calico API front end.
+  graphql:
+    present: false
+  asyncapi:
+    present: false
+crosswalk: []
+mcp_only:
+- tool: unknown
+  reason: >-
+    tools/list is OAuth-gated (401). The tool set could not be enumerated and is not published in
+    either llms.txt, so no MCP tool can be named — let alone bound to a REST operation. Resolving
+    this needs an authenticated introspection with the `mcp` scope.
+rest_only:
+- operationId: listBGPConfiguration
+  reason: no MCP tool front-ends the Calico API
+- operationId: readBGPConfiguration
+  reason: no MCP tool front-ends the Calico API
+- operationId: listBGPPeer
+  reason: no MCP tool front-ends the Calico API
+- operationId: createBGPPeer
+  reason: no MCP tool front-ends the Calico API
+- operationId: readBGPPeer
+  reason: no MCP tool front-ends the Calico API
+- operationId: replaceBGPPeer
+  reason: no MCP tool front-ends the Calico API
+- operationId: deleteBGPPeer
+  reason: no MCP tool front-ends the Calico API
+- operationId: listGlobalNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: createGlobalNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: readGlobalNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: replaceGlobalNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: deleteGlobalNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: listHostEndpoint
+  reason: no MCP tool front-ends the Calico API
+- operationId: createHostEndpoint
+  reason: no MCP tool front-ends the Calico API
+- operationId: readHostEndpoint
+  reason: no MCP tool front-ends the Calico API
+- operationId: deleteHostEndpoint
+  reason: no MCP tool front-ends the Calico API
+- operationId: listIPPool
+  reason: no MCP tool front-ends the Calico API
+- operationId: createIPPool
+  reason: no MCP tool front-ends the Calico API
+- operationId: readIPPool
+  reason: no MCP tool front-ends the Calico API
+- operationId: replaceIPPool
+  reason: no MCP tool front-ends the Calico API
+- operationId: deleteIPPool
+  reason: no MCP tool front-ends the Calico API
+- operationId: listNamespacedNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: createNamespacedNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: readNamespacedNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: replaceNamespacedNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: deleteNamespacedNetworkPolicy
+  reason: no MCP tool front-ends the Calico API
+- operationId: listProfile
+  reason: no MCP tool front-ends the Calico API
+- operationId: readProfile
+  reason: no MCP tool front-ends the Calico API
+grpc_only:
+- service: goldmane.Flows
+  rpcs: [List, Stream, FilterHints]
+  reason: >-
+    Flow-log aggregation and streaming have no REST equivalent in the projectcalico.org/v3 group and
+    no MCP tool.
+- service: felix.PolicySync
+  rpcs: [Sync]
+  reason: Per-host policy-sync stream; internal dataplane contract with no REST or MCP equivalent.
+coverage:
+  mcp_tools_total: null
+  mcp_tools_mapped: 0
+  rest_operations_total: 28
+  rest_operations_mapped: 0
+  grpc_rpcs_total: 12
+  grpc_rpcs_mapped: 0
+  confidence: high
+  note: >-
+    The zero is a measurement, not a gap in this pass. Two surfaces exist and neither projects the
+    other. Re-run when a Calico-specific MCP server ships, or when authenticated introspection of
+    the Tigera server becomes available.

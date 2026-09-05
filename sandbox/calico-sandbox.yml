@@ -1,0 +1,79 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart,
+  https://www.tigera.io/interactive-training/,
+  https://docs.tigera.io/calico/latest/reference/calicoctl/,
+  api/config/crd/projectcalico.org_staged*.yaml in github.com/projectcalico/calico
+description: >-
+  Calico has no sandbox in the payments sense — there are no test API keys, no test-vs-live modes and
+  no hosted test tenant, because there are no API keys at all. The credential is the operator's own
+  Kubernetes credential (authentication/calico-authentication.yml). What Calico DOES publish is a
+  strong set of rehearsal surfaces, and they are what an agent should use in place of a sandbox.
+test_credentials:
+  applicable: false
+  reason: >-
+    Calico issues no keys, tokens or account identifiers of its own. Nothing here needs a test key
+    because nothing here has a live key.
+sandbox_modes:
+- name: Staged network policies
+  kind: preview-without-enforcement
+  resources: [StagedNetworkPolicy, StagedGlobalNetworkPolicy, StagedKubernetesNetworkPolicy]
+  evidence: >-
+    Published CRDs in the provider's own repo —
+    api/config/crd/projectcalico.org_stagednetworkpolicies.yaml,
+    projectcalico.org_stagedglobalnetworkpolicies.yaml,
+    projectcalico.org_stagedkubernetesnetworkpolicies.yaml
+  description: >-
+    A policy that is evaluated and reported on but NOT enforced. It shows what a rule WOULD do
+    against real traffic in the real cluster before you make it real. This is the closest thing
+    Calico has to a sandbox, and it is better than most: the test runs against production traffic
+    without production consequences.
+  scope: policy resources only — no equivalent for IPPool, BGPPeer or HostEndpoint
+- name: calicoctl validate
+  kind: local-validation
+  command: calicoctl validate -f policy.yaml
+  description: >-
+    Checks resource files for correctness without sending them anywhere. Catches schema and syntax
+    errors before they become a 422.
+  docs: https://docs.tigera.io/calico/latest/reference/calicoctl/
+- name: kubectl --dry-run=server
+  kind: server-side-dry-run
+  command: kubectl apply -f policy.yaml --dry-run=server
+  description: >-
+    Full server-side admission and CRD schema validation with no persistence. Inherited from the
+    Kubernetes API server, available on every write, and not declared in openapi/.
+- name: Local quickstart cluster
+  kind: local-install
+  docs: https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
+  description: >-
+    Install Calico Open Source on a single-host Kubernetes cluster in roughly 15 minutes. This is the
+    supported way to get a throwaway Calico API to develop against — the whole product is free and
+    Apache-2.0, so the "sandbox" is simply a disposable cluster you own.
+  cost: free
+  signup_required: false
+- name: Staged demo environment
+  kind: hosted-demo
+  url: https://www.tigera.io/interactive-training/
+  http_status: 200
+  description: >-
+    A "Connect to Staged Demo Environment" entry point alongside an interactive video series
+    (Calico Policy Introduction; Microsegmentation & Hierarchical Policy Model; Policy Board
+    Management; Service Graph & Flow Visualization; Flow Log Observability; DNS Observability; TCP
+    Performance Monitoring; Web Application Firewall; Egress Gateways and ThreatFeeds).
+  caveat: >-
+    The page does not state whether access is free or gated, and it demonstrates the COMMERCIAL
+    editions' UI rather than the Open Source API. Recorded as observed; nothing inferred.
+fixtures:
+  published: false
+  note: >-
+    No fixture or trigger tooling, and no published example manifests packaged as test data. The
+    policy tutorials in the docs carry inline examples but they are documentation, not a fixture set.
+time_simulation:
+  supported: false
+  note: No test clocks. Nothing in this API is time-dependent in a way that would need one.
+agent_guidance: >-
+  The correct rehearsal ladder before any write: calicoctl validate (syntax) -> --dry-run=server
+  (admission) -> StagedNetworkPolicy (real traffic, no enforcement) -> the real write. Use it. There
+  is no reversal operation once the real write lands
+  (conventions/calico-conventions.yml reversibility.grade: none).

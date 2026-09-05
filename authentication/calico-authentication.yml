@@ -1,14 +1,101 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/calico-openapi.yml
+generated: '2026-09-05'
+method: searched
+source: >-
+  openapi/*.yml (securitySchemes) enriched from
+  https://docs.tigera.io/calico/latest/getting-started/kubernetes/hardway/end-user-rbac ,
+  https://docs.tigera.io/calico/latest/network-policy/policy-tiers/rbac-tiered-policies ,
+  https://docs.tigera.io/calico/latest/reference/etcd-rbac/ ,
+  https://www.tigera.io/.well-known/oauth-authorization-server/
+docs: https://docs.tigera.io/calico/latest/getting-started/kubernetes/hardway/end-user-rbac
+description: >-
+  Calico's API has no credential of its own. It is served by the operator's Kubernetes API server,
+  so authentication is whatever that cluster does — bearer token or client certificate — and
+  authorization is Kubernetes RBAC over the projectcalico.org API group. There is no API key to
+  provision, no OAuth flow on the API, no signup and no account. That is the single most useful fact
+  about auth here, and the OpenAPI's lone BearerAuth scheme understates it.
 summary:
   types:
   - http
+  - mutualTLS
+  authorization_model: kubernetes-rbac
+  api_keys: false
+  oauth_on_api: false
 schemes:
 - name: BearerAuth
   type: http
   scheme: bearer
   bearerFormat: JWT
-  description: Kubernetes service account bearer token.
+  description: >-
+    Kubernetes service account bearer token, or any token the cluster's configured authenticator
+    accepts (OIDC, webhook, static). Sent as `Authorization: Bearer <token>`.
+  declared_in_spec: true
   sources:
-  - openapi/calico-openapi.yml
+  - openapi/calico-bgpconfiguration-api-openapi.yml
+  - openapi/calico-bgppeer-api-openapi.yml
+  - openapi/calico-globalnetworkpolicy-api-openapi.yml
+  - openapi/calico-hostendpoint-api-openapi.yml
+  - openapi/calico-ippool-api-openapi.yml
+  - openapi/calico-networkpolicy-api-openapi.yml
+  - openapi/calico-profile-api-openapi.yml
+- name: ClientCertificate
+  type: mutualTLS
+  description: >-
+    Kubernetes client-certificate authentication (the kubeconfig client-certificate-data /
+    client-key-data pair). Equally valid against this API and used by most operator tooling,
+    including calicoctl through the standard kubeconfig.
+  declared_in_spec: false
+  spec_gap: true
+  source: Kubernetes API server contract, inherited. Not declared in openapi/.
+authorization:
+  model: Kubernetes RBAC
+  api_group: projectcalico.org
+  docs: https://docs.tigera.io/calico/latest/getting-started/kubernetes/hardway/end-user-rbac
+  resources:
+  - networkpolicies
+  - globalnetworkpolicies
+  - stagednetworkpolicies
+  - stagedglobalnetworkpolicies
+  - stagedkubernetesnetworkpolicies
+  - networksets
+  - globalnetworksets
+  - ippools
+  - ipreservations
+  - bgppeers
+  - bgpconfigurations
+  - bgpfilters
+  - hostendpoints
+  - profiles
+  - tiers
+  - felixconfigurations
+  - clusterinformations
+  - caliconodestatuses
+  - kubecontrollersconfigurations
+  verbs: [get, list, watch, create, update, patch, delete]
+  tiered_policy_note: >-
+    Policy tiers add a second RBAC dimension: access to a policy is granted through the `tiers`
+    resource as well as the policy resource itself, so a caller can hold full rights on
+    networkpolicies and still be refused inside a tier. See
+    https://docs.tigera.io/calico/latest/network-policy/policy-tiers/rbac-tiered-policies
+  cross_group_note: >-
+    Configuring an authenticated BGP peer requires RBAC on core/v1 Secrets as well, because
+    BGPPeer.spec.password.secretKeyRef points out of the projectcalico.org group. See
+    data-model/calico-data-model.yml.
+  failure_mode: >-
+    403 Forbidden with a Kubernetes metav1.Status body. NOT declared in openapi/ — see
+    errors/calico-problem-types.yml.
+datastore_auth:
+  note: >-
+    On the legacy etcdv3 datastore (rather than the Kubernetes API datastore), Calico components
+    authenticate to etcd with their own TLS client certificates and etcd RBAC users/roles. That is a
+    component-to-datastore credential, not a client-facing one.
+  docs: https://docs.tigera.io/calico/latest/reference/etcd-rbac/
+unrelated_oauth_surface:
+  note: >-
+    www.tigera.io publishes an RFC 8414 OAuth authorization server (scope `mcp`) fronting Tigera's
+    MCP server. It has nothing to do with authenticating to the Calico API. Recorded here only so it
+    is not mistaken for one. See scopes/calico-scopes.yml and mcp/calico-mcp.yml.
+agent_guidance: >-
+  Use the ambient cluster credential — an in-cluster service account token at
+  /var/run/secrets/kubernetes.io/serviceaccount/token, or the caller's kubeconfig. Do not look for a
+  Calico API key; none exists. Ensure the service account's Role/ClusterRole grants the verbs you
+  intend on the projectcalico.org resources above, plus the tier if tiered policy is in use.

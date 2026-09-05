@@ -1,0 +1,97 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://github.com/projectcalico/calico/blob/master/SECURITY.md,
+  https://docs.tigera.io/calico/latest/release-notes/,
+  https://status.calicocloud.io/, https://www.tigera.io/security-bulletins/
+versioning:
+  scheme: semver
+  current: v3.32.2
+  api_group_version: projectcalico.org/v3
+  policy: >-
+    Product versions are vMAJOR.MINOR.PATCH on a v3 line. The API GROUP version (projectcalico.org/v3)
+    is versioned independently of the product and has been stable at v3 across every product minor
+    release in this window — a consumer pins the API group, not the product version.
+  docs: https://docs.tigera.io/calico/latest/release-notes/
+support:
+  policy: >-
+    "The Tigera team generally support the most recent two minor versions of Project Calico on a
+    rolling basis. Support for older versions is on a case-by-case basis." When a new minor ships,
+    automatic support for the oldest of the two is dropped.
+  source: https://github.com/projectcalico/calico/blob/master/SECURITY.md
+  supported_versions_observed:
+  - v3.32.x
+  - v3.31.x
+  quoted: true
+deprecation:
+  policy_published: true
+  mechanism: >-
+    Deprecations and removals are announced in the release notes of the minor release that
+    introduces them, with the successor named. Calico does NOT emit RFC 8594 Deprecation/Sunset HTTP
+    response headers — the API is served by the operator's own Kubernetes API server, which signals
+    deprecation through Kubernetes API-group deprecation warnings (the `Warning:` response header)
+    rather than RFC 8594.
+  docs: https://docs.tigera.io/calico/latest/release-notes/
+  active:
+  - subject: Aggregation API server
+    status: deprecated
+    since: v3.32.0
+    removal: "scheduled for removal in an upcoming release (no version named)"
+    successor: native projectcalico.org/v3 CRDs
+    quote: >-
+      "Support for the aggregation API server is deprecated and scheduled for removal in an upcoming
+      release. Calico is moving the projectcalico.org/v3 API to native Kubernetes CRDs."
+    impact: >-
+      MATERIAL TO THIS RECORD. The openapi/ specs in this repo describe the projectcalico.org/v3
+      REST surface as served by the aggregation API server. The resources and their schemas survive
+      the change — see json-schema/, the published CRD openAPIV3Schemas — but the serving mechanism
+      does not.
+  - subject: FIPS mode
+    status: deprecated
+    since: v3.30
+    removal: no removal date published
+  removed:
+  - subject: AdminNetworkPolicy API
+    removed_in: v3.32.0
+    successor: ClusterNetworkPolicy
+    quote: >-
+      "Removing AdminNetworkPolicy and BaselineAdminNetworkPolicy API support in favor of
+      ClusterNetworkPolicy. These resources must be removed or replaced by ClusterNetworkPolicy
+      before upgrade, since Calico v3.32 and newer won't enforce them."
+    silent_failure_warning: >-
+      Not enforcing is not the same as erroring. A cluster upgraded to v3.32 with these resources
+      still present keeps the objects and stops applying them — a policy that silently stops
+      protecting.
+  - subject: BaselineAdminNetworkPolicy API
+    removed_in: v3.32.0
+    successor: ClusterNetworkPolicy
+  - subject: static adminnetworkpolicy and baselineadminnetworkpolicy tiers
+    removed_in: v3.32.0
+status_page:
+  url: https://status.calicocloud.io/
+  http_status: 200
+  covers: Calico Cloud (the hosted commercial edition)
+  note: >-
+    Calico Open Source has no status page and cannot have a meaningful one — it runs inside the
+    operator's own cluster. The status page covers the Calico Cloud SaaS control plane.
+security_bulletins:
+  url: https://www.tigera.io/security-bulletins/
+  http_status: 200
+sla:
+  published: false
+  note: >-
+    No public SLA document was found for Calico Cloud or Calico Enterprise. Both are Contact Sales
+    products (see plans/calico-plans-pricing.yml); SLA terms are presumably contractual. Recorded as
+    an honest absence, not asserted either way.
+deprecated_operations:
+  count: 0
+  note: >-
+    No operation in openapi/ carries `deprecated: true`. The deprecation above is of the SERVING
+    MECHANISM and of resource kinds that were never in these specs, so it does not show up as a
+    per-operation flag.
+archived_repositories:
+  note: >-
+    Several projectcalico/* repos are archived after being folded into the monorepo — calicoctl,
+    libcalico-go, felix, cni-plugin, node, kube-controllers, typha, apiserver, confd, app-policy.
+    They are archived because the code MOVED, not because it was abandoned. A pointer to any of
+    them is a pointer to a frozen mirror.

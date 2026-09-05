@@ -4,103 +4,58 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Calico
 providerId: calico
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - CNI
-  - Containers
-  - eBPF
-  - Kubernetes
-  - Network Policy
-  - Network Security
-  - Networking
-  - Open Source
-  - Service Mesh
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Calico API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+modified: '2026-09-05'
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://docs.tigera.io/calico/latest/reference/ ,
+  https://www.tigera.io/tigera-products/calico-cloud-pricing/ ,
+  openapi/*.yml
+provenance_note: >-
+  REPLACED 2026-09-05. Every previous version of this file was a bulk-sweep SCAFFOLD (roadmap#35)
+  asserting free/professional/enterprise tiers at 10/100/1,000 requests per minute with
+  X-RateLimit-* response headers. None of that is true of Calico. It publishes no rate limits, it
+  returns no X-RateLimit-* headers, and it has no tiers on this API. The invented numbers are gone.
+description: >-
+  Calico publishes NO API rate limits, and the honest zero is the finding. The
+  projectcalico.org/v3 API is served by the OPERATOR'S OWN Kubernetes API server — Calico is not the
+  one answering the request, so there is nobody in Calico's position to impose a limit. Whatever
+  throttling a caller meets is the cluster's own, configured by the cluster's own admins.
+limit_count: 0
+provider_published_limits: false
+tiers: none — this API has no tiers; see plans/calico-plans-pricing.yml
+limits: []
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
+  limit: null
+  remaining: null
+  reset: null
   retryAfter: Retry-After
-  policy: RateLimit-Policy
+  policy: null
+  note: >-
+    No X-RateLimit-* or RFC 9331 RateLimit-* headers. `Retry-After` is returned by the Kubernetes API
+    server on a 429 from API Priority and Fairness — that is a platform header, not a Calico one, and
+    it is the only runtime throttling signal an agent will see.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Calico Client API
-      - calicoctl CLI
-      - Calico Kubernetes CRDs
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Calico Client API
-      - calicoctl CLI
-      - Calico Kubernetes CRDs
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Calico Client API
-      - calicoctl CLI
-      - Calico Kubernetes CRDs
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Calico Client API
-      - calicoctl CLI
-      - Calico Kubernetes CRDs
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Calico Client API
-      - calicoctl CLI
-      - Calico Kubernetes CRDs
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  note: >-
+    429 originates from the Kubernetes API server's API Priority and Fairness (APF) admission
+    control, not from Calico. It means the cluster's own flow-schema concurrency was exhausted.
+runtime_mechanism:
+  name: Kubernetes API Priority and Fairness (APF)
+  owner: the cluster operator
+  configurable_by_provider: false
+  description: >-
+    APF classifies requests into flow schemas and priority levels and sheds load with 429 +
+    Retry-After when a level is saturated. Every Calico API call is subject to whatever the cluster
+    has configured, and none of it is set or published by Calico.
+  agent_guidance: >-
+    Honour Retry-After. Back off exponentially with jitter on 429. Do not assume any published
+    numeric ceiling exists to reason about — there is none.
+commercial_editions:
+  note: >-
+    Calico Cloud is priced per vCPU-hour, not per API request (see
+    plans/calico-plans-pricing.yml). No request-rate limits are published for it either.
+policies: []
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

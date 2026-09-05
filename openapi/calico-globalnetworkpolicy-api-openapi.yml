@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Project Calico API (projectcalico.org/v3) BGPConfiguration GlobalNetworkPolicy API
+  title: Project Calico API (projectcalico.org/v3) BGPConfiguration Global Network Policy API
   version: 3.0.0
   description: 'Calico exposes its custom resources through the Kubernetes API server
 
@@ -166,71 +166,6 @@ components:
               type: object
               additionalProperties:
                 type: string
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-    GlobalNetworkPolicy:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: GlobalNetworkPolicy
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/GlobalNetworkPolicySpec'
-    GlobalNetworkPolicyList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: GlobalNetworkPolicyList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalNetworkPolicy'
-    GlobalNetworkPolicySpec:
-      allOf:
-      - $ref: '#/components/schemas/NetworkPolicySpec'
-      - type: object
-        properties:
-          namespaceSelector:
-            type: string
-          doNotTrack:
-            type: boolean
-          preDNAT:
-            type: boolean
-          applyOnForward:
-            type: boolean
     NetworkPolicySpec:
       type: object
       properties:
@@ -257,6 +192,53 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rule'
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    GlobalNetworkPolicySpec:
+      allOf:
+      - $ref: '#/components/schemas/NetworkPolicySpec'
+      - type: object
+        properties:
+          namespaceSelector:
+            type: string
+          doNotTrack:
+            type: boolean
+          preDNAT:
+            type: boolean
+          applyOnForward:
+            type: boolean
+    GlobalNetworkPolicyList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: GlobalNetworkPolicyList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalNetworkPolicy'
     EntityRule:
       type: object
       properties:
@@ -311,13 +293,25 @@ components:
           type: string
         code:
           type: integer
+    GlobalNetworkPolicy:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: GlobalNetworkPolicy
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/GlobalNetworkPolicySpec'
   parameters:
-    Name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
     LabelSelector:
       name: labelSelector
       in: query
@@ -326,6 +320,12 @@ components:
     FieldSelector:
       name: fieldSelector
       in: query
+      schema:
+        type: string
+    Name:
+      name: name
+      in: path
+      required: true
       schema:
         type: string
   responses:

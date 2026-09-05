@@ -59,7 +59,7 @@ tags_raw:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/calico/refs/heads/main/apis.yml
 created: '2026-03-26'
-modified: '2026-04-23'
+modified: '2026-09-05'
 specificationVersion: '0.23'
 apis:
 - aid: calico:calico-client-api
@@ -70,6 +70,7 @@ apis:
     programmatic interface consumed by calicoctl and other Calico components for managing container networking
     and security resources.
   humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - Client Library
   - CNI
@@ -88,6 +89,7 @@ apis:
     endpoints. It also supports datastore migration, IPAM management, node diagnostics, and cluster status
     operations.
   humanURL: https://docs.tigera.io/calico/latest/reference/calicoctl/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - CLI
   - IPAM
@@ -101,7 +103,7 @@ apis:
   - type: Documentation
     url: https://docs.tigera.io/calico/latest/reference/calicoctl/
   - type: GitHub
-    url: https://github.com/projectcalico/calicoctl
+    url: https://github.com/projectcalico/calico/tree/master/calicoctl
 - aid: calico:calico-kubernetes-crds
   name: Calico Kubernetes CRDs
   description: >-
@@ -110,6 +112,7 @@ apis:
     WorkloadEndpoint, FelixConfiguration, and others. These CRDs allow declarative management of container
     networking and security via the Kubernetes API.
   humanURL: https://docs.tigera.io/calico/latest/reference/resources/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - CRDs
   - Kubernetes
@@ -124,42 +127,55 @@ apis:
   name: Calico BGPConfiguration API
   description: The BGPConfiguration API from Calico — 2 operation(s) for bgpconfiguration.
   humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - BGPConfiguration
   properties:
   - type: OpenAPI
     url: openapi/calico-bgpconfiguration-api-openapi.yml
+  - type: Overlay
+    url: overlays/calico-bgpconfiguration-api-overlay.yaml
 - aid: calico:calico-bgppeer-api
   name: Calico BGPPeer API
   description: The BGPPeer API from Calico — 2 operation(s) for bgppeer.
   humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - BGPPeer
   properties:
   - type: OpenAPI
     url: openapi/calico-bgppeer-api-openapi.yml
+  - type: Overlay
+    url: overlays/calico-bgppeer-api-overlay.yaml
 - aid: calico:calico-globalnetworkpolicy-api
   name: Calico GlobalNetworkPolicy API
   description: The GlobalNetworkPolicy API from Calico — 2 operation(s) for globalnetworkpolicy.
   humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - GlobalNetworkPolicy
   properties:
   - type: OpenAPI
     url: openapi/calico-globalnetworkpolicy-api-openapi.yml
+  - type: Overlay
+    url: overlays/calico-globalnetworkpolicy-api-overlay.yaml
 - aid: calico:calico-hostendpoint-api
   name: Calico HostEndpoint API
   description: The HostEndpoint API from Calico — 2 operation(s) for hostendpoint.
   humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - HostEndpoint
   properties:
   - type: OpenAPI
     url: openapi/calico-hostendpoint-api-openapi.yml
+  - type: Overlay
+    url: overlays/calico-hostendpoint-api-overlay.yaml
 - aid: calico:calico-ippool-api
   name: Calico IPPool API
   description: The IPPool API from Calico — 2 operation(s) for ippool.
   humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - IP Pool
   tags_raw:
@@ -167,10 +183,13 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/calico-ippool-api-openapi.yml
+  - type: Overlay
+    url: overlays/calico-ippool-api-overlay.yaml
 - aid: calico:calico-networkpolicy-api
   name: Calico NetworkPolicy API
   description: The NetworkPolicy API from Calico — 2 operation(s) for networkpolicy.
   humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - Network Policy
   tags_raw:
@@ -178,15 +197,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/calico-networkpolicy-api-openapi.yml
+  - type: Overlay
+    url: overlays/calico-networkpolicy-api-overlay.yaml
 - aid: calico:calico-profile-api
   name: Calico Profile API
   description: The Profile API from Calico — 2 operation(s) for profile.
   humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
   tags:
   - Profile
   properties:
   - type: OpenAPI
     url: openapi/calico-profile-api-openapi.yml
+  - type: Overlay
+    url: overlays/calico-profile-api-overlay.yaml
 common:
   - type: IssueTracker
     url: https://github.com/projectcalico/calico/issues
@@ -198,7 +222,7 @@ common:
     url: https://github.com/projectcalico/calico/blob/master/CONTRIBUTING.md
   - type: License
     name: Apache-2.0
-    url: https://github.com/projectcalico/calico/blob/master/LICENSE
+    url: https://github.com/projectcalico/calico/blob/master/LICENSE.md
   - type: AgenticAccess
     url: agentic-access/calico-agentic-access.yml
   - type: VulnerabilityDisclosure
@@ -208,7 +232,7 @@ common:
   - type: Authentication
     url: authentication/calico-authentication.yml
   - type: LinkedIn
-    url: https://www.linkedin.com/company/calico-life-sciences-llc
+    url: https://www.linkedin.com/company/tigera/
   - type: Website
     url: https://www.tigera.io/project-calico/
   - type: Documentation
@@ -231,6 +255,76 @@ common:
     url: https://www.tigera.io/lp/calico-certification/
   - type: Integrations
     url: https://www.tigera.io/partners/
+  - type: Packages
+    url: packages/calico-packages.yml
+  - type: SDKs
+    url: packages/calico-packages.yml
+  - type: CLI
+    url: cli/calico-cli.yml
+  - type: MCPServer
+    url: mcp/calico-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/calico-tool-crosswalk.yml
+  - type: LLMsTxt
+    url: llms/calico-llms.txt
+  - type: WellKnown
+    url: well-known/calico-well-known.yml
+  - type: Protobuf
+    url: grpc/calico-goldmane-api.proto
+  - type: Protobuf
+    url: grpc/_index.yml
+  - type: JSONSchema
+    url: json-schema/_index.yml
+  - type: Conformance
+    url: conformance/calico-conformance.yml
+  - type: Compliance
+    url: conformance/calico-conformance.yml
+  - type: TrustCenter
+    url: security/calico-trust-center.yml
+  - type: Security
+    url: security/calico-vulnerability-disclosure.yml
+  - type: ErrorCatalog
+    url: errors/calico-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/calico-lifecycle.yml
+  - type: StatusPage
+    url: https://status.calicocloud.io/
+  - type: Deprecation
+    url: lifecycle/calico-lifecycle.yml
+  - type: ChangeLog
+    url: https://docs.tigera.io/calico/latest/release-notes/
+  - type: ChangeLog
+    url: changelog/calico-changelog.yml
+  - type: OAuthScopes
+    url: scopes/calico-scopes.yml
+  - type: Conventions
+    url: conventions/calico-conventions.yml
+  - type: Idempotency
+    url: conventions/calico-conventions.yml
+  - type: DataModel
+    url: data-model/calico-data-model.yml
+  - type: Sandbox
+    url: sandbox/calico-sandbox.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Plans
+    url: plans/calico-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/calico-rate-limits.yml
+  - type: FinOps
+    url: finops/calico-finops.yml
+  - type: APIReference
+    url: https://docs.tigera.io/calico/latest/reference/
+  - type: Support
+    url: https://www.tigera.io/calico-support/
+  - type: HelpCenter
+    url: https://github.com/projectcalico/calico/discussions
+  - type: TermsOfService
+    url: https://www.tigera.io/legal/terms-of-use/
+  - type: PrivacyPolicy
+    url: https://www.tigera.io/legal/privacy-policy/
+  - type: Login
+    url: https://www.calicocloud.io/login
 integrations:
   - name: AWS EKS
   - name: Azure AKS
@@ -241,3 +335,10 @@ integrations:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 44
+  pass: local-v3
+x-parent: tigera
+x-relationship: product

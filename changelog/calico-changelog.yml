@@ -1,0 +1,82 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.tigera.io/calico/latest/release-notes/
+docs: https://docs.tigera.io/calico/latest/release-notes/
+releases_feed: https://github.com/projectcalico/calico/releases
+scheme: semver
+scheme_note: >-
+  Calico versions as vMAJOR.MINOR.PATCH on a v3 line. Minor releases carry features and (announced)
+  breaking changes; patch releases are bug fixes only. Two release lines are maintained
+  concurrently — currently v3.32.x and v3.31.x.
+current_version: v3.32.2
+current_released: '2026-08-30'
+cadence_observed: >-
+  Derived from the 14 most recent GitHub releases: a minor roughly every 5-6 months (v3.29 -> v3.30
+  -> v3.31 -> v3.32), with patches on the two supported lines roughly every 4-8 weeks. The provider
+  does not publish a committed cadence; this is measured, not quoted.
+entries:
+- version: v3.32.2
+  date: '2026-08-30'
+  type: patch
+  breaking: false
+  highlights:
+  - Bug fixes in the eBPF data plane.
+  - IPv6 route programming fixes.
+  - Service affinity fixes.
+  - OpenStack DHCP handling fix.
+- version: v3.31.7
+  date: '2026-08-21'
+  type: patch
+  breaking: false
+  highlights:
+  - Patch release on the v3.31 maintenance line.
+- version: v3.32.1
+  date: '2026-06-26'
+  type: patch
+  breaking: false
+  highlights:
+  - Helm chart installation fixes.
+  - KubeVirt RBAC fixes.
+  - Route resync detection fix.
+  - nftables data plane fixes.
+- version: v3.31.6
+  date: '2026-06-19'
+  type: patch
+  breaking: false
+  highlights:
+  - Patch release on the v3.31 maintenance line.
+- version: v3.32.0
+  date: '2026-04-30'
+  type: minor
+  breaking: true
+  highlights:
+  - Native projectcalico.org/v3 CRDs (tech preview) — the successor to the aggregation API server,
+    removing a long-standing source of installation friction on managed Kubernetes platforms.
+  - Support for the upstream Kubernetes ClusterNetworkPolicy resource, giving cluster admins
+    cluster-scoped rules.
+  - Istio ambient mode — mTLS at lower resource cost than sidecar mesh.
+  - KubeVirt live migration over BGP.
+  - Maglev consistent-hash load balancing.
+  breaking_changes:
+  - AdminNetworkPolicy and BaselineAdminNetworkPolicy API support REMOVED in favour of
+    ClusterNetworkPolicy. These resources must be removed or replaced before upgrade — v3.32 and
+    newer will not enforce them. The static adminnetworkpolicy and baselineadminnetworkpolicy tiers
+    are removed with them.
+  deprecations:
+  - Aggregation API server deprecated and scheduled for removal in an upcoming release; migrate to
+    native v3 CRDs.
+- version: v3.31.5
+  date: '2026-04-15'
+  type: patch
+  breaking: false
+- version: v3.30.7
+  date: '2026-03-19'
+  type: patch
+  breaking: false
+- version: v3.31.4
+  date: '2026-02-21'
+  type: patch
+  breaking: false
+window_note: >-
+  Recent window only. The eight entries above are the releases published since 2026-02-21; the full
+  history back to v1.x is on the GitHub releases page.

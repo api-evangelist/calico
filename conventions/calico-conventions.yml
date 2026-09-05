@@ -1,0 +1,213 @@
+generated: '2026-09-05'
+method: derived
+source: >-
+  openapi/*.yml, json-schema/*-crd.yaml, cli/calico-cli.yml,
+  https://docs.tigera.io/calico/latest/reference/ ,
+  https://docs.tigera.io/calico/latest/reference/resources/
+description: >-
+  Cross-cutting runtime semantics for the Calico projectcalico.org/v3 API. Calico does not invent
+  its own conventions: it is served by the operator's Kubernetes API server and inherits the
+  Kubernetes API contract wholesale. That is the single most useful fact for an agent here — every
+  rule below is a Kubernetes rule, so a client that already speaks Kubernetes needs no bespoke
+  adapter.
+auth:
+  style: kubernetes
+  schemes: [bearer-token, client-certificate]
+  authorization: Kubernetes RBAC over the projectcalico.org API group
+  header: 'Authorization: Bearer <token>'
+  detail: authentication/calico-authentication.yml
+  note: >-
+    No API keys, no OAuth, no per-request signing. The credential is the cluster credential; there is
+    no Calico-specific account or key to provision.
+
+idempotency:
+  coverage: partial
+  scope:
+  - replaceBGPPeer
+  - replaceGlobalNetworkPolicy
+  - replaceIPPool
+  - replaceNamespacedNetworkPolicy
+  - deleteBGPPeer
+  - deleteGlobalNetworkPolicy
+  - deleteHostEndpoint
+  - deleteIPPool
+  - deleteNamespacedNetworkPolicy
+  header: null
+  mechanism: >-
+    There is NO Idempotency-Key header anywhere in this API. What exists instead is HTTP-verb
+    idempotency plus optimistic concurrency:
+      - PUT (replaceX) and DELETE (deleteX) are idempotent by REST semantics — replaying them
+        converges on the same state. 9 of the 14 mutating operations.
+      - POST (createX) is NOT replay-safe. A repeat returns 409 AlreadyExists. That is a SAFE
+        failure — it will not create a duplicate — but it is a failure, and a naive retry loop will
+        treat it as an error rather than as "already done". 5 of the 14 mutating operations.
+      - metadata.resourceVersion gives optimistic concurrency on update: send the version you read,
+        and a 409 Conflict tells you someone wrote first. See errors/calico-problem-types.yml.
+      - Kubernetes Server-Side Apply (PATCH with content-type application/apply-patch+yaml, and a
+        fieldManager) is a fully idempotent declarative write across the whole surface. It is
+        available on the underlying API server but is NOT declared in openapi/, so it is not counted
+        toward coverage here.
+  agent_guidance: >-
+    Prefer apply over create. `calicoctl apply` (and kubectl apply) create-if-absent,
+    replace-if-present, which makes the write replay-safe end to end. On a 409 from createX, read
+    the object and decide; do not blindly retry. On a 409 from replaceX, re-read, re-apply your
+    change to the fresh copy, and retry — never blank resourceVersion to force the write through.
+  verdict_basis: >-
+    partial, not full: the mechanism is verb semantics scoped to 9 named operations, not a
+    request-level replay guarantee spanning all 14 writes.
+
+reversibility:
+  grade: none
+  applicable: true
+  summary: >-
+    Calico publishes NO reversal operation and NO reversal window. There is no undo, no restore, no
+    trash, no revision history on these resources. A deleted NetworkPolicy is gone the moment the
+    API server accepts the DELETE, and the enforcement it was providing stops with it. This is the
+    honest answer and it is the one an agent most needs before it acts.
+  write_surfaces:
+  - operation: deleteNamespacedNetworkPolicy
+    reversal: null
+    window: null
+    note: >-
+      Irreversible. Deleting a NetworkPolicy removes enforcement immediately. Recovery is
+      re-creating from your own stored manifest — an operator practice, not a provider capability.
+    blast_radius: >-
+      HIGH. In a default-deny namespace, deleting the policy that permits traffic breaks the
+      workload; deleting the policy that denies traffic silently opens it.
+  - operation: deleteGlobalNetworkPolicy
+    reversal: null
+    window: null
+    blast_radius: HIGH — cluster-scoped.
+  - operation: deleteIPPool
+    reversal: null
+    window: null
+    note: >-
+      Irreversible, and NOT inert. Removing an IP pool affects address allocation for workloads
+      scheduled afterward. Existing allocations are tracked separately in IPAM blocks.
+  - operation: deleteBGPPeer
+    reversal: null
+    window: null
+    note: Irreversible. Tears down the BGP session; routes learned over it are withdrawn.
+  - operation: deleteHostEndpoint
+    reversal: null
+    window: null
+    note: >-
+      Irreversible, and the most dangerous delete in this API — host endpoint policy is what
+      protects the node itself.
+  - operation: replaceNamespacedNetworkPolicy
+    reversal: null
+    window: null
+    note: >-
+      No rollback. The previous spec is not retained by the API. Kubernetes revision history exists
+      for Deployments, not for these CRDs.
+  mitigations_that_are_not_reversal:
+  - name: Staged network policies
+    resources: [StagedNetworkPolicy, StagedGlobalNetworkPolicy, StagedKubernetesNetworkPolicy]
+    evidence: >-
+      Published CRDs — api/config/crd/projectcalico.org_staged*.yaml in the provider's own repo.
+    what_it_is: >-
+      A policy that is evaluated and reported on but NOT enforced. It lets you see what a rule WOULD
+      do before you make it real. This is rehearsal (dry-run), not reversal — it helps you avoid
+      needing an undo, it does not give you one.
+  - name: calicoctl validate
+    what_it_is: Local correctness check of resource files before they are sent. Also rehearsal.
+  - name: kubectl --dry-run=server
+    what_it_is: >-
+      Server-side admission and validation without persisting. Inherited from Kubernetes, available
+      on every write. Also rehearsal.
+  - name: GitOps re-apply
+    what_it_is: >-
+      The de facto reversal in practice: keep manifests in version control and re-apply the previous
+      commit. It works, and it is entirely the operator's own capability — the provider publishes no
+      part of it. Recorded so nobody mistakes an operational habit for an API guarantee.
+  window_stated: false
+  window_note: >-
+    No window is asserted anywhere because the provider states none. Nothing here has been inferred.
+
+dry_run_mode:
+  supported: true
+  mechanisms:
+  - Staged policies (StagedNetworkPolicy / StagedGlobalNetworkPolicy) — evaluate without enforcing.
+  - calicoctl validate — validate resource files locally without applying.
+  - kubectl apply --dry-run=server — full server-side validation and admission, no persistence.
+  declared_in_openapi: false
+  note: >-
+    Genuinely strong here, and none of it is visible in openapi/. Staged policies are a first-class
+    published resource kind; the dry-run query parameter is a Kubernetes API-server feature the
+    specs do not declare.
+
+pagination:
+  style: kubernetes-chunked
+  declared_in_openapi: false
+  params:
+  - limit
+  - continue
+  response_fields:
+  - metadata.continue
+  - metadata.remainingItemCount
+  note: >-
+    The Kubernetes API server supports chunked list with limit + continue on every list endpoint,
+    including Calico's. The openapi/ files declare only labelSelector and fieldSelector, so a client
+    reading the spec alone will not know pagination exists. SPEC GAP.
+
+filtering:
+  params:
+  - name: labelSelector
+    in: query
+    declared_in_openapi: true
+    note: Kubernetes label selector syntax, e.g. "env=prod,tier notin (db)".
+  - name: fieldSelector
+    in: query
+    declared_in_openapi: true
+    note: Kubernetes field selector syntax, e.g. "metadata.name=allow-dns".
+
+watch:
+  supported: true
+  declared_in_openapi: false
+  mechanism: >-
+    ?watch=true with resourceVersion returns a chunked stream of ADDED/MODIFIED/DELETED events. This
+    is Calico's real change-notification surface — there are no webhooks and no AsyncAPI document.
+    See asyncapi absence in conformance/calico-conformance.yml.
+
+versioning:
+  api: projectcalico.org/v3
+  style: kubernetes-api-group
+  in: path
+  note: >-
+    The API group version (v3) is in the base path and is versioned independently of the product
+    version (v3.32.2). Pin the group, not the product. See lifecycle/calico-lifecycle.yml.
+
+errors:
+  envelope: kubernetes metav1.Status
+  content_type: application/json
+  discriminator: reason
+  rfc9457: false
+  detail: errors/calico-problem-types.yml
+
+rate_limits:
+  provider_published: false
+  runtime_mechanism: >-
+    Kubernetes API Priority and Fairness on the operator's own API server. It returns 429 with
+    Retry-After when a flow schema is exhausted. This is the CLUSTER's limit, set by the cluster
+    operator — Calico neither publishes nor imposes one.
+  headers: [Retry-After]
+  detail: rate-limits/calico-rate-limits.yml
+
+request_tracing:
+  header: null
+  note: >-
+    No request-id or correlation header is defined. The Kubernetes API server audit log is the
+    correlation surface, keyed on audit ID, and it is the cluster operator's to enable.
+
+metadata:
+  mechanism: >-
+    Kubernetes metadata.labels and metadata.annotations on every resource. Labels are queryable via
+    labelSelector; annotations are not.
+
+cross_links:
+  authentication: authentication/calico-authentication.yml
+  errors: errors/calico-problem-types.yml
+  lifecycle: lifecycle/calico-lifecycle.yml
+  rate_limits: rate-limits/calico-rate-limits.yml
+  data_model: data-model/calico-data-model.yml
+  cli: cli/calico-cli.yml

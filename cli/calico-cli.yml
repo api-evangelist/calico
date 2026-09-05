@@ -1,0 +1,93 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.tigera.io/calico/latest/reference/calicoctl/overview
+name: calicoctl
+description: >-
+  calicoctl is Calico's first-party command-line tool. It creates, reads, updates and deletes Calico
+  resources — network policies, IP pools, BGP peers and configuration, host and workload endpoints —
+  and additionally does the things the resource API cannot: IPAM inspection and release, node
+  diagnostics, and datastore-level cluster information. It talks to the same
+  projectcalico.org/v3 surface described in openapi/, so its verbs map onto the same operations.
+docs: https://docs.tigera.io/calico/latest/reference/calicoctl/
+homepage: https://docs.tigera.io/calico/latest/reference/calicoctl/overview
+repository: https://github.com/projectcalico/calico
+version: v3.32.2
+released: '2026-08-30'
+install:
+- method: binary
+  platform: linux-amd64
+  command: curl -L -o calicoctl https://github.com/projectcalico/calico/releases/download/v3.32.2/calicoctl-linux-amd64 && chmod +x calicoctl
+- method: binary
+  platform: darwin-arm64
+  command: curl -L -o calicoctl https://github.com/projectcalico/calico/releases/download/v3.32.2/calicoctl-darwin-arm64 && chmod +x calicoctl
+- method: binary
+  platform: windows-amd64
+  command: calicoctl-windows-amd64.exe from the GitHub release assets
+- method: kubectl-plugin
+  command: mv calicoctl kubectl-calico && kubectl calico <command>
+  note: Renaming the binary to kubectl-calico makes it a kubectl plugin.
+- method: container
+  command: docker run calico/ctl:v3.32.2 <command>
+platforms:
+- darwin-amd64
+- darwin-arm64
+- linux-amd64
+- linux-arm64
+- linux-ppc64le
+- linux-s390x
+- windows-amd64
+commands:
+- group: resource management
+  commands:
+  - name: create
+    description: Create a resource by file, directory or stdin.
+    maps_to: [createBGPPeer, createGlobalNetworkPolicy, createHostEndpoint, createIPPool, createNamespacedNetworkPolicy]
+  - name: replace
+    description: Replace a resource by file, directory or stdin.
+    maps_to: [replaceBGPPeer, replaceGlobalNetworkPolicy, replaceIPPool, replaceNamespacedNetworkPolicy]
+  - name: apply
+    description: >-
+      Create a resource if it does not exist, replace it if it does. The idempotent write verb — see
+      conventions/calico-conventions.yml.
+    maps_to: [createBGPPeer, replaceBGPPeer, createGlobalNetworkPolicy, replaceGlobalNetworkPolicy, createIPPool, replaceIPPool, createNamespacedNetworkPolicy, replaceNamespacedNetworkPolicy]
+  - name: patch
+    description: Patch a pre-existing resource in place.
+  - name: delete
+    description: Delete a resource identified by file, directory, stdin, or resource type and name.
+    maps_to: [deleteBGPPeer, deleteGlobalNetworkPolicy, deleteHostEndpoint, deleteIPPool, deleteNamespacedNetworkPolicy]
+  - name: get
+    description: Get a resource identified by file, directory, stdin, or resource type and name.
+    maps_to: [listBGPConfiguration, readBGPConfiguration, listBGPPeer, readBGPPeer, listGlobalNetworkPolicy, readGlobalNetworkPolicy, listHostEndpoint, readHostEndpoint, listIPPool, readIPPool, listNamespacedNetworkPolicy, readNamespacedNetworkPolicy, listProfile, readProfile]
+  - name: label
+    description: Add or update labels on a resource.
+  - name: validate
+    description: >-
+      Validate resource files for correctness WITHOUT applying them. This is Calico's dry-run
+      surface — see conventions/calico-conventions.yml dry_run_mode.
+- group: operations
+  commands:
+  - name: ipam
+    description: IP address management — inspect, check and release IP allocations.
+  - name: cluster
+    description: Access cluster information.
+  - name: node
+    description: Calico node management and diagnostics.
+  - name: version
+    description: Display the calicoctl and cluster Calico version.
+global_flags:
+- flag: -h, --help
+  description: Display help information.
+- flag: -l, --log-level=<level>
+  description: Set logging level — panic, fatal, error, warn, info, debug.
+- flag: --context=<context>
+  description: kubeconfig context to use, for multi-cluster environments.
+- flag: --allow-version-mismatch
+  description: Override the client/cluster version-match requirement.
+notes:
+- >-
+  The standalone projectcalico/calicoctl repo is ARCHIVED on GitHub. calicoctl is now built and
+  released from the projectcalico/calico monorepo; a pointer to the archived repo is not a pointer
+  to the maintained tool.
+- >-
+  calicoctl authenticates through the operator's own kubeconfig — the same Kubernetes bearer token
+  or client certificate the API uses. There is no calicoctl-specific credential.
