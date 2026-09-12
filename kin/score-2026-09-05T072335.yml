@@ -1,28 +1,31 @@
-# Kin Score artifact — calico — 2026-08-12T193225
+# Kin Score artifact — calico — 2026-09-05T072335
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: calico
-  schema_version: 0.11.0
-  scored_at: '2026-08-12'
-  run_ts: 2026-08-12T193225
-  composite: 35.8
-  band: thin
+  schema_version: 0.18.3
+  scored_at: '2026-09-05'
+  run_ts: 2026-09-05T072335
+  composite: 46.8
+  band: developing
   facets:
-    discoverability: 64.8
+    discoverability: 59.3
     contract_quality: 51.9
-    governance: 0.0
-    operational_transparency: 39.5
-    developer_ergonomics: 37.0
+    governance: 18.2
+    operational_transparency: 28.9
+    developer_ergonomics: 40.5
     commercial_clarity: 26.3
+    contract_governance: 18.2
+    access_clarity: 26.3
   agent_readiness:
-    score: 30.6
-    band: agent-aware
+    score: 35.1
+    band: agent-ready
     dimensions:
       spec_presence: true
       agentic_access: derived
-      mcp_server: false
-      auth_clarity: true
+      reversibility_documented: false
+      mcp_server: documented
+      auth_clarity: served
       idempotency: false
       error_semantics: false
       openapi_examples: false
@@ -33,12 +36,19 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: served
+      protected_resource_metadata: verified
+      dynamic_client_registration: false
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Insurance
     regime_id: insurance
-    score: 27.3
+    score: 53.0
     matched_via: tags
+  open_source:
+    applies: true
+    score: 85.0
   provenance:
     agentic_access: derived
     contracts:
