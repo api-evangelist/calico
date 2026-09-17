@@ -70,7 +70,7 @@ apis:
     programmatic interface consumed by calicoctl and other Calico components for managing container networking
     and security resources.
   humanURL: https://docs.tigera.io/calico/latest/reference/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
   - Client Library
   - CNI
@@ -89,7 +89,7 @@ apis:
     endpoints. It also supports datastore migration, IPAM management, node diagnostics, and cluster status
     operations.
   humanURL: https://docs.tigera.io/calico/latest/reference/calicoctl/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
   - CLI
   - IPAM
@@ -112,7 +112,7 @@ apis:
     WorkloadEndpoint, FelixConfiguration, and others. These CRDs allow declarative management of container
     networking and security via the Kubernetes API.
   humanURL: https://docs.tigera.io/calico/latest/reference/resources/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
   - CRDs
   - Kubernetes
@@ -127,7 +127,7 @@ apis:
   name: Calico BGPConfiguration API
   description: The BGPConfiguration API from Calico — 2 operation(s) for bgpconfiguration.
   humanURL: https://docs.tigera.io/calico/latest/reference/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
   - BGPConfiguration
   properties:
@@ -139,7 +139,7 @@ apis:
   name: Calico BGPPeer API
   description: The BGPPeer API from Calico — 2 operation(s) for bgppeer.
   humanURL: https://docs.tigera.io/calico/latest/reference/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
   - BGPPeer
   properties:
@@ -151,7 +151,7 @@ apis:
   name: Calico GlobalNetworkPolicy API
   description: The GlobalNetworkPolicy API from Calico — 2 operation(s) for globalnetworkpolicy.
   humanURL: https://docs.tigera.io/calico/latest/reference/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
   - GlobalNetworkPolicy
   properties:
@@ -163,7 +163,7 @@ apis:
   name: Calico HostEndpoint API
   description: The HostEndpoint API from Calico — 2 operation(s) for hostendpoint.
   humanURL: https://docs.tigera.io/calico/latest/reference/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
   - HostEndpoint
   properties:
@@ -171,39 +171,11 @@ apis:
     url: openapi/calico-hostendpoint-api-openapi.yml
   - type: Overlay
     url: overlays/calico-hostendpoint-api-overlay.yaml
-- aid: calico:calico-ippool-api
-  name: Calico IPPool API
-  description: The IPPool API from Calico — 2 operation(s) for ippool.
-  humanURL: https://docs.tigera.io/calico/latest/reference/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
-  tags:
-  - IP Pool
-  tags_raw:
-  - IPPool
-  properties:
-  - type: OpenAPI
-    url: openapi/calico-ippool-api-openapi.yml
-  - type: Overlay
-    url: overlays/calico-ippool-api-overlay.yaml
-- aid: calico:calico-networkpolicy-api
-  name: Calico NetworkPolicy API
-  description: The NetworkPolicy API from Calico — 2 operation(s) for networkpolicy.
-  humanURL: https://docs.tigera.io/calico/latest/reference/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
-  tags:
-  - Network Policy
-  tags_raw:
-  - NetworkPolicy
-  properties:
-  - type: OpenAPI
-    url: openapi/calico-networkpolicy-api-openapi.yml
-  - type: Overlay
-    url: overlays/calico-networkpolicy-api-overlay.yaml
 - aid: calico:calico-profile-api
   name: Calico Profile API
   description: The Profile API from Calico — 2 operation(s) for profile.
   humanURL: https://docs.tigera.io/calico/latest/reference/
-  baseURL: 'https://{kube_apiserver_host}/apis/projectcalico.org/v3'
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
   - Profile
   properties:
@@ -211,7 +183,31 @@ apis:
     url: openapi/calico-profile-api-openapi.yml
   - type: Overlay
     url: overlays/calico-profile-api-overlay.yaml
+- aid: calico:calico-ip-pool-api
+  name: Calico IP Pool API
+  description: The IP Pool API from Calico — 2 operation(s) for ip pool.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
+  tags:
+  - IP Pool
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-ip-pool-api-openapi.yml
+- aid: calico:calico-network-policy-api
+  name: Calico Network Policy API
+  description: The Network Policy API from Calico — 2 operation(s) for network policy.
+  humanURL: https://docs.tigera.io/calico/latest/reference/
+  baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
+  tags:
+  - Network Policy
+  properties:
+  - type: OpenAPI
+    url: openapi/calico-network-policy-api-openapi.yml
 common:
+  - type: Overlay
+    url: overlays/calico-ippool-api-overlay.yaml
+  - type: Overlay
+    url: overlays/calico-networkpolicy-api-overlay.yaml
   - type: IssueTracker
     url: https://github.com/projectcalico/calico/issues
   - type: Releases
