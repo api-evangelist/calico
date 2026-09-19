@@ -177,6 +177,8 @@ apis:
   humanURL: https://docs.tigera.io/calico/latest/reference/
   baseURL: https://{kube_apiserver_host}/apis/projectcalico.org/v3
   tags:
+  - Profiles
+  tags_raw:
   - Profile
   properties:
   - type: OpenAPI
