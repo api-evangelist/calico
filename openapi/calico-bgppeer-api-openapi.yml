@@ -1,22 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Project Calico API (projectcalico.org/v3) BGPConfiguration BGP Peer API
+  title: Project Calico API (projectcalico.org/v3) BGP Peer API
   version: 3.0.0
   description: 'Calico exposes its custom resources through the Kubernetes API server
 
-    under the `projectcalico.org/v3` API group. Authentication and transport
-
-    follow standard Kubernetes conventions (bearer token or client cert) and
-
-    requests are made against the cluster''s kube-apiserver. This document
-
-    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
-
-    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
-
-    resources do not appear under a `/namespaces/{namespace}/` segment.
-
-    '
+    under the `projectcalico.org/v3` API group.'
   contact:
     name: Project Calico / Tigera
     url: https://docs.tigera.io/calico/latest/reference/
@@ -110,46 +98,6 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    BGPPeer:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: BGPPeer
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/BGPPeerSpec'
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
     BGPPeerList:
       type: object
       properties:
@@ -162,22 +110,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BGPPeer'
-    Status:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: Status
-        apiVersion:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
     BGPPeerSpec:
       type: object
       properties:
@@ -212,6 +144,62 @@ components:
           type: string
         ttlSecurity:
           type: integer
+    BGPPeer:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: BGPPeer
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/BGPPeerSpec'
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
   parameters:
     Name:
       name: name

@@ -1,22 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Project Calico API (projectcalico.org/v3) BGP Configuration API
+  title: Project Calico API (projectcalico.org/v3) BGP Configuration…
   version: 3.0.0
   description: 'Calico exposes its custom resources through the Kubernetes API server
 
-    under the `projectcalico.org/v3` API group. Authentication and transport
-
-    follow standard Kubernetes conventions (bearer token or client cert) and
-
-    requests are made against the cluster''s kube-apiserver. This document
-
-    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
-
-    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
-
-    resources do not appear under a `/namespaces/{namespace}/` segment.
-
-    '
+    under the `projectcalico.org/v3` API group.'
   contact:
     name: Project Calico / Tigera
     url: https://docs.tigera.io/calico/latest/reference/
@@ -71,6 +59,13 @@ paths:
                 type: object
                 additionalProperties: true
 components:
+  parameters:
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     ObjectMeta:
       type: object
@@ -94,13 +89,6 @@ components:
           type: object
           additionalProperties:
             type: string
-  parameters:
-    Name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

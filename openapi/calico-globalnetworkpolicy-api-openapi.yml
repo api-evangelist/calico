@@ -1,22 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Project Calico API (projectcalico.org/v3) BGPConfiguration Global Network Policy API
+  title: Project Calico API (projectcalico.org/v3) Global Network…
   version: 3.0.0
   description: 'Calico exposes its custom resources through the Kubernetes API server
 
-    under the `projectcalico.org/v3` API group. Authentication and transport
-
-    follow standard Kubernetes conventions (bearer token or client cert) and
-
-    requests are made against the cluster''s kube-apiserver. This document
-
-    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
-
-    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
-
-    resources do not appear under a `/namespaces/{namespace}/` segment.
-
-    '
+    under the `projectcalico.org/v3` API group.'
   contact:
     name: Project Calico / Tigera
     url: https://docs.tigera.io/calico/latest/reference/
@@ -114,7 +102,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
 components:
+  parameters:
+    FieldSelector:
+      name: fieldSelector
+      in: query
+      schema:
+        type: string
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    LabelSelector:
+      name: labelSelector
+      in: query
+      schema:
+        type: string
   schemas:
+    GlobalNetworkPolicySpec:
+      allOf:
+      - $ref: '#/components/schemas/NetworkPolicySpec'
+      - type: object
+        properties:
+          namespaceSelector:
+            type: string
+          doNotTrack:
+            type: boolean
+          preDNAT:
+            type: boolean
+          applyOnForward:
+            type: boolean
     Rule:
       type: object
       required:
@@ -192,53 +210,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rule'
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-    GlobalNetworkPolicySpec:
-      allOf:
-      - $ref: '#/components/schemas/NetworkPolicySpec'
-      - type: object
-        properties:
-          namespaceSelector:
-            type: string
-          doNotTrack:
-            type: boolean
-          preDNAT:
-            type: boolean
-          applyOnForward:
-            type: boolean
-    GlobalNetworkPolicyList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: GlobalNetworkPolicyList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalNetworkPolicy'
     EntityRule:
       type: object
       properties:
@@ -277,22 +248,18 @@ components:
                 type: string
             selector:
               type: string
-    Status:
+    GlobalNetworkPolicyList:
       type: object
       properties:
-        kind:
-          type: string
-          default: Status
         apiVersion:
           type: string
-        status:
+        kind:
           type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
+          const: GlobalNetworkPolicyList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalNetworkPolicy'
     GlobalNetworkPolicy:
       type: object
       required:
@@ -311,23 +278,44 @@ components:
           $ref: '#/components/schemas/ObjectMeta'
         spec:
           $ref: '#/components/schemas/GlobalNetworkPolicySpec'
-  parameters:
-    LabelSelector:
-      name: labelSelector
-      in: query
-      schema:
-        type: string
-    FieldSelector:
-      name: fieldSelector
-      in: query
-      schema:
-        type: string
-    Name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
   responses:
     NotFound:
       description: Resource not found.

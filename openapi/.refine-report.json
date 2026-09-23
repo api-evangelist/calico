@@ -1,13 +1,7 @@
 {
   "provider": "calico",
   "sources": [
-    "calico-bgpconfiguration-api-openapi.yml",
-    "calico-bgppeer-api-openapi.yml",
-    "calico-globalnetworkpolicy-api-openapi.yml",
-    "calico-hostendpoint-api-openapi.yml",
-    "calico-ippool-api-openapi.yml",
-    "calico-networkpolicy-api-openapi.yml",
-    "calico-profile-api-openapi.yml"
+    "_original/calico-openapi.yml"
   ],
   "outputs": [
     "calico-bgpconfiguration-api-openapi.yml",
@@ -18,18 +12,24 @@
     "calico-networkpolicy-api-openapi.yml",
     "calico-profile-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "calico-bgpconfiguration-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "calico-bgppeer-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "calico-globalnetworkpolicy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "calico-hostendpoint-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "calico-ippool-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "calico-networkpolicy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "calico-profile-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "calico-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: calico-ip-pool-api-openapi.yml, calico-network-policy-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 10 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "calico-bgpconfiguration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "calico-bgppeer-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "calico-globalnetworkpolicy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "calico-hostendpoint-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "calico-ip-pool-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "calico-network-policy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "calico-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

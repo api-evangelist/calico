@@ -1,22 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Project Calico API (projectcalico.org/v3) BGPConfiguration Host Endpoint API
+  title: Project Calico API (projectcalico.org/v3) Host Endpoint API
   version: 3.0.0
   description: 'Calico exposes its custom resources through the Kubernetes API server
 
-    under the `projectcalico.org/v3` API group. Authentication and transport
-
-    follow standard Kubernetes conventions (bearer token or client cert) and
-
-    requests are made against the cluster''s kube-apiserver. This document
-
-    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
-
-    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
-
-    resources do not appear under a `/namespaces/{namespace}/` segment.
-
-    '
+    under the `projectcalico.org/v3` API group.'
   contact:
     name: Project Calico / Tigera
     url: https://docs.tigera.io/calico/latest/reference/
@@ -101,28 +89,6 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
     HostEndpointSpec:
       type: object
       properties:
@@ -183,6 +149,28 @@ components:
           type: string
         code:
           type: integer
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
   parameters:
     Name:
       name: name

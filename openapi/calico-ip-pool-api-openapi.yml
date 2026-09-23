@@ -1,22 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Project Calico API (projectcalico.org/v3) BGPConfiguration IP Pool API
+  title: Project Calico API (projectcalico.org/v3) IP Pool API
   version: 3.0.0
   description: 'Calico exposes its custom resources through the Kubernetes API server
 
-    under the `projectcalico.org/v3` API group. Authentication and transport
-
-    follow standard Kubernetes conventions (bearer token or client cert) and
-
-    requests are made against the cluster''s kube-apiserver. This document
-
-    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
-
-    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
-
-    resources do not appear under a `/namespaces/{namespace}/` segment.
-
-    '
+    under the `projectcalico.org/v3` API group.'
   contact:
     name: Project Calico / Tigera
     url: https://docs.tigera.io/calico/latest/reference/
@@ -30,12 +18,12 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: IPPool
+- name: IP Pool
 paths:
   /ippools:
     get:
       tags:
-      - IPPool
+      - IP Pool
       summary: List IPPool
       operationId: listIPPool
       responses:
@@ -47,7 +35,7 @@ paths:
                 $ref: '#/components/schemas/IPPoolList'
     post:
       tags:
-      - IPPool
+      - IP Pool
       summary: Create IPPool
       operationId: createIPPool
       requestBody:
@@ -68,7 +56,7 @@ paths:
     - $ref: '#/components/parameters/Name'
     get:
       tags:
-      - IPPool
+      - IP Pool
       summary: Read IPPool
       operationId: readIPPool
       responses:
@@ -80,7 +68,7 @@ paths:
                 $ref: '#/components/schemas/IPPool'
     put:
       tags:
-      - IPPool
+      - IP Pool
       summary: Replace IPPool
       operationId: replaceIPPool
       requestBody:
@@ -98,7 +86,7 @@ paths:
                 $ref: '#/components/schemas/IPPool'
     delete:
       tags:
-      - IPPool
+      - IP Pool
       summary: Delete IPPool
       operationId: deleteIPPool
       responses:
@@ -110,6 +98,36 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
+    IPPoolList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: IPPoolList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IPPool'
+    IPPool:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: IPPool
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/IPPoolSpec'
     IPPoolSpec:
       type: object
       required:
@@ -146,36 +164,22 @@ components:
             enum:
             - Workload
             - Tunnel
-    IPPool:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: IPPool
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/IPPoolSpec'
-    IPPoolList:
+    Status:
       type: object
       properties:
-        apiVersion:
-          type: string
         kind:
           type: string
-          const: IPPoolList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/IPPool'
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
     ObjectMeta:
       type: object
       properties:
@@ -198,22 +202,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Status:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: Status
-        apiVersion:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
   parameters:
     Name:
       name: name

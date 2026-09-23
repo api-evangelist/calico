@@ -1,22 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Project Calico API (projectcalico.org/v3) BGPConfiguration Network Policy API
+  title: Project Calico API (projectcalico.org/v3) Network Policy API
   version: 3.0.0
   description: 'Calico exposes its custom resources through the Kubernetes API server
 
-    under the `projectcalico.org/v3` API group. Authentication and transport
-
-    follow standard Kubernetes conventions (bearer token or client cert) and
-
-    requests are made against the cluster''s kube-apiserver. This document
-
-    covers the most commonly used resources: NetworkPolicy, GlobalNetworkPolicy,
-
-    BGPPeer, BGPConfiguration, IPPool, HostEndpoint, and Profile. Cluster-scoped
-
-    resources do not appear under a `/namespaces/{namespace}/` segment.
-
-    '
+    under the `projectcalico.org/v3` API group.'
   contact:
     name: Project Calico / Tigera
     url: https://docs.tigera.io/calico/latest/reference/
@@ -30,14 +18,14 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: NetworkPolicy
+- name: Network Policy
 paths:
   /namespaces/{namespace}/networkpolicies:
     parameters:
     - $ref: '#/components/parameters/Namespace'
     get:
       tags:
-      - NetworkPolicy
+      - Network Policy
       summary: List NetworkPolicy in namespace
       operationId: listNamespacedNetworkPolicy
       parameters:
@@ -54,7 +42,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       tags:
-      - NetworkPolicy
+      - Network Policy
       summary: Create NetworkPolicy
       operationId: createNamespacedNetworkPolicy
       requestBody:
@@ -78,7 +66,7 @@ paths:
     - $ref: '#/components/parameters/Name'
     get:
       tags:
-      - NetworkPolicy
+      - Network Policy
       summary: Read NetworkPolicy
       operationId: readNamespacedNetworkPolicy
       responses:
@@ -92,7 +80,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       tags:
-      - NetworkPolicy
+      - Network Policy
       summary: Replace NetworkPolicy
       operationId: replaceNamespacedNetworkPolicy
       requestBody:
@@ -110,7 +98,7 @@ paths:
                 $ref: '#/components/schemas/NetworkPolicy'
     delete:
       tags:
-      - NetworkPolicy
+      - Network Policy
       summary: Delete NetworkPolicy
       operationId: deleteNamespacedNetworkPolicy
       responses:
@@ -121,26 +109,60 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
-    Conflict:
-      description: Conflict (already exists).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
+  parameters:
+    FieldSelector:
+      name: fieldSelector
+      in: query
+      schema:
+        type: string
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    LabelSelector:
+      name: labelSelector
+      in: query
+      schema:
+        type: string
   schemas:
+    NetworkPolicyList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: NetworkPolicyList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NetworkPolicy'
+    NetworkPolicy:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: NetworkPolicy
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/NetworkPolicySpec'
     Rule:
       type: object
       required:
@@ -192,18 +214,6 @@ components:
               type: object
               additionalProperties:
                 type: string
-    NetworkPolicyList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: NetworkPolicyList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/NetworkPolicy'
     NetworkPolicySpec:
       type: object
       properties:
@@ -230,46 +240,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rule'
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-    NetworkPolicy:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: NetworkPolicy
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/NetworkPolicySpec'
     EntityRule:
       type: object
       properties:
@@ -324,29 +294,47 @@ components:
           type: string
         code:
           type: integer
-  parameters:
-    LabelSelector:
-      name: labelSelector
-      in: query
-      schema:
-        type: string
-    FieldSelector:
-      name: fieldSelector
-      in: query
-      schema:
-        type: string
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
-    Name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+    Conflict:
+      description: Conflict (already exists).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+    Unauthorized:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
   securitySchemes:
     BearerAuth:
       type: http
