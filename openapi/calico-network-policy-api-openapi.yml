@@ -109,60 +109,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
 components:
-  parameters:
-    FieldSelector:
-      name: fieldSelector
-      in: query
-      schema:
-        type: string
-    Name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
-    LabelSelector:
-      name: labelSelector
-      in: query
-      schema:
-        type: string
   schemas:
-    NetworkPolicyList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: NetworkPolicyList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/NetworkPolicy'
-    NetworkPolicy:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: NetworkPolicy
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/NetworkPolicySpec'
     Rule:
       type: object
       required:
@@ -214,6 +161,40 @@ components:
               type: object
               additionalProperties:
                 type: string
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    NetworkPolicyList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: NetworkPolicyList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NetworkPolicy'
     NetworkPolicySpec:
       type: object
       properties:
@@ -278,6 +259,24 @@ components:
                 type: string
             selector:
               type: string
+    NetworkPolicy:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: NetworkPolicy
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/NetworkPolicySpec'
     Status:
       type: object
       properties:
@@ -294,29 +293,13 @@ components:
           type: string
         code:
           type: integer
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
   responses:
+    Unauthorized:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
     NotFound:
       description: Resource not found.
       content:
@@ -329,12 +312,29 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Status'
-    Unauthorized:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
+  parameters:
+    LabelSelector:
+      name: labelSelector
+      in: query
+      schema:
+        type: string
+    FieldSelector:
+      name: fieldSelector
+      in: query
+      schema:
+        type: string
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

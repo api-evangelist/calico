@@ -48,7 +48,7 @@ tags:
   - Network Policy
   - Network Security
   - Networking
-  - Open-Source
+  - Open Source
   - Service Mesh
 tags_raw:
   - CNI
@@ -60,6 +60,7 @@ tags_raw:
   - Networking
   - Open Source
   - Service Mesh
+  - Open-Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/calico/refs/heads/main/apis.yml
 created: '2026-03-26'

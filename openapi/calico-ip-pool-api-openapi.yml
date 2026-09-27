@@ -98,18 +98,6 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    IPPoolList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: IPPoolList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/IPPool'
     IPPool:
       type: object
       required:
@@ -128,6 +116,28 @@ components:
           $ref: '#/components/schemas/ObjectMeta'
         spec:
           $ref: '#/components/schemas/IPPoolSpec'
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
     IPPoolSpec:
       type: object
       required:
@@ -164,6 +174,18 @@ components:
             enum:
             - Workload
             - Tunnel
+    IPPoolList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: IPPoolList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IPPool'
     Status:
       type: object
       properties:
@@ -180,28 +202,6 @@ components:
           type: string
         code:
           type: integer
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
   parameters:
     Name:
       name: name

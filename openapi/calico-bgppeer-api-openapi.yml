@@ -98,18 +98,28 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    BGPPeerList:
+    ObjectMeta:
       type: object
       properties:
-        apiVersion:
+        name:
           type: string
-        kind:
+        namespace:
           type: string
-          const: BGPPeerList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BGPPeer'
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
     BGPPeerSpec:
       type: object
       properties:
@@ -178,28 +188,18 @@ components:
           type: string
         code:
           type: integer
-    ObjectMeta:
+    BGPPeerList:
       type: object
       properties:
-        name:
+        apiVersion:
           type: string
-        namespace:
+        kind:
           type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
+          const: BGPPeerList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BGPPeer'
   parameters:
     Name:
       name: name
