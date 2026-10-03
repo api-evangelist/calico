@@ -98,28 +98,18 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    ObjectMeta:
+    BGPPeerList:
       type: object
       properties:
-        name:
+        apiVersion:
           type: string
-        namespace:
+        kind:
           type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
+          const: BGPPeerList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BGPPeer'
     BGPPeerSpec:
       type: object
       properties:
@@ -154,6 +144,44 @@ components:
           type: string
         ttlSecurity:
           type: integer
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
     BGPPeer:
       type: object
       required:
@@ -172,34 +200,6 @@ components:
           $ref: '#/components/schemas/ObjectMeta'
         spec:
           $ref: '#/components/schemas/BGPPeerSpec'
-    Status:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: Status
-        apiVersion:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
-    BGPPeerList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: BGPPeerList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BGPPeer'
   parameters:
     Name:
       name: name

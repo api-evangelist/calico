@@ -110,6 +110,112 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
+    NetworkPolicyList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: NetworkPolicyList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NetworkPolicy'
+    NetworkPolicy:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: NetworkPolicy
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/NetworkPolicySpec'
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+    EntityRule:
+      type: object
+      properties:
+        nets:
+          type: array
+          items:
+            type: string
+        notNets:
+          type: array
+          items:
+            type: string
+        selector:
+          type: string
+        notSelector:
+          type: string
+        namespaceSelector:
+          type: string
+        ports:
+          type: array
+          items:
+            oneOf:
+            - type: integer
+            - type: string
+        notPorts:
+          type: array
+          items:
+            oneOf:
+            - type: integer
+            - type: string
+        serviceAccounts:
+          type: object
+          properties:
+            names:
+              type: array
+              items:
+                type: string
+            selector:
+              type: string
     Rule:
       type: object
       required:
@@ -161,40 +267,6 @@ components:
               type: object
               additionalProperties:
                 type: string
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-    NetworkPolicyList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: NetworkPolicyList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/NetworkPolicy'
     NetworkPolicySpec:
       type: object
       properties:
@@ -221,87 +293,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rule'
-    EntityRule:
-      type: object
-      properties:
-        nets:
-          type: array
-          items:
-            type: string
-        notNets:
-          type: array
-          items:
-            type: string
-        selector:
-          type: string
-        notSelector:
-          type: string
-        namespaceSelector:
-          type: string
-        ports:
-          type: array
-          items:
-            oneOf:
-            - type: integer
-            - type: string
-        notPorts:
-          type: array
-          items:
-            oneOf:
-            - type: integer
-            - type: string
-        serviceAccounts:
-          type: object
-          properties:
-            names:
-              type: array
-              items:
-                type: string
-            selector:
-              type: string
-    NetworkPolicy:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: NetworkPolicy
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/NetworkPolicySpec'
-    Status:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: Status
-        apiVersion:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
   responses:
-    Unauthorized:
-      description: Unauthorized.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Status'
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Unauthorized.
       content:
         application/json:
           schema:
@@ -313,13 +313,14 @@ components:
           schema:
             $ref: '#/components/schemas/Status'
   parameters:
-    LabelSelector:
-      name: labelSelector
-      in: query
+    Name:
+      name: name
+      in: path
+      required: true
       schema:
         type: string
-    FieldSelector:
-      name: fieldSelector
+    LabelSelector:
+      name: labelSelector
       in: query
       schema:
         type: string
@@ -329,10 +330,9 @@ components:
       required: true
       schema:
         type: string
-    Name:
-      name: name
-      in: path
-      required: true
+    FieldSelector:
+      name: fieldSelector
+      in: query
       schema:
         type: string
   securitySchemes:

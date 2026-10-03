@@ -89,6 +89,24 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
+    HostEndpoint:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: HostEndpoint
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/HostEndpointSpec'
     ObjectMeta:
       type: object
       properties:
@@ -111,24 +129,22 @@ components:
           type: object
           additionalProperties:
             type: string
-    HostEndpoint:
+    Status:
       type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
       properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
         kind:
           type: string
-          const: HostEndpoint
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/HostEndpointSpec'
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
     HostEndpointSpec:
       type: object
       properties:
@@ -155,22 +171,6 @@ components:
                 type: integer
               protocol:
                 type: string
-    Status:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: Status
-        apiVersion:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
   parameters:
     Name:
       name: name
