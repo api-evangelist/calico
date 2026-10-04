@@ -107,6 +107,32 @@ components:
           $ref: '#/components/schemas/ObjectMeta'
         spec:
           $ref: '#/components/schemas/HostEndpointSpec'
+    HostEndpointSpec:
+      type: object
+      properties:
+        node:
+          type: string
+        interfaceName:
+          type: string
+        expectedIPs:
+          type: array
+          items:
+            type: string
+        profiles:
+          type: array
+          items:
+            type: string
+        ports:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              port:
+                type: integer
+              protocol:
+                type: string
     ObjectMeta:
       type: object
       properties:
@@ -145,32 +171,6 @@ components:
           type: string
         code:
           type: integer
-    HostEndpointSpec:
-      type: object
-      properties:
-        node:
-          type: string
-        interfaceName:
-          type: string
-        expectedIPs:
-          type: array
-          items:
-            type: string
-        profiles:
-          type: array
-          items:
-            type: string
-        ports:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              port:
-                type: integer
-              protocol:
-                type: string
   parameters:
     Name:
       name: name

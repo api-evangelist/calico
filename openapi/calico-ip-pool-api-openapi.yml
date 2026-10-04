@@ -98,18 +98,6 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    IPPoolList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: IPPoolList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/IPPool'
     IPPool:
       type: object
       required:
@@ -166,6 +154,18 @@ components:
           type: string
         code:
           type: integer
+    IPPoolList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: IPPoolList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IPPool'
     IPPoolSpec:
       type: object
       required:

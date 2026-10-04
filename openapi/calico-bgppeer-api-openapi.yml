@@ -98,18 +98,6 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    BGPPeerList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          const: BGPPeerList
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BGPPeer'
     BGPPeerSpec:
       type: object
       properties:
@@ -144,6 +132,24 @@ components:
           type: string
         ttlSecurity:
           type: integer
+    BGPPeer:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: BGPPeer
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/BGPPeerSpec'
     ObjectMeta:
       type: object
       properties:
@@ -166,6 +172,18 @@ components:
           type: object
           additionalProperties:
             type: string
+    BGPPeerList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          const: BGPPeerList
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BGPPeer'
     Status:
       type: object
       properties:
@@ -182,24 +200,6 @@ components:
           type: string
         code:
           type: integer
-    BGPPeer:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: BGPPeer
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/BGPPeerSpec'
   parameters:
     Name:
       name: name

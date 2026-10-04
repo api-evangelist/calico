@@ -109,6 +109,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+    Unauthorized:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+    Conflict:
+      description: Conflict (already exists).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
   schemas:
     NetworkPolicyList:
       type: object
@@ -122,24 +141,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NetworkPolicy'
-    NetworkPolicy:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: NetworkPolicy
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/NetworkPolicySpec'
     ObjectMeta:
       type: object
       properties:
@@ -216,6 +217,50 @@ components:
                 type: string
             selector:
               type: string
+    NetworkPolicy:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: NetworkPolicy
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/NetworkPolicySpec'
+    NetworkPolicySpec:
+      type: object
+      properties:
+        order:
+          type: number
+        tier:
+          type: string
+        selector:
+          type: string
+        serviceAccountSelector:
+          type: string
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+            - Ingress
+            - Egress
+        ingress:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        egress:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
     Rule:
       type: object
       required:
@@ -267,51 +312,6 @@ components:
               type: object
               additionalProperties:
                 type: string
-    NetworkPolicySpec:
-      type: object
-      properties:
-        order:
-          type: number
-        tier:
-          type: string
-        selector:
-          type: string
-        serviceAccountSelector:
-          type: string
-        types:
-          type: array
-          items:
-            type: string
-            enum:
-            - Ingress
-            - Egress
-        ingress:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-        egress:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
-    Unauthorized:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
-    Conflict:
-      description: Conflict (already exists).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
   parameters:
     Name:
       name: name
@@ -324,15 +324,15 @@ components:
       in: query
       schema:
         type: string
+    FieldSelector:
+      name: fieldSelector
+      in: query
+      schema:
+        type: string
     Namespace:
       name: namespace
       in: path
       required: true
-      schema:
-        type: string
-    FieldSelector:
-      name: fieldSelector
-      in: query
       schema:
         type: string
   securitySchemes:

@@ -102,6 +102,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
   schemas:
     GlobalNetworkPolicyList:
       type: object
@@ -115,6 +122,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GlobalNetworkPolicy'
+    GlobalNetworkPolicySpec:
+      allOf:
+      - $ref: '#/components/schemas/NetworkPolicySpec'
+      - type: object
+        properties:
+          namespaceSelector:
+            type: string
+          doNotTrack:
+            type: boolean
+          preDNAT:
+            type: boolean
+          applyOnForward:
+            type: boolean
     ObjectMeta:
       type: object
       properties:
@@ -137,37 +157,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    GlobalNetworkPolicy:
-      type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
-      properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
-        kind:
-          type: string
-          const: GlobalNetworkPolicy
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/GlobalNetworkPolicySpec'
-    GlobalNetworkPolicySpec:
-      allOf:
-      - $ref: '#/components/schemas/NetworkPolicySpec'
-      - type: object
-        properties:
-          namespaceSelector:
-            type: string
-          doNotTrack:
-            type: boolean
-          preDNAT:
-            type: boolean
-          applyOnForward:
-            type: boolean
     Status:
       type: object
       properties:
@@ -222,6 +211,32 @@ components:
                 type: string
             selector:
               type: string
+    NetworkPolicySpec:
+      type: object
+      properties:
+        order:
+          type: number
+        tier:
+          type: string
+        selector:
+          type: string
+        serviceAccountSelector:
+          type: string
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+            - Ingress
+            - Egress
+        ingress:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        egress:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
     Rule:
       type: object
       required:
@@ -273,39 +288,24 @@ components:
               type: object
               additionalProperties:
                 type: string
-    NetworkPolicySpec:
+    GlobalNetworkPolicy:
       type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
       properties:
-        order:
-          type: number
-        tier:
+        apiVersion:
           type: string
-        selector:
+          const: projectcalico.org/v3
+        kind:
           type: string
-        serviceAccountSelector:
-          type: string
-        types:
-          type: array
-          items:
-            type: string
-            enum:
-            - Ingress
-            - Egress
-        ingress:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-        egress:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
+          const: GlobalNetworkPolicy
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/GlobalNetworkPolicySpec'
   parameters:
     Name:
       name: name
