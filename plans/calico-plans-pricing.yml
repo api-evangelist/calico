@@ -138,3 +138,29 @@ sign_in: https://www.calicocloud.io/login
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: Calico Open Source
+    access: free
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Calico Cloud
+    access: paid
+    model: hybrid
+    model_how: derived
+    units: []
+    periods: []
+  - name: Calico Enterprise
+    access: enterprise
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
