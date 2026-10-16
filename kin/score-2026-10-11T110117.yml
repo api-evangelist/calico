@@ -1,34 +1,31 @@
-# Kin Score artifact — calico — 2026-09-08T214843
+# Kin Score artifact — calico — 2026-10-11T110117
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: calico
-  schema_version: 0.20.0
-  scored_at: '2026-09-08'
-  run_ts: 2026-09-08T214843
-  composite: 71.0
-  band: exemplar
+  schema_version: 0.23.0
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
+  composite: 66.3
+  band: strong
   facets:
-    discoverability: 75.9
-    contract_quality: 51.9
-    governance: 18.2
+    discoverability: 75.0
+    contract_quality: 47.0
+    contract_governance: 18.2
     operational_transparency: 44.7
     developer_ergonomics: 70.8
-    commercial_clarity: 93.4
-    contract_governance: 18.2
     access_clarity: 93.4
   agent_readiness:
-    score: 42.1
+    score: 36.2
     band: agent-ready
-    band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: false
-      mcp_server: documented
+      mcp_server: platform
       auth_clarity: served
-      idempotency: documented
-      error_semantics: documented
+      idempotency: derived
+      error_semantics: derived
       openapi_examples: false
       rate_limit_signal: documented
       event_surface_described: false
@@ -43,15 +40,15 @@ kin_score:
       agentic_commerce: false
   regulatory:
     applies: true
-    regime: Insurance
-    regime_id: insurance
-    score: 80.3
-    matched_via: tags
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 45.1
+    matched_via: fallback
   open_source:
     applies: true
     score: 85.0
   provenance:
-    mcp: first-party
+    mcp: site-plugin
     skills: derived
     agentic_access: derived
     conformance: first-party
