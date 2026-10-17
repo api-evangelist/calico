@@ -98,24 +98,22 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    IPPool:
+    Status:
       type: object
-      required:
-      - apiVersion
-      - kind
-      - metadata
-      - spec
       properties:
-        apiVersion:
-          type: string
-          const: projectcalico.org/v3
         kind:
           type: string
-          const: IPPool
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          $ref: '#/components/schemas/IPPoolSpec'
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
     ObjectMeta:
       type: object
       properties:
@@ -138,22 +136,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Status:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: Status
-        apiVersion:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
     IPPoolList:
       type: object
       properties:
@@ -202,6 +184,24 @@ components:
             enum:
             - Workload
             - Tunnel
+    IPPool:
+      type: object
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      properties:
+        apiVersion:
+          type: string
+          const: projectcalico.org/v3
+        kind:
+          type: string
+          const: IPPool
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          $ref: '#/components/schemas/IPPoolSpec'
   parameters:
     Name:
       name: name

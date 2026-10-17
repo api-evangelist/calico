@@ -59,6 +59,13 @@ paths:
                 type: object
                 additionalProperties: true
 components:
+  parameters:
+    Name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     ObjectMeta:
       type: object
@@ -82,13 +89,6 @@ components:
           type: object
           additionalProperties:
             type: string
-  parameters:
-    Name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

@@ -141,44 +141,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NetworkPolicy'
-    ObjectMeta:
+    NetworkPolicySpec:
       type: object
       properties:
-        name:
+        order:
+          type: number
+        tier:
           type: string
-        namespace:
+        selector:
           type: string
-        resourceVersion:
+        serviceAccountSelector:
           type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
+        types:
+          type: array
+          items:
             type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-    Status:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: Status
-        apiVersion:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
+            enum:
+            - Ingress
+            - Egress
+        ingress:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        egress:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
     EntityRule:
       type: object
       properties:
@@ -217,6 +205,44 @@ components:
                 type: string
             selector:
               type: string
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
     NetworkPolicy:
       type: object
       required:
@@ -235,32 +261,6 @@ components:
           $ref: '#/components/schemas/ObjectMeta'
         spec:
           $ref: '#/components/schemas/NetworkPolicySpec'
-    NetworkPolicySpec:
-      type: object
-      properties:
-        order:
-          type: number
-        tier:
-          type: string
-        selector:
-          type: string
-        serviceAccountSelector:
-          type: string
-        types:
-          type: array
-          items:
-            type: string
-            enum:
-            - Ingress
-            - Egress
-        ingress:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-        egress:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
     Rule:
       type: object
       required:
@@ -313,10 +313,9 @@ components:
               additionalProperties:
                 type: string
   parameters:
-    Name:
-      name: name
-      in: path
-      required: true
+    FieldSelector:
+      name: fieldSelector
+      in: query
       schema:
         type: string
     LabelSelector:
@@ -324,13 +323,14 @@ components:
       in: query
       schema:
         type: string
-    FieldSelector:
-      name: fieldSelector
-      in: query
-      schema:
-        type: string
     Namespace:
       name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    Name:
+      name: name
       in: path
       required: true
       schema:

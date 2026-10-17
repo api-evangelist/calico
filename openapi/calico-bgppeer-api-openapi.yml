@@ -98,40 +98,6 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    BGPPeerSpec:
-      type: object
-      properties:
-        node:
-          type: string
-        nodeSelector:
-          type: string
-        peerIP:
-          type: string
-        peerSelector:
-          type: string
-        asNumber:
-          type: integer
-        keepOriginalNextHop:
-          type: boolean
-        password:
-          type: object
-          properties:
-            secretKeyRef:
-              type: object
-              properties:
-                name:
-                  type: string
-                key:
-                  type: string
-        sourceAddress:
-          type: string
-          enum:
-          - UseNodeIP
-          - None
-        maxRestartTime:
-          type: string
-        ttlSecurity:
-          type: integer
     BGPPeer:
       type: object
       required:
@@ -150,6 +116,22 @@ components:
           $ref: '#/components/schemas/ObjectMeta'
         spec:
           $ref: '#/components/schemas/BGPPeerSpec'
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
     ObjectMeta:
       type: object
       properties:
@@ -184,21 +166,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BGPPeer'
-    Status:
+    BGPPeerSpec:
       type: object
       properties:
-        kind:
+        node:
           type: string
-          default: Status
-        apiVersion:
+        nodeSelector:
           type: string
-        status:
+        peerIP:
           type: string
-        message:
+        peerSelector:
           type: string
-        reason:
+        asNumber:
+          type: integer
+        keepOriginalNextHop:
+          type: boolean
+        password:
+          type: object
+          properties:
+            secretKeyRef:
+              type: object
+              properties:
+                name:
+                  type: string
+                key:
+                  type: string
+        sourceAddress:
           type: string
-        code:
+          enum:
+          - UseNodeIP
+          - None
+        maxRestartTime:
+          type: string
+        ttlSecurity:
           type: integer
   parameters:
     Name:

@@ -89,6 +89,44 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
+    Status:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Status
+        apiVersion:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        resourceVersion:
+          type: string
+        uid:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
     HostEndpoint:
       type: object
       required:
@@ -133,44 +171,6 @@ components:
                 type: integer
               protocol:
                 type: string
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        resourceVersion:
-          type: string
-        uid:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-    Status:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: Status
-        apiVersion:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
   parameters:
     Name:
       name: name
