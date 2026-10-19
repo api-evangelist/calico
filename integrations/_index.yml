@@ -37,3 +37,51 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: calico-go-module-proxy
+  label: Go module proxy
+  partner_name: Go module proxy
+  category: official SDK (Go)
+  type: register
+  channel: package-registry
+  evidence: https://pkg.go.dev/github.com/projectcalico/api
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/projectcalico/api
+      version: v0.0.0-20260629014411-77a2372ddd1c
+      released: '2026-06-29'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/projectcalico/api
+      repo_leg: github-org:projectcalico
+      publisher_leg: org:projectcalico
+      matched_by: github-org
+    - name: github.com/projectcalico/calico
+      version: v1.45.0-0.dev-operator
+      released: '2026-08-17'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/projectcalico/calico
+      repo_leg: github-org:projectcalico
+      publisher_leg: org:projectcalico
+      matched_by: github-org
+    - name: github.com/projectcalico/libcalico-go
+      version: v1.7.3
+      released: '2017-11-27'
+      released_field: Time
+      lapsed: true
+      page: https://pkg.go.dev/github.com/projectcalico/libcalico-go
+      repo_leg: github-org:projectcalico
+      publisher_leg: org:projectcalico
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
