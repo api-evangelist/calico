@@ -85,3 +85,55 @@
     detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
+- slug: calico-homebrew
+  label: Homebrew
+  partner: homebrew
+  partner_name: Homebrew
+  category: official CLI (Homebrew)
+  type: register
+  channel: package-registry
+  evidence: https://formulae.brew.sh/formula/calicoctl
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Homebrew (public package index)
+    spec_file: null
+    packages:
+    - name: calicoctl
+      kind: formula
+      version: 3.33.0
+      released: null
+      lapsed: false
+      page: https://formulae.brew.sh/formula/calicoctl
+      cli: 'formula desc: Calico CLI tool'
+      repo_leg: domain:tigera.io
+      publisher_leg: artifact-github-org:projectcalico
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: calico-skillsmp-skillsmp-com
+  label: SkillsMP (skillsmp.com)
+  partner_name: SkillsMP (skillsmp.com)
+  category: Agent Skills register
+  type: register
+  channel: standard-directory
+  evidence: https://skillsmp.com/creators/projectcalico
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: SkillsMP (skillsmp.com) (public sitemap / list)
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-listing
+    matched_org: projectcalico
+    matched_by: org-name (profile site projectcalico.org not in catalog)
+    sample_skills: []
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
