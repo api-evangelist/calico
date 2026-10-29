@@ -1,4 +1,4 @@
-# Calico (calico)
+# Calico
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,107 +66,167 @@
 
 Calico is an open source networking and network security solution for containers, virtual machines, and native host-based workloads. Created and maintained by Tigera, it is the most widely adopted solution for container networking and security, powering over 8 million nodes daily across 166 countries.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/calico/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/calico/refs/heads/main/apis.yml)
+**Areas:** CNI · Containers · eBPF · Kubernetes · Network Policy · Network Security · Networking · Open Source · Service Mesh
 
-## Scope
+## Calico on APIs.io
 
-- **Type:** Index
+Everything profiled for Calico is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/calico/](https://apis.io/providers/calico/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (10)
 
-- CNI
-- Containers
-- eBPF
-- Kubernetes
-- Network Policy
-- Network Security
-- Networking
-- Open Source
-- Service Mesh
+- [Calico Client API](https://apis.io/apis/calico/calico-client-api/) — The Calico Client Library provides programmatic access to manage Calico resources such as network policies, IP pools, BGP configuration, host and workload…
+- [calicoctl CLI](https://apis.io/apis/calico/calicoctl-cli/) — calicoctl is the command-line tool that enables operators and automation systems to create, read, update, and delete Calico resources such as policies, IP…
+- [Calico Kubernetes CRDs](https://apis.io/apis/calico/calico-kubernetes-crds/) — Calico exposes its networking and security primitives through Kubernetes Custom Resource Definitions (CRDs) including NetworkPolicy, GlobalNetworkPolicy,…
+- [Calico BGPConfiguration API](https://apis.io/apis/calico/calico-bgpconfiguration-api/) — The BGPConfiguration API from Calico — 2 operation(s) for bgpconfiguration.
+- [Calico BGPPeer API](https://apis.io/apis/calico/calico-bgppeer-api/) — The BGPPeer API from Calico — 2 operation(s) for bgppeer.
+- [Calico GlobalNetworkPolicy API](https://apis.io/apis/calico/calico-globalnetworkpolicy-api/) — The GlobalNetworkPolicy API from Calico — 2 operation(s) for globalnetworkpolicy.
+- [Calico HostEndpoint API](https://apis.io/apis/calico/calico-hostendpoint-api/) — The HostEndpoint API from Calico — 2 operation(s) for hostendpoint.
+- [Calico Profile API](https://apis.io/apis/calico/calico-profile-api/) — The Profile API from Calico — 2 operation(s) for profile.
+- [Calico IP Pool API](https://apis.io/apis/calico/calico-ip-pool-api/) — The IP Pool API from Calico — 2 operation(s) for ip pool.
+- [Calico Network Policy API](https://apis.io/apis/calico/calico-network-policy-api/) — The Network Policy API from Calico — 2 operation(s) for network policy.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-04-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Calico Client API
+Model Context Protocol servers that expose the API to agents.
 
-The Calico Client Library provides programmatic access to manage Calico resources such as network policies, IP pools, BGP configuration, host and workload endpoints, and IPAM settings. It is the core programmatic interface consumed by calicoctl and other Calico components for managing container networking and security resources.
+- [Tigera MCP Server](https://apis.io/servers/calico/tigera-mcp-server/)
 
-- **Human URL:** [https://docs.tigera.io/calico/latest/reference/](https://docs.tigera.io/calico/latest/reference/)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Client Library
-- CNI
-- Network Policy
-- Networking
+- [Calico Agentic Access](https://apis.io/agentic-access/calico/calico-agentic-access/)
 
-#### Properties
+#### Collections (8)
 
-- [Documentation](https://docs.tigera.io/calico/latest/reference/)
-- [Git Hub](https://github.com/projectcalico/calico)
-- [Postman Collection](collections/calico.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/calico.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### calicoctl CLI
+- [Project Calico API (projectcalico.org/v3)](https://apis.io/collections/calico/open-calico/)
+- [Project Calico API (projectcalico.org/v3) BGPConfiguration API](https://apis.io/collections/calico/open-calico-bgpconfiguration-api/)
+- [Project Calico API (projectcalico.org/v3) BGPConfiguration BGPPeer API](https://apis.io/collections/calico/open-calico-bgppeer-api/)
+- [Project Calico API (projectcalico.org/v3) BGPConfiguration GlobalNetworkPolicy API](https://apis.io/collections/calico/open-calico-globalnetworkpolicy-api/)
+- [Project Calico API (projectcalico.org/v3) BGPConfiguration HostEndpoint API](https://apis.io/collections/calico/open-calico-hostendpoint-api/)
+- [Project Calico API (projectcalico.org/v3) BGPConfiguration IPPool API](https://apis.io/collections/calico/open-calico-ippool-api/)
+- [Project Calico API (projectcalico.org/v3) BGPConfiguration NetworkPolicy API](https://apis.io/collections/calico/open-calico-networkpolicy-api/)
+- [Project Calico API (projectcalico.org/v3) BGPConfiguration Profile API](https://apis.io/collections/calico/open-calico-profile-api/)
 
-calicoctl is the command-line tool that enables operators and automation systems to create, read, update, and delete Calico resources such as policies, IP pools, BGP peers, host endpoints, and workload endpoints. It also supports datastore migration, IPAM management, node diagnostics, and cluster status operations.
+#### Overlays (7)
 
-- **Human URL:** [https://docs.tigera.io/calico/latest/reference/calicoctl/](https://docs.tigera.io/calico/latest/reference/calicoctl/)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Tags
+- [Calico Bgpconfiguration Api Overlay](https://apis.io/overlays/calico/calico-bgpconfiguration-api-overlay/)
+- [Calico Bgppeer Api Overlay](https://apis.io/overlays/calico/calico-bgppeer-api-overlay/)
+- [Calico Globalnetworkpolicy Api Overlay](https://apis.io/overlays/calico/calico-globalnetworkpolicy-api-overlay/)
+- [Calico Hostendpoint Api Overlay](https://apis.io/overlays/calico/calico-hostendpoint-api-overlay/)
+- [Calico Ippool Api Overlay](https://apis.io/overlays/calico/calico-ippool-api-overlay/)
+- [Calico Networkpolicy Api Overlay](https://apis.io/overlays/calico/calico-networkpolicy-api-overlay/)
+- [Calico Profile Api Overlay](https://apis.io/overlays/calico/calico-profile-api-overlay/)
 
-- CLI
-- IPAM
-- Network Policy
-- Operations
+#### Security (4)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://docs.tigera.io/calico/latest/reference/calicoctl/)
-- [Git Hub](https://github.com/projectcalico/calicoctl)
-- [Postman Collection](collections/calico.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/calico.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Calico Authentication](https://apis.io/security/calico/calico-authentication/)
+- [Calico Domain Security](https://apis.io/security/calico/calico-domain-security/)
+- [Calico Trust Center](https://apis.io/security/calico/calico-trust-center/)
+- [Calico Vulnerability Disclosure](https://apis.io/security/calico/calico-vulnerability-disclosure/)
 
-### Calico Kubernetes CRDs
+#### OAuth scopes (1)
 
-Calico exposes its networking and security primitives through Kubernetes Custom Resource Definitions (CRDs) including NetworkPolicy, GlobalNetworkPolicy, IPPool, BGPConfiguration, BGPPeer, HostEndpoint, WorkloadEndpoint, FelixConfiguration, and others. These CRDs allow declarative management of container networking and security via the Kubernetes API.
+The permissions the API asks for.
 
-- **Human URL:** [https://docs.tigera.io/calico/latest/reference/resources/](https://docs.tigera.io/calico/latest/reference/resources/)
+- [Calico Scopes](https://apis.io/scopes/calico/calico-scopes/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- CRDs
-- Kubernetes
-- Network Policy
-- Security
+Published plans, tiers and prices.
 
-#### Properties
+- [Calico Plans Pricing](https://apis.io/plans/calico/calico-plans-pricing/)
 
-- [Documentation](https://docs.tigera.io/calico/latest/reference/resources/)
-- [Git Hub](https://github.com/projectcalico/calico)
-- [Postman Collection](collections/calico.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/calico.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-## Common Properties
+Published request limits.
 
-- [LinkedIn](https://www.linkedin.com/company/calico-life-sciences-llc)
+- [Calico Rate Limits](https://apis.io/rate-limits/calico/calico-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Calico Finops](https://apis.io/finops/calico/calico-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.tigera.io/project-calico/)
 - [Documentation](https://docs.tigera.io/)
-- [Getting Started](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart)
-- [GitHub Organization](https://github.com/projectcalico)
-- [GitHub Repository](https://github.com/projectcalico/calico)
-- [Blog](https://www.tigera.io/blog/)
+- [Getting started](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart)
+- [API reference](https://docs.tigera.io/calico/latest/reference/)
 - [Pricing](https://www.tigera.io/tigera-products/calico/)
-- [Slack](https://slack.projectcalico.org/)
-- [Training](https://www.tigera.io/interactive-training/)
-- [Certification](https://www.tigera.io/lp/calico-certification/)
-- [Integrations](https://www.tigera.io/partners/)
+- [Support](https://www.tigera.io/calico-support/)
+- [Changelog](https://docs.tigera.io/calico/latest/release-notes/)
+- [Blog](https://www.tigera.io/blog/)
+- [Terms of service](https://www.tigera.io/legal/terms-of-use/)
+- [Privacy policy](https://www.tigera.io/legal/privacy-policy/)
+- [GitHub](https://github.com/projectcalico)
+- [Status](https://status.calicocloud.io/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 64.9** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 47.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 70.8 |
+| Access clarity | 85.5 |
+
+**Agent readiness 36.3** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | derived (partial credit) |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/calico/](https://apis.io/providers/calico/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Calico: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/calico/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
