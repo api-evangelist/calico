@@ -1,0 +1,166 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Calico
+providerId: calico
+created: '2026-05-04'
+modified: '2026-09-05'
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://www.tigera.io/tigera-products/calico-cloud-pricing/ ,
+  https://www.tigera.io/tigera-products/compare-products/ ,
+  https://github.com/projectcalico/calico/blob/master/LICENSE
+provenance_note: >-
+  REPLACED 2026-09-05. Every previous version of this file was a bulk-sweep SCAFFOLD (roadmap#35):
+  invented Free / Professional / Enterprise tiers with invented 1,000 and 100,000 request-per-month
+  quotas and invented 10 / 100 / 1,000 rpm rate limits. Calico sells none of those things — it does
+  not meter API requests at all. The scaffold is gone and what follows was read off the provider's
+  own pricing page.
+description: >-
+  Calico's real commercial shape. The API in this record — projectcalico.org/v3 — is part of Calico
+  Open Source, which is Apache-2.0 and free, and it runs on the operator's own Kubernetes API
+  server. There is NO per-request pricing, no request quota and no metered API tier anywhere in the
+  product. What Tigera sells is the commercial editions, priced per vCPU-hour or by contract.
+tags:
+  - CNI
+  - Containers
+  - eBPF
+  - Kubernetes
+  - Network Policy
+  - Network Security
+  - Networking
+  - Open Source
+  - Service Mesh
+pricing_url: https://www.tigera.io/tigera-products/calico-cloud-pricing/
+comparison_url: https://www.tigera.io/tigera-products/compare-products/
+billing_unit: vCPU-hour
+metered_by_api_request: false
+plan_count: 3
+plans:
+  - id: calico-open-source
+    name: Calico Open Source
+    type: free
+    price: '0.00'
+    currency: USD
+    billing_period: none
+    license: Apache-2.0
+    description: >-
+      The open source project. Networking, network policy and observability across any Kubernetes
+      distribution, self-hosted by the operator. This is the edition that serves the
+      projectcalico.org/v3 API described in openapi/ and the CRDs in json-schema/.
+    quota: none — nothing is metered
+    overage: none
+    limits: >-
+      No provider-imposed limits. The only ceiling is the operator's own Kubernetes API server (see
+      rate-limits/calico-rate-limits.yml).
+    support: community — Slack, GitHub issues and discussions
+    signup_required: false
+    elements:
+      - Calico CNI and IPAM
+      - NetworkPolicy and GlobalNetworkPolicy
+      - eBPF, standard Linux and nftables data planes
+      - BGP routing
+      - calicoctl CLI
+      - projectcalico.org/v3 API and CRDs
+  - id: calico-cloud
+    name: Calico Cloud
+    subtitle: SaaS Platform
+    type: paid
+    price: '0.025'
+    price_verbatim: $0.025 / vCPU Hour
+    currency: USD
+    billing_period: hourly
+    billing_unit: vCPU-hour
+    description: >-
+      The hosted commercial edition, operated by Tigera. Usage-based pricing and annual subscription
+      are also available through the Microsoft Azure, AWS and Google Cloud marketplaces.
+    quota: not published
+    overage: not published — the price IS the meter
+    contact_required: true
+    contact_cta: Contact Sales
+    marketplaces:
+      - name: Microsoft Azure Marketplace
+        url: https://azuremarketplace.microsoft.com/en-ca/marketplace/apps/tigerainc1620235671643.calicocloudsaas
+      - name: AWS Marketplace
+        url: https://aws.amazon.com/marketplace/pp/prodview-pq3tgvtlj3wce
+      - name: Google Cloud Marketplace
+        url: https://console.cloud.google.com/marketplace/product/tigera-public/calico-cloud
+    status_page: https://status.calicocloud.io/
+    elements:
+      - Ingress gateway
+      - Observability
+      - Policy management
+      - Egress gateways
+      - Threat detection
+      - Enterprise support
+      - 7-day log retention
+      - Unlimited users
+      - Multi-cluster support
+  - id: calico-enterprise
+    name: Calico Enterprise
+    subtitle: Self-managed Platform
+    type: enterprise
+    price: custom
+    price_verbatim: Custom Pricing
+    currency: USD
+    billing_period: contract
+    description: >-
+      The self-managed commercial edition. No price is published; the page says Custom Pricing and
+      routes to sales.
+    quota: negotiated
+    overage: negotiated
+    contact_required: true
+    contact_cta: Contact Sales
+    elements:
+      - Ingress gateway
+      - Observability
+      - Policy management
+      - Egress gateways
+      - Threat detection
+      - Enterprise support
+      - Custom log retention
+      - Unlimited users
+      - Multi-cluster support
+free_tier:
+  exists: true
+  form: >-
+    The entire Open Source edition, permanently, under Apache-2.0. Not a trial and not a metered
+    free tier — a different product.
+trial:
+  published: false
+  note: >-
+    No trial length is published for Calico Cloud or Calico Enterprise. Both CTAs on the pricing page
+    are "Contact Sales". A "Start Free" CTA elsewhere on tigera.io routes to
+    https://www.calicocloud.io/, which is the Calico Cloud application shell, not a stated trial
+    offer. Recorded as unpublished rather than guessed.
+sign_in: https://www.calicocloud.io/login
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: Calico Open Source
+    access: free
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Calico Cloud
+    access: paid
+    model: hybrid
+    model_how: derived
+    units: []
+    periods: []
+  - name: Calico Enterprise
+    access: enterprise
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
